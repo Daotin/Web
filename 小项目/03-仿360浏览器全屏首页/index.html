@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/360Page.css">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/jquery.fullPage.min.js"></script>
+</head>
+
+<body>
+    <div id="360Page">
+        <div class="section first">
+            <div class="logo"></div>
+            <div class="text">
+                <img src="./images/text_1.png" alt="">
+                <img src="./images/text_2.png" alt="">
+                <img src="./images/text_3.png" alt="">
+                <img src="./images/text_4.png" alt="">
+                <img src="./images/text_5.png" alt="">
+                <img src="./images/text_6.png" alt="">
+                <img src="./images/text_7.png" alt="">
+                <img src="./images/text_8.png" alt="">
+            </div>
+            <div class="info1"></div>
+
+        </div>
+        <div class="section second">
+            <div class="shield">
+                <img src="./images/shield_1.png" alt="">
+                <img src="./images/shield_2.png" alt="">
+                <img src="./images/shield_3.png" alt="">
+                <img src="./images/shield_4.png" alt="">
+                <img src="./images/shield_5.png" alt="">
+                <img src="./images/shield_6.png" alt="">
+                <img src="./images/shield_7.png" alt="">
+                <img src="./images/shield_8.png" alt="">
+                <img src="./images/shield_9.png" alt="">
+            </div>
+            <div class="info2"></div>
+        </div>
+        <div class="section third">
+            <div class="info3"></div>
+            <div class="circle">
+                <div class="rocket"></div>
+            </div>
+        </div>
+        <div class="section fourth">
+            <div class="search">
+                <div class="search-bar"></div>
+                <div class="search-text"></div>
+                <div class="search-content"></div>
+            </div>
+            <div class="info4"></div>
+        </div>
+        <!-- <div class="section fifth">
+            <h3>第五屏</h3>
+        </div> -->
+    </div>
+</body>
+
+<script>
+    $(function () {
+        $('#360Page').fullpage({
+            sectionsColor: ['#0da5d6', '#2AB561', '#DE8910', '#16BA9D', '#0DA5D6'],
+            afterLoad: function (anchorLink, index) {
+                $(".section").removeClass("current");
+                $(".section:eq(" + (index - 1) + ")").addClass("current");
+            }
+        });
+    });
+</script>
+
+</html>

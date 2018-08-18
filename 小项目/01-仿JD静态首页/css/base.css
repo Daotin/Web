@@ -1,0 +1,474 @@
+@charset "UTF-8";
+/*css 初始化 */
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img {
+    margin: 0;
+    padding: 0;
+}
+
+fieldset, img, input, button { 			/*fieldset组合表单中的相关元素*/
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline-style: none;  /*去除蓝色边框*/
+}
+
+ul, ol {
+    list-style: none;				/*清除列表风格*/
+}
+
+input {
+    padding-top: 0;
+    padding-bottom: 0;
+    font-family: "SimSun", "宋体";
+}
+
+select, input {
+    vertical-align: middle;  /*图片文字垂直居中*/
+}
+
+select, input, textarea {
+    font-size: 12px;
+    margin: 0;
+}
+
+textarea {
+    resize: none;   /*不能改变多行文本框的大小*/
+}
+
+img {
+    border: 0;
+    vertical-align: middle; /*  去掉图片低测默认的3像素空白缝隙*/
+}
+
+table {
+    border-collapse: collapse;			/*合并外边线*/
+}
+
+body {
+    font: 12px/150% Arial, Verdana, "\5b8b\4f53";	/*宋体，Unicode，统一码*/
+    color: #666;
+    background: #fff
+}
+
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1; /*IE/7/6*/
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #C81623;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 100%;
+}
+
+s, i, em {
+    font-style: normal;
+    text-decoration: none;
+}
+
+.col-red {
+    color: #C81623 !important;
+}
+
+/*公共类*/
+.w {
+    /*版心 提取 */
+    width: 1210px;
+    margin: 0 auto;
+}
+
+.fl {
+    float: left
+}
+
+.fr {
+    float: right
+}
+
+.al {
+    text-align: left
+}
+
+.ac {
+    text-align: center
+}
+
+.ar {
+    text-align: right
+}
+
+.hide {
+    display: none
+}
+
+
+
+
+
+
+
+    /*site-nav部分start*/
+    .site-nav {
+        background: #f1f1f1;
+        height: 30px;
+    }
+
+    .site-nav-send,
+    .site-nav .later {
+        position: relative;
+        line-height: 30px;
+        padding-left: 10px;
+        padding-right: 25px;
+    }
+    .site-nav .fl:hover {
+        background: #fff;
+    }
+
+    .site-nav-send i,
+    .later i {
+        position: absolute;
+        top: 15px;
+        right: 5px;
+        width: 15px;
+        height: 6px;
+        font: 13px/15px "Consolas";
+        overflow: hidden;
+        /*background: #b6121e;*/
+    }
+    .site-nav-send s,
+    .later s {
+        position: absolute;
+        top: -7px;
+
+    }
+    .site-nav .line {
+        width: 1px;
+        background: #DDD;
+        height: 12px;
+        margin-top: 9px;
+        padding: 0;
+    }
+    .site-nav li {
+        float: left;
+        line-height: 30px;
+        padding: 0 7px;
+    }
+    .site-nav .tel {
+        padding-left: 25px;
+    }
+    .tel span{
+        position: absolute;
+        width: 15px;
+        height: 20px;
+        background: url("../images/tel.png") no-repeat;
+        top: 5px;
+        left: 6px;
+    }
+    .site-nav .tel:hover span {
+        background: url("../images/tel.png") 0 -25px no-repeat;
+    }
+    
+    /*site-nav部分end*/
+
+/*-------------------------------------------------------------------------*/
+
+    /*top-banner部分start*/
+    .top-banner {
+        background: #00376D;
+    }
+    .tb {
+        position: relative;
+    }
+    .close-banner {
+        position: absolute;
+        width: 19px;
+        height: 19px;
+        background: url("../images/close-banner.png") no-repeat;
+        top: 5px;
+        right: 5px;
+    }
+    .close-banner:hover {
+        background-position: bottom;
+    }
+
+    /*top-banner部分end*/
+
+/*----------------------------------------------------------------------------------------*/
+
+    /*title-nav部分start*/
+    .logo {
+        float: left;
+        width: 362px;
+        height: 60px;
+        padding: 20px 0;
+    }
+    .search {
+        padding-top: 25px;
+    }
+    .search input {
+        float: left;
+        width: 456px;
+        height: 32px;
+        border: 2px solid #B61D1D;
+        font: 16px/36px "Microsoft YaHei";
+        color: #666;
+    }
+    .search button {
+        float: left;
+        width: 82px;
+        height: 36px;
+        background-color: #B61D1D;
+        color: #fff;
+        font: 16px/36px "Microsoft YaHei";
+        cursor: pointer;
+
+    }
+    .index {
+        float: left;
+        width: 530px;
+        height: 28px;
+        line-height: 28px;
+    }
+    .index a {
+        margin-right: 8px;
+    }
+    .shop-car {
+        float: right;
+        border: 1px solid #DFDFDF;
+        width: 141px;
+        height: 34px;
+        line-height: 36px;
+        position: relative;
+        margin-right: 65px;
+    }
+    .icon1 {
+        position: absolute;
+        left:18px;
+        top: 9px;
+        width: 18px;
+        height: 16px;
+        background: url("../images/tel.png") no-repeat 0 -57px;
+    }
+    .icon2 {
+        position: absolute;
+        right: 12px;
+        top: 0;
+        font: 13px/36px "SimSun";
+    }
+    .icon3 {
+        position: absolute;
+        right: 22px;
+        top: -6px;
+        width: 16px;
+        height: 14px;
+        line-height: 14px;
+        text-align: center;
+        background-color: #C81623;
+        color: #fff;
+        border-radius: 7px 7px 7px 0;
+    }
+    .shop-car a {
+        padding-left: 43px;
+    }
+    /*title-nav部分end*/
+
+/*----------------------------------------------------*/
+    
+    /*shortcut-nav部分start*/
+    .shortcut-nav {
+        height: 44px;
+        width: 100%;
+        border-bottom: 2px solid #B1191A;
+    }
+    .shortcut-nav-menu {
+        float: left;
+        width: 210px;
+        height: 44px;
+        background-color: #B1191A;
+        position: relative;
+        z-index: 1;
+    }
+    .shortcut-nav-menu-all a {
+        display: inline-block;
+        width: 210px;
+        height: 44px;
+        font: 400 15px/44px "Microsoft YaHei";
+        padding-left: 10px;
+        color: #fff;
+    }
+    .shortcut-nav-menu-one {
+        width: 208px;
+        height: 466px;
+        border-left: 2px solid #B61D1D;
+        /*border-bottom: 2px solid #B61D1D;*/
+        background-color: #C81623;
+        margin-top: 2px;
+    }
+    .shortcut-nav-menu-one div {
+        height: 31px;
+        font: 400 12px/31px "Microsoft YaHei";
+        padding: 0 10px;
+    }
+    .shortcut-nav-menu-one div:hover {
+        background-color: #fff;
+    }
+    .shortcut-nav-menu-one div:hover a {
+        color: #C81623;
+    }
+    .shortcut-nav-menu-one h3 {
+        float: left;
+    }
+    .shortcut-nav-menu-one a {
+        color: #fff;
+    }
+    .shortcut-nav-menu-one i {
+        float: right;
+        font: 400 9px/31px Consolas;
+        color: #fff;
+    }
+    .shortcut-nav-items {
+        float: left;
+        width: 730px;
+        height: 44px;
+    }
+    .shortcut-nav-items a {
+        display: inline-block;
+        float: left;
+        height: 44px;
+        line-height: 44px;
+        padding: 0 20px;
+        font: 400 16px/44px "Microsoft YaHei";
+        color: #333;
+    }
+    .shortcut-nav-items a:hover {
+        color: #C81623;
+    }
+    .shortcut-nav-pic {
+        width: 200px;
+        height: 44px;
+        float: right;
+        margin-top: -10px;
+        margin-right: 50px;
+    }
+    /*shortcut-nav部分end*/
+
+/*------------------------------------------------------------------------*/
+    
+    /*footer部分start*/
+    .footer {
+        position: relative;
+    }
+    .footer-top-slogan {
+        height: 54px;
+        background-color: #F5F5F5;
+        padding: 20px 0;
+        position: relative;
+    }
+    .footer-top-slogan-icon {
+        position: absolute;
+        left: 50%;
+    }
+    .footer-top-slogan-icon1 {
+        margin-left: -600px;
+    }
+    .footer-top-slogan-icon2 {
+        margin-left: -300px;
+    }
+    .footer-top-slogan-icon4 {
+        margin-left: 300px;
+    }
+    .footer-top-shop {
+        padding-top: 15px;
+    }
+    .footer-top-shop dl {
+        float: left;
+        width: 199px;
+    }
+    .footer-top-shop .last-dl {
+        width: 100px;
+    }
+    .footer-top-shop dt,
+    .map h3{
+        /*padding: 10px 0;*/
+        height: 34px;
+        font: 16px/34px "Microsoft YaHei";
+    }
+    .footer-top-shop dd {
+        line-height: 20px;
+    }
+    .map {
+        float: right;
+        margin-right: 66px;
+        width: 203px;
+        height: 171px;
+        background: url("../images/china.png") no-repeat left bottom;
+        padding-left: 18px;
+    }
+    .map p {
+        margin: 12px 0 6px 0;
+    }
+    .map a {
+        float: right;
+    }
+    .footer-bottom {
+        border-top: 1px solid #E5E5E5;
+        margin-top: 20px;
+        text-align: center;
+        padding: 20px 0 30px;
+    }
+    .footer-bottom-links a {
+        margin: 0 10px;
+    }
+    .footer-bottom-copyright {
+        padding: 10px 0;
+    }
+    .footer-bottom-pic a {
+        margin: 0 5px;
+    }
+    /*footer部分end*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

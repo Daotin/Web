@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .map {
+            width: 800px;
+            height: 600px;
+            background-color: #ccc;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div class="map"></div>
+
+<script src="common.js"></script>
+<script>
+
+    // 获取地图对象
+    var map = document.getElementsByClassName("map")[0];
+
+    // 产生随机数对象
+    (function () {
+        // 产生随机数的构造函数
+        function Random() {
+
+        }
+
+        // 把Random暴露给window
+        window.Random = Random;
+
+        // 在原型对象中添加方法
+        Random.prototype.getRandom = function (min, max) { // 范围 min ~ max-1
+            return Math.floor(Math.random() * (max - min) + min);
+        };
+    }());
+
+    // 产生小方块对象-----------------------------------------
+    (function () {
+        // 保存食物的数组
+        var elements = [];
+
+        // 食物的构造函数
+        function Food(width, height, color) {
+            this.width = width || 20;
+            this.height = height || 20;
+            this.color = color || "green";
+            this.x = 0; // left属性
+            this.y = 0; // top属性
+            this.element = document.createElement("div"); // 食物实例对象
+        }
+
+        // 将Food暴露给window
+        window.Food = Food;
+
+        // 初始化小方块的显示效果及位置
+        Food.prototype.init = function () {
+            // 每次在创建小方块之前先删除之前的小方块，保证map中只有一个小方块
+            remove();
+
+            var div = this.element;
+            map.appendChild(div);
+
+            div.style.width = this.width + "px";
+            div.style.height = this.height + "px";
+            div.style.backgroundColor = this.color;
+            div.style.position = "absolute";
+
+            this.x = new Random().getRandom(0, map.offsetWidth / this.width) * this.width;
+            this.y = new Random().getRandom(0, map.offsetHeight / this.height) * this.height;
+            div.style.left = this.x + "px";
+            div.style.top = this.y + "px";
+
+            // 把div加到数组中
+            elements.push(div);
+        };
+
+        // 私有函数：删除小方块
+        function remove() {
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].parentElement.removeChild(elements[i]);
+                elements.splice(i, 1); // 清空数组，从i的位置删除1个元素
+            }
+        }
+    }());
+
+    // 产生小蛇对象------------------------------------------------------
+    (function () {
+
+        // 创建数组保存小蛇身体的每个div
+        var elements = [];
+
+
+        function Snack(width, height, direction) {
+            // 小蛇每一块的宽高
+            this.width = width || 20;
+            this.height = height || 20;
+            this.direction = direction || "right";
+            this.beforeDirection = this.direction;
+            // 小蛇组成身体的每个小方块
+            this.body = [
+                {x: 3, y: 2, color: "red"},
+                {x: 2, y: 2, color: "orange"},
+                {x: 1, y: 2, color: "orange"}
+            ];
+        }
+
+        // 将Snack暴露给window
+        window.Snack = Snack;
+
+
+        // 为原型添加小蛇初始化的方法
+        Snack.prototype.init = function (map) {
+            // 显示小蛇之前删除小蛇
+            remove();
+
+            // 循环创建小蛇身体div
+            for (var i = 0; i < this.body.length; i++) {
+                var div = document.createElement("div");
+                map.appendChild(div);
+
+                div.style.width = this.width + "px";
+                div.style.height = this.height + "px";
+                div.style.position = "absolute";
+
+                // 移动方向，移动的时候设置
+
+                // 坐标位置
+                var tempObj = this.body[i];
+                div.style.left = tempObj.x * this.width + "px";
+                div.style.top = tempObj.y * this.width + "px";
+                div.style.backgroundColor = tempObj.color;
+
+                // 将小蛇添加到数组
+                elements.push(div);
+            }
+        };
+
+        // 为原型添加小蛇移动方法
+        Snack.prototype.move = function (food) {
+            var index = this.body.length - 1; // 小蛇身体的索引
+            // 不考虑小蛇头部
+            for (var i = index; i > 0; i--) { // i>0 而不是 i>=0
+                this.body[i].x = this.body[i - 1].x;
+                this.body[i].y = this.body[i - 1].y;
+            }
+
+            // 小蛇头部移动
+            switch (this.direction) {
+                case "right" :
+                    // if(this.beforeDirection !== "left") {
+                    this.body[0].x += 1;
+                    // }
+                    break;
+                case "left" :
+                    this.body[0].x -= 1;
+                    break;
+                case "up" :
+                    this.body[0].y -= 1;
+                    break;
+                case "down" :
+                    this.body[0].y += 1;
+                    break;
+                default:
+                    break;
+            }
+
+            // 小蛇移动的时候，当小蛇偷坐标和食物的坐标相同表示吃到食物
+            var headX = this.body[0].x * this.width;
+            var headY = this.body[0].y * this.height;
+
+            // 吃到食物，将尾巴复制一份加到小蛇body最后
+            if ((headX === food.x) && (headY === food.y)) {
+                var last = this.body[this.body.length - 1];
+                this.body.push({
+                    x: last.x,
+                    y: last.y,
+                    color: last.color
+                });
+
+                // 删除食物
+                food.init();
+            }
+        };
+
+        // 私有函数：删除小蛇
+        function remove() {
+            var i = elements.length - 1;
+            for (; i >= 0; i--) {
+                elements[i].parentNode.removeChild(elements[i]);
+                elements.splice(i, 1);
+            }
+
+        }
+
+    }());
+
+    // 产生游戏对象----------------------------------------------------------
+    (function () {
+        var that = null;
+
+        function Game(map) {
+            this.food = new Food(20, 20, "purple");
+            this.snack = new Snack(20, 20);
+            this.map = map;
+            that = this;
+        }
+
+        // 初始化游戏
+        Game.prototype.init = function () {
+            this.food.init(this.map);
+            this.snack.init(this.map);
+
+            this.autoRun();
+            this.changeDirection();
+        };
+
+        // 小蛇自动跑起来
+        Game.prototype.autoRun = function () {
+            var timeId = setInterval(function () {
+                this.snack.move(this.food);
+                this.snack.init(this.map);
+
+                // 判断最大X,Y边界
+                var maxX = this.map.offsetWidth / this.snack.width;
+                var maxY = this.map.offsetHeight / this.snack.height;
+
+                // X方向边界
+                if ((this.snack.body[0].x < 0) || (this.snack.body[0].x >= maxX)) {
+                    // 撞墙了
+                    clearInterval(timeId);
+                    alert("Oops, Game Over!");
+                }
+
+                // Y方向边界
+                if ((this.snack.body[0].y < 0) || (this.snack.body[0].y >= maxY)) {
+                    // 撞墙了
+                    clearInterval(timeId);
+                    alert("Oops, Game Over!");
+                }
+
+            }.bind(that), 150); // 使用bind，那么init方法中所有的this都将被bind的参数that替换
+        };
+
+        // 按下键盘改变小蛇移动方向
+        Game.prototype.changeDirection = function () {
+
+            addAnyEventListener(document, "keydown", function (e) {
+
+                // 每次按键之前保存按键方向
+                this.snack.beforeDirection = this.snack.direction;
+
+                switch (e.keyCode) {
+                    case 37: // 左
+                        this.snack.beforeDirection !== "right" ? this.snack.direction = "left" : this.snack.direction = "right";
+                        break;
+                    case 38: // 上
+                        this.snack.beforeDirection !== "down" ? this.snack.direction = "up" : this.snack.direction = "down";
+                        break;
+                    case 39: // 右
+                        this.snack.beforeDirection !== "left" ? this.snack.direction = "right" : this.snack.direction = "left";
+                        break;
+                    case 40: // 下
+                        this.snack.beforeDirection !== "up" ? this.snack.direction = "down" : this.snack.direction = "up";
+                        break;
+                    default:
+                        break;
+                }
+            }.bind(that));
+
+        };
+
+        window.Game = Game;
+    }());
+
+    var game = new Game(map);
+    game.init();
+
+</script>
+</body>
+</html>
