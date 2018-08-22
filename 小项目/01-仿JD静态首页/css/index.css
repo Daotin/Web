@@ -1,0 +1,188 @@
+
+
+/*从下面开始就不是公共的部分了*/
+
+    /*sub-banner部分start*/
+    .sub-banner {
+        width: 100%;
+        position: relative;
+    }
+    .sub-banner a {
+        position: absolute;
+        width: 100%;
+        height: 625px;
+        background: url("../images/subbanner.jpg") no-repeat center ;
+    }
+    /*sub-banner部分end*/
+
+    /*main部分start*/
+    .main {
+        position: relative;
+    }
+    .main-slide {
+        float: left;
+        width: 730px;
+        height: 454px;
+        position: relative;
+        margin: 12px 0 0 220px;
+    }
+    .main-slide ul {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        margin-left: -66px;
+    }
+    .main-slide li {
+        float: left;
+        width: 18px;
+        height: 18px;
+        color: #fff;
+        cursor: pointer;
+        line-height: 18px;
+        text-align: center;
+        border-radius: 50%;
+        margin:0 2px;
+        background-color: #3E3E3E;
+    }
+    .main-slide li:hover {
+        background-color: #C81623;
+    }
+    .arrow a {
+        position: absolute;
+        width: 30px;
+        height: 70px;
+        top: 192px;
+        color: #fff;
+        background-color: rgba(0, 0, 0 , 0.2);
+        font: 400 22px/70px SimSun;
+        line-height: 70px;
+        text-align: center;
+    }
+    .arrow a:hover {
+        background-color: rgba(0, 0, 0 , 0.4);
+    }
+    .arrow .arrow-left {
+        left: 0;
+        border-radius: 0 15px 15px 0;
+    }
+    .arrow .arrow-right {
+        right: 0;
+        border-radius: 15px 0 0 15px;
+    }
+    .main-news {
+        float: right;
+    }
+    .main-news-top {
+        width: 248px;
+        height: 372px;
+        border: 2px solid #E4E4E4;
+        margin: 12px 0 5px 0;
+        overflow: hidden;
+    }
+    .main-news-top-faster {
+        height: 163px;
+        border-bottom: 1px solid #E4E4E4;
+    }
+    .main-news-top-faster-more {
+        height: 32px;
+        line-height: 32px;
+        border-bottom: 1px dashed #E4E4E4;
+        padding: 0 15px;
+    }
+    .main-news-top-faster-more h2 {
+        float: left;
+        /*font-size: 16px;*/
+        font: 400 16px/32px "Microsoft YaHei";
+        /*font-family: "Microsoft YaHei";*/
+    }
+    .main-news-top-faster-more a {
+        float: right;
+        font-family: Consolas;
+    }
+    .main-news-top-faster-content {
+        padding: 5px 0 0 15px;
+    }
+    .main-news-top-faster-content li {
+        margin: 6px 0;
+        font-family: "Microsoft YaHei";
+    }
+    .main-news-top-faster-content span {
+        font-weight: 700;
+        margin-right: 5px;
+    }
+    .main-news-top-money ul {
+        width: 270px;
+    }
+    .main-news-top-money li {
+        float: left;
+        width: 62px;
+        height: 70px;
+        position: relative;
+        border: 1px solid #E8E8E7;
+        margin-left: -1px;
+        margin-top: -1px;
+    }
+    .main-news-top-money a {
+        display: block;
+        padding: 40px 0 9px 0;
+        line-height: 30px;
+        text-align: center;
+    }
+    .main-news-top-money i{
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background: url("../images/fly.png") no-repeat;
+        left: 18px;
+        top: 13px;
+    }
+    .main-news-top-money .main-news-top-money-pic2 {
+        background-position: 0 -25px;
+    }
+    .main-news-top-money .main-news-top-money-pic3 {
+        background-position: 0 -50px;
+    }
+    .main-news-top-money .main-news-top-money-pic4 {
+        background-position: 0 -75px;
+    }
+    .main-news-top-money .main-news-top-money-pic5 {
+        background-position: 0 -100px;
+    }
+    .main-news-top-money .main-news-top-money-pic6 {
+        background-position: 0 -125px;
+    }
+    .main-news-top-money .main-news-top-money-pic7 {
+        background-position: 0 -150px;
+    }
+    .main-news-top-money .main-news-top-money-pic8 {
+        background-position: 0 -175px;
+    }
+    .main-news-top-money .main-news-top-money-pic9 {
+        background-position: 0 -200px;
+    }
+    .main-news-top-money .main-news-top-money-pic10 {
+        background-position: 0 -225px;
+    }
+    .main-news-top-money .main-news-top-money-pic11 {
+        background-position: 0 -250px;
+    }
+    .main-news-top-money .main-news-top-money-pic12 {
+        background-position: 0 -275px;
+    }
+    .main-news-top-money span {
+        display: inline-block;
+        position: absolute;
+        background: url("../images/gh.png") no-repeat 53px 0;
+        width: 20px;
+        height: 20px;
+        /*top: 0;*/
+        /*right: 53px;*/
+    }
+
+    /*main部分end*/
+
+    /*JS部分start*/
+    .hide {
+        display: none !important;
+    }
+    /*JS部分end*/

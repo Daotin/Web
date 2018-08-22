@@ -1,0 +1,125 @@
+@charset "UTF-8";
+/*css 初始化 */
+html, body, ul, li, ol, dl, dd, dt, p, span, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img, input, div {
+    margin: 0;
+    padding: 0;
+    /* 盒模型 */
+    box-sizing: border-box;
+    /* 去掉移动端特有的点击高亮效果: transparent 透明色*/
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    width: 100%;
+    font: 12px/150% "Microsoft YaHei", sans-serif;
+    color: #666;
+    background: #fff
+}
+
+fieldset, img, input, button { 			/*fieldset组合表单中的相关元素*/
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline-style: none;  /*去除蓝色边框*/
+}
+
+ul, ol, li {
+    list-style: none;				/*清除列表风格*/
+}
+
+a,
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    color: red;
+}
+
+select, input {
+    vertical-align: middle;  /*图片文字垂直居中*/
+}
+
+select, input, textarea {
+    font-size: 12px;
+    margin: 0;
+}
+
+textarea {
+    resize: none;   /*不能改变多行文本框的大小*/
+}
+
+img {
+    border: 0;
+    vertical-align: middle; /*  去掉图片低测默认的3像素空白缝隙*/
+}
+
+table {
+    border-collapse: collapse;			/*合并外边线*/
+}
+
+
+.clearfix::before, 
+.clearfix::after {
+    content: "";
+    display: block;
+    height: 0;
+    line-height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    *zoom: 1; /*IE/7/6*/
+} 
+
+h1, h2, h3, h4, h5, h6 {
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 100%;
+}
+
+s, i, em {
+    font-style: normal;
+    text-decoration: none;
+}
+
+/*公共类*/
+.w {
+    /*版心 提取 */
+    width: 1225px;
+    margin: 0 auto;
+}
+
+.fl {
+    float: left
+}
+
+.fr {
+    float: right
+}
+
+.al {
+    text-align: left
+}
+
+.ac {
+    text-align: center
+}
+
+.ar {
+    text-align: right
+}
+
+.hide {
+    display: none
+}
+.bl {
+    border-left: 1px solid #ccc;
+}
+.br {
+    border-right: 1px solid #ccc;
+}
+.bb {
+    border-bottom: 1px solid #ccc;
+}

@@ -1,0 +1,144 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+.layout {
+    width: 100%;
+    height: 100%;
+}
+
+/* 头部header */
+.header {
+    width: 100%;
+    height: 50px;
+    background-color: #eee;
+    border-bottom: 1px solid #ccc;
+    position: absolute;
+}
+.header-back,
+.header-menu {
+    width: 50px;
+    height: 50px;
+    background: url("../images/jd-sprites.png");
+    background-size: 200px 200px;
+    position: absolute;
+    top: 0;
+    padding: 15px;
+    background-origin: content-box;
+    background-clip: content-box;
+}
+.header-back {
+    background-position: -20px 0;
+    left: 0;
+}
+.header-menu {
+    background-position: -60px 0;
+    right: 0;
+}
+.header-text {
+    padding: 0 60px;
+}
+.header-text > input {
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+    border-radius: 10px;
+    padding-left: 10px;
+    font-size: 16px;
+    color: #aaa;
+}
+
+
+/* 主体main */
+.main {
+    width: 100%;
+    height: 100%;
+    padding-top: 50px;
+}
+.main-left {
+    width: 100px;
+    height: 100%;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    background: #eee;
+}
+.main-left > span {
+    display: inline-block;
+    width: 100%;
+    font-size: 10px;
+    color: #ccc;
+    text-align: center;
+    margin-top: 80px;
+}
+.main-left ul {
+    width: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.main-left ul li {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background-color: #eee;
+}
+.main-left li.active {
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+.main-left li.active a {
+    color: #e92322;
+}
+.main-left a {
+    display: block;
+    width: 100%;
+    height: 50px;
+    color: #666;
+}
+.main-right {
+    /* width: 100%; */
+    height: 100%;
+    margin-left: 100px;
+    /* 设置为伸缩盒子 */
+    display: flex;
+    flex-direction: column;
+}
+.main-right-img {
+    width: 100%;
+}
+.main-right-img > img {
+    width: 100%;
+    /* 消除基线 */
+    display: block;
+}
+.main-right > h3 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0 10px 5px;
+}
+.main-right-cate {
+    width: 100%;
+    /* 下面两个一起使得没有上下滚动条 */
+    flex: 1;
+    overflow: hidden;
+}
+
+.main-right-cate> ul {
+    width: 100%;
+}
+.main-right-cate > ul > li {
+    width: 33.33%;
+    text-align: center;
+    float: left;
+}
+
+
+
+

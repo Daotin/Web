@@ -1,0 +1,274 @@
+.jd {
+    width: 100%;
+    /* height: 1000px; */
+    /* 最大宽度 */
+    max-width: 640px;
+    /* 最小宽度 */
+    min-width: 320px;
+    margin: 0 auto;
+    background-color: #eee;
+}
+
+/* 搜索栏开始 */
+
+.search {
+    width: 100%;
+    max-width: 640px;
+    height: 40px;
+    background-color: rgba(233, 35, 34, 0);
+    position: fixed;
+    z-index: 10;
+}
+
+.search-logo {
+    width: 56px;
+    height: 20px;
+    background-image: url("../images/jd-sprites.png");
+    background-size: 200px 200px;
+    background-position: left -109px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.search-login {
+    color: #fff;
+    font-size: 14px;
+    line-height: 40px;
+    position: absolute;
+    right: 10px;
+    top: 0;
+}
+
+.search-login:visited {
+    color: #fff;
+}
+
+.search-text {
+    width: 100%;
+    height: 100%;
+    padding-left: 76px;
+    padding-right: 50px;
+}
+
+.search-text>input {
+    width: 100%;
+    height: 30px;
+    margin-top: 5px;
+    border-radius: 15px;
+    color: #666;
+    padding-left: 30px;
+    font-size: 14px;
+}
+
+.search-text::before {
+    content: "";
+    width: 19px;
+    height: 20px;
+    background-image: url("../images/jd-sprites.png");
+    background-size: 200px 200px;
+    background-position: -60px -109px;
+    position: absolute;
+    left: 83px;
+    top: 10px;
+}
+
+/* 搜索栏结束 */
+
+/* 轮播图开始 */
+
+.slideshow {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.slideshow-img {
+    width: 800%;
+}
+
+.slideshow-img>li {
+    width: 12.5%;
+    float: left;
+}
+
+.slideshow-img>li img {
+    width: 100%;
+}
+
+.slideshow-dot {
+    width: 80px;
+    height: 10px;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+}
+
+.slideshow-dot>li {
+    width: 6px;
+    height: 6px;
+    float: left;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    margin: 0 2px;
+}
+
+.slideshow-dot>li.select {
+    background-color: #fff;
+}
+
+/* 轮播图结束 */
+
+/* 导航栏开始 */
+
+.nav {
+    width: 100%;
+    box-shadow: 0 2px 2px #ccc;
+}
+
+.nav-ul {
+    width: 100%;
+    background-color: #fff;
+}
+
+.nav-ul>li {
+    width: 25%;
+    float: left;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.nav-ul>li img {
+    width: 60px;
+    height: 60px;
+}
+
+.nav-ul>li p {
+    margin: 5px 0;
+}
+
+/* 导航栏结束 */
+
+/* 主体内容开始 */
+
+.content {
+    width: 100%;
+}
+
+.content-box {
+    width: 100%;
+    margin-top: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 2px #ccc;
+}
+
+.content-title {
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+
+.content-box>.content-title {
+    height: 30px;
+    line-height: 30px;
+}
+
+.content-title>h3 {
+    margin-left: 20px;
+    position: relative;
+    font-weight: 700;
+}
+
+.content-title>h3::before {
+    content: "";
+    width: 3px;
+    height: 10px;
+    background-color: #e92322;
+    position: absolute;
+    left: -8px;
+    top: 10px;
+}
+
+.content-ul {
+    width: 100%;
+}
+
+.content-ul>li {
+    width: 50%;
+}
+
+.content-ul>li img {
+    width: 100%;
+    display: block;
+}
+
+.content-title-left-clock {
+    display: block;
+    width: 16px;
+    height: 20px;
+    background-image: url("../images/jd-sprites.png");
+    background-size: 200px 200px;
+    background-position: -85px -111px;
+    position: absolute;
+    left: 3px;
+    top: 4px;
+}
+
+.content-title-left-text {
+    padding: 0 10px 0 25px;
+    color: #e92322;
+}
+
+.content-title-left-time>span {
+    display: inline-block;
+    width: 12px;
+    height: 18px;
+    line-height: 18px;
+    background-color: #363634;
+    color: #e5d790;
+    text-align: center;
+    font-weight: bold;
+}
+
+.content-title-left-time>span:nth-of-type(3n) {
+    background-color: transparent;
+    width: 3px;
+}
+
+.content-title-right {
+    margin-right: 10px;
+}
+
+.content-box-sk {
+    padding: 10px;
+}
+
+.content-box-sk>.content-title {
+    border-bottom: 0;
+    margin-bottom: 10px;
+}
+
+.content-box-sk .content-ul {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.content-box-sk .content-ul>li {
+    /* width: 33.33%; */
+    text-align: center;
+}
+
+.content-box-sk .content-ul>li img {
+    width: 100%;
+    display: inline-block;
+    padding: 0 30px;
+    margin-bottom: 5px;
+}
+
+.content-ul-delete {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+/* 主体内容结束 */

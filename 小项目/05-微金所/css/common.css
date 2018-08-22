@@ -1,0 +1,161 @@
+/*公共css样式*/
+
+body {
+    font-family: "Microsoft YaHei", sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #333;
+}
+
+/*左边距*/
+
+.m_l10 {
+    margin-left: 10px;
+}
+
+/*右边距*/
+
+.m_r10 {
+    margin-right: 10px;
+}
+
+/*自定义字体*/
+
+@font-face {
+    font-family: 'wjs';
+    src: url('../fonts/MiFie-Web-Font.eot');
+    /* IE9*/
+    src: url('../lib/fonts/MiFie-Web-Font.eot') format('embedded-opentype'), /* IE6-IE8 */
+    url('../lib/fonts/MiFie-Web-Font.woff') format('woff'), /* chrome、firefox */
+    url('../lib/fonts/MiFie-Web-Font.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('../lib/fonts/MiFie-Web-Font.svg') format('svg');
+    /* iOS 4.1- */
+}
+
+/*自定义字体使用样式*/
+
+.wjs_icon {
+    font-family: wjs;
+}
+
+/*手机图标对应的编码*/
+
+.wjs_icon_phone::before {
+    content: "\e908";
+}
+
+/*电话图标对应的编码*/
+
+.wjs_icon_tel::before {
+    content: "\e909";
+    font-size: 14px;
+}
+
+/*wjs logo*/
+
+.wjs_icon_logo::before {
+    content: "\e920";
+}
+
+/*wjs 文本*/
+
+.wjs_icon_text::before {
+    content: "\e93e";
+}
+
+.wjs_icon_new01::before {
+    content: "\e90e";
+}
+
+.wjs_icon_new02::before {
+    content: "\e90f";
+}
+
+.wjs_icon_new03::before {
+    content: "\e910";
+}
+
+.wjs_icon_new04::before {
+    content: "\e911";
+}
+
+.wjs_icon_partner01::before {
+    content: "\e946";
+}
+
+.wjs_icon_partner02::before {
+    content: "\e92f";
+}
+
+.wjs_icon_partner03::before {
+    content: "\e92e";
+}
+
+.wjs_icon_partner04::before {
+    content: "\e92a";
+}
+
+.wjs_icon_partner05::before {
+    content: "\e929";
+}
+
+.wjs_icon_partner06::before {
+    content: "\e931";
+}
+
+.wjs_icon_partner07::before {
+    content: "\e92c";
+}
+
+.wjs_icon_partner08::before {
+    content: "\e92b";
+}
+
+.wjs_icon_partner09::before {
+    content: "\e92d";
+}
+
+.wjs_iconn_E903::before {
+    content: "\e903";
+}
+
+.wjs_icon_E906::before {
+    content: "\e906";
+}
+
+.wjs_icon_E905::before {
+    content: "\e905";
+}
+
+.wjs_icon_E907::before {
+    content: "\e907";
+}
+
+.wjs_icon_E901::before {
+    content: "\e901";
+}
+
+.wjs_icon_E900::before {
+    content: "\e900";
+}
+
+.wjs_icon_E904::before {
+    content: "\e904";
+}
+
+.wjs_icon_E902::before {
+    content: "\e902";
+}
+
+.wjs_icon_E906::before {
+    content: "\e906";
+}
