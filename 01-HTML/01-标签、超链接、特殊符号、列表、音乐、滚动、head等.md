@@ -1,3 +1,16 @@
+>大家好，这里是「 从零开始学 Web 系列教程 」，并在下列地址同步更新......
+>
+> - github：https://github.com/Daotin/Web
+> - 微信公众号：[Web前端之巅](https://github.com/Daotin/pic/raw/master/wx.jpg)
+> - 博客园：http://www.cnblogs.com/lvonve/
+> - CSDN：https://blog.csdn.net/lvonve/
+>
+> 在这里我会从 Web 前端零基础开始，一步步学习 Web 相关的知识点，期间也会分享一些好玩的项目。现在就让我们一起进入 Web 前端学习的冒险之旅吧！
+
+![](https://github.com/Daotin/pic/raw/master/fgx.png)
+
+
+
 # 一、标签
 
 ## 1、单标签
@@ -33,8 +46,6 @@
 >
 > PS：图片没有定义宽高的时候，图片按照百分之百比例显示，如果只更改图片的宽度或者高度，图片等比例缩放
 
----
-
 
 
 # 二、超链接
@@ -44,9 +55,9 @@
 ```
 > href ：去往的路径、跳转的页面， 必写属性
 > title ： 提示文本，鼠标放到链接上显示的文字
-> target=”self"   （默认值），在自身页面打开（关闭自身页面，打开链接页面）  
+> target=”_self"   （默认值），在自身页面打开（关闭自身页面，打开链接页面）  
 >
-> Target=”blank”   打开新页面，（自身页面不关闭，打开一个新的链接页面）
+> Target=”_blank”   打开新页面，（自身页面不关闭，打开一个新的链接页面）
 >
 > PS：当 href 的值为 `javascript:void(0);` 或 `javascript:;` ，表示超链接不做任何事情，不做任何跳转。
 
@@ -121,7 +132,7 @@
 
 参考链接：[HTML特殊字符编码对照表](http://www.jb51.net/onlineread/htmlchar.htm)
 
----
+
 
 
 
