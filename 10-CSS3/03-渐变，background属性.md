@@ -68,9 +68,9 @@ background: radial-gradient(shape size at position, start-color, ..., color [sto
   - `ellipse`表示椭圆形，
   - `circle`表示圆形。默认为**ellipse**，
 
-​	**如果元素宽高相同为正方形，则ellipse和circle显示一样；**
+		**如果元素宽高相同为正方形，则ellipse和circle显示一样；**
 
-**	如果元素宽高不相同，默认效果为 ellipse。**
+			如果元素宽高不相同，默认效果为 ellipse。**
 
 - size：渐变的大小，即渐变到哪里停止，它有四个值。
   - `closest-side`：最近边； 
@@ -311,6 +311,26 @@ background-clip: border-box|padding-box|content-box;
 ![4](images/4.png)
 
 由图可见，返回箭头下 a 的范围变大了，那么用户点击的响应区域也就大了。
+
+
+
+
+
+# 三、透明度
+
+css3新增透明度属性：`opacity`
+
+```css
+opacity:0; /*全透明*/
+opacity:1; /*不透明*/
+```
+
+为了兼容IE8及以下的浏览器，可以使用 filter 属性（谷歌浏览器不识别，仅IE浏览器识别）：
+
+```css
+filter: alpha(opacity=0);  等价于  opacity: 0;
+filter: alpha(opacity=100);  等价于  opacity: 1;
+```
 
 
 
