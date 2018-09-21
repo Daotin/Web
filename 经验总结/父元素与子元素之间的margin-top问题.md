@@ -78,15 +78,15 @@ In this specification, the expression *collapsing margins* means that adjoining 
 
 
 
-1、修改父元素的高度，增加padding-top样式模拟（padding-top：1px；常用）  
+1、修改父元素的高度，增加 padding-top 样式模拟（padding-top：1px；常用）  
 
-2、为父元素添加overflow：hidden；样式即可（完美）  
+2、为父元素添加 overflow: hidden；样式即可（完美）  
 
 3、为父元素或者子元素声明浮动（float：left；可用）  
 
-4、为父元素添加border（border:1px solid transparent可用） 
+4、为父元素添加 border-top（border-top: 1px solid transparent; 可用） 
 
- 5、为父元素或者子元素声明绝对定位 
+ 5、为父元素或者子元素声明绝对定位 。
 
 
 
