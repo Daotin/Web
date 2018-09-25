@@ -1,21 +1,21 @@
-### ÎÊÌâÃèÊö
+### é—®é¢˜æè¿°
 
-ÔÚÒ»¸ödivÖÐ·ÅÒ»¸öimg£¬µ«ÊÇimgµÄÏÂ·½ºÍdivÖ®¼äÓÐ3pxµÄ¼ä¸ô¡£
+åœ¨ä¸€ä¸ªdivä¸­æ”¾ä¸€ä¸ªimgï¼Œä½†æ˜¯imgçš„ä¸‹æ–¹å’Œdivä¹‹é—´æœ‰3pxçš„é—´éš”ã€‚
 
-ÕâÊÇä¯ÀÀÆ÷µÄ½âÎöÎÊÌâ£¬²»Í¬µÄä¯ÀÀÆ÷¼ä¸ôµÄ»¹²»Í¬¡£
+è¿™æ˜¯æµè§ˆå™¨çš„è§£æžé—®é¢˜ï¼Œä¸åŒçš„æµè§ˆå™¨é—´éš”çš„è¿˜ä¸åŒã€‚
 
-foxfireÊÇ5px£¬chromeÊÇ3px¡£
+foxfireæ˜¯5pxï¼Œchromeæ˜¯3pxã€‚
 
 
 
-### ½â¾ö°ì·¨
+### è§£å†³åŠžæ³•
 
 ```css
-/*·½Ê½Ò»*/
+/*æ–¹å¼ä¸€*/
 div {fint-size: 0;}
-/*·½Ê½¶þ*/
+/*æ–¹å¼äºŒ*/
 img{display: block;}
-/*·½Ê½Èý*/
+/*æ–¹å¼ä¸‰*/
 img{vertical-align: top;}
 ```
 
