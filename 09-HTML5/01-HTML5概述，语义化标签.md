@@ -192,7 +192,7 @@ html5支持绝大部分主流浏览器，比如国外的 chrome，firefox，safa
 
 - search：搜索常规的文本域；
 
-- color：颜色
+- color：颜色选择
 
 ```html
 <form action="">
@@ -226,7 +226,17 @@ html5支持绝大部分主流浏览器，比如国外的 chrome，firefox，safa
 
 
 
+**表单标签新增的一些属性：**
 
+autofocus：自动获取焦点
+
+required：不能为空
+
+disabled：
+
+checked：单选和多选选中状态
+
+hidden：隐藏
 
 
 
@@ -305,7 +315,7 @@ height:视频的高度
 
 -   deteils ：展开菜单；
 
--   dateilst：文本域下拉提示；
+-   datalist：文本域下拉提示；
 
 -   keygen：加密
 
