@@ -1,7 +1,6 @@
-overflow:hidden;  超出隐藏
+只能用在p标签上：
 
-
-white-space:nowrap;  强制不换行
-
-
-text-overflow:ellipsis; 超出的显示省略号
+overflow:hidden;  /*超出隐藏*/ 
+white-space:nowrap;  /*强制不换行*/
+text-overflow:ellipsis; /*超出的显示省略号
+*/
