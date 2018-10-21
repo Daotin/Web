@@ -32,6 +32,7 @@ background: linear-gradient(direction, color1, color2 [stop], color3...);
   - `to right`：设置渐变从左到右。相当于: 90deg;   
   - `to top`：设置渐变从下到上。相当于: 0deg;
   - `to bottom`：设置渐变从上到下。相当于: 180deg。这是默认值。
+  - `45deg` : 45度方向渐变。
 - `color1`：起点颜色。
 - `color2`：过渡颜色，指定过渡颜色的位置 stop.
 - `color3`：结束颜色。你还可以在后面添加更多的过渡颜色和位置，表示多种颜色的渐变。
@@ -68,9 +69,9 @@ background: radial-gradient(shape size at position, start-color, ..., color [sto
   - `ellipse`表示椭圆形，
   - `circle`表示圆形。默认为**ellipse**，
 
-		**如果元素宽高相同为正方形，则ellipse和circle显示一样；**
+    **如果元素宽高相同为正方形，则ellipse和circle显示一样；**
 
-			如果元素宽高不相同，默认效果为 ellipse。**
+    	如果元素宽高不相同，默认效果为 ellipse。**
 
 - size：渐变的大小，即渐变到哪里停止，它有四个值。
   - `closest-side`：最近边； 

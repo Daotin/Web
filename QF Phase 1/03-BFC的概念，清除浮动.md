@@ -414,4 +414,57 @@ In this specification, the expression *collapsing margins* means that adjoining 
 
 ## 案例四：清除浮动
 
-见笔记：03-链接伪类、背景、行高、盒子模型、浮动
+来自笔记：CSS/03-链接伪类、背景、行高、盒子模型、浮动
+
+
+
+清除浮动不是不用浮动，清除浮动产生的问题。
+> 问题：当父盒子没有定义高度，嵌套的盒子浮动之后，下边的元素发生位置错误（占据父盒子的位置）。
+
+
+
+### 方法一
+
+**额外标签法：**在最后一个浮动元素后添加标签。
+
+```css
+clear: left  |  right  | both  /*用的最多的是clear:both;*/
+```
+
+
+### 方法二
+
+给浮动元素的父集元素使用`overflow:hidden;`
+
+> 注意：如果有内容出了盒子，不能使用这个方法。
+
+
+
+### 方法三（推荐使用）
+
+伪元素清除浮动。
+
+> : after 相当于在当前盒子后加了一个盒子。
+
+
+
+
+
+### 清除浮动总结：
+
+1. 给父元素高度，缺点：高度无法自适应
+2. 父元素加 overflow:hidden; 缺点：超出会被隐藏
+3. 父元素加定位，absolute/fixed，缺点：脱离文档流。
+4. 父元素加浮动，缺点：可能父元素的父元素继续塌陷
+5. 父元素加inline-block，缺点：行内块的缺点。
+6. 浮动元素的最后加一个额外标签，标签使用clear:both; 缺点：结果冗余
+7. 万能清除法，伪元素清除浮动。
+
+```css
+content: ".";
+display: block;
+height: 0;
+visibility: hidden;
+clear:both;
+overflow: hidden;
+```
