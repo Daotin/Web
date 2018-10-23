@@ -84,11 +84,9 @@ DOM的作用主要是：**操作页面的元素（标签）。**
 
 ## 1、对标签的操作
 
-
-
 ### 1.1、点击按钮，弹出对话框
 
-```javascript
+```html
 <body>
     <input type="button" value="按钮" id="btn">
     <script>
@@ -366,8 +364,7 @@ DOM的作用主要是：**操作页面的元素（标签）。**
 >
 > 2、在上面例子，不管是写 "checked"还是其他任何的字符串，都会选中的，因为非空字符串都会被浏览器转换成 true。
 >
-> 3、在 html 中，如果属性的值只有一个，可以直接写这个属性，而不需要赋值，也是有效的。比如：`<input type="text" value="文本" readonly />`  这个时候，这个文本框也是被禁用的。
 
 
-![这里写图片描述](https://img-blog.csdn.net/20180613192719649?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x2b252ZQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
 
