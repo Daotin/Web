@@ -16,7 +16,7 @@
 **JavaScript历史**
 要了解JavaScript，我们首先要回顾一下JavaScript的诞生。在上个世纪的1995年，当时的网景公司正凭借其Navigator浏览器成为Web时代开启时最著名的第一代互联网公司。由于网景公司希望能在静态HTML页面上添加一些动态效果，于是叫Brendan Eich这哥们在两周之内设计出了JavaScript语言。你没看错，这哥们只用了10天时间。
 
-为什么起名叫JavaScript？原因是当时Java语言非常红火，所以网景公司希望借Java的名气来推广，但事实上JavaScript除了语法上有点像Java，其他部分基本上没啥关系。
+为什么起名叫 JavaScript？原因是当时Java语言非常红火，所以网景公司希望借Java的名气来推广，但事实上JavaScript除了语法上有点像 Java，其他部分基本上没啥关系。
 
 **ECMAScript**
 因为网景开发了JavaScript，一年后微软又模仿JavaScript开发了JScript，为了让JavaScript成为全球标准，几个公司联合ECMA（European Computer Manufacturers Association）组织定制了JavaScript语言的标准，被称为ECMAScript标准。所以简单说来就是，ECMAScript是一种语言标准，而JavaScript是网景公司对ECMAScript标准的一种实现。
@@ -81,7 +81,10 @@ js是一种**脚本语言**，不仅是脚本语言还是弱类型的脚本语�
 ## 6、js书写位置
 
 **内嵌式：**
-　　一般放在body的最后，有时放在head标签中（需要写页面加载函数）。
+　　一般放在body里面的最后，有时放在head标签中（需要写页面加载函数）。
+
+​	因为代码的顺序都是从上往下加载，在body中的元素，如果在js中获取body中元素的时候，会报错找不到。
+
 **外链式：**
 　　src=”外部js文件路径”
 
@@ -105,6 +108,8 @@ prompt("提示信息"); // 可以在弹出的对话框输入内容给后台
 confirm("")           // 弹出对话框，有是否按钮
 ```
 
+
+
 **js代码的注意问题：**
 
 1. 在一对script的标签中有错误的js代码，那么该错误的代码后面的js代码不会执行。
@@ -113,8 +118,6 @@ confirm("")           // 弹出对话框，有是否按钮
 4. script标签可以出现多对。
 5. 如果使用引入外部js文件的方式，那么不要在script标签里面写任何js代码，如果想写，就新开一对script标签。
 
-
-![这里写图片描述](https://img-blog.csdn.net/20180603152042906?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x2b252ZQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 
 
