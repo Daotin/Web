@@ -87,6 +87,17 @@ DOM的作用主要是：**操作页面的元素（标签）。**
 ### 1.1、点击按钮，弹出对话框
 
 ```html
+<!-- 方式一 -->
+<body>
+    <input type="button" value="按钮" id="btn" onclick="show()">
+    <script>
+        function show() {
+            alert("hahahaha");
+        };
+    </script>
+</body>
+
+<!-- 方式二 -->
 <body>
     <input type="button" value="按钮" id="btn">
     <script>
