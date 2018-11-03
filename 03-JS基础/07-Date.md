@@ -10,194 +10,88 @@
 
 
 
-# 一、字符串
+# 一、日期
 
-## 1、字符串的定义
+## 1、日期的定义
 
-**通过字面量定义字符串**： 
-
-```js
-var str1 = "abcd";
-```
-
-**通过构造函数定义字符串**： 
+**定义日期**： 
 
 ```js
-var str2 = new String("abcd"); 
+var date = new Date(); // 获取当前日期
+var date = new Date("2000-01-01 18:20:20") // 自定义日期
+var date = new Date("2000.01.01 18:20:20"); // 自定义日期
 ```
-
-
-
-字面量字符串和构造函数字符串的区别：
-
-```js
-console.log(typeof str1) // string
-console.log(typeof str2) // Object
-```
-
-
-
-
-
-
-
-
-## 2、字符串属性
-
-字符串长度： `字符串名称.length; `
 
 
 
  
 
-## 3、字符串（获取）方法
+## 2、日期（获取）相关方法
 
-### charAt
+```js
+var date = new Date();
+var year = date.getFullYear(); // 获取当前年份 //2018
+var month = date.getMonth() + 1; // 获取当前月份 //11
+var day = date.getDate(); // 获取当前天数 //3
+var week = date.getDay() // 获取当前星期几 //6
 
-语法：`str.charAt(index);`
+var hour = date.getHours(); // 时
+var min = date.getMinutes(); // 分
+var sec = date.getSeconds(); // 秒
+```
 
-说明：从一个字符串中获取索引为index的字符。
+> 注意：我们获取到的月份比实际月份少一个月，所以要加一。
 
 
 
-### charCodeAt
+## 3、日期（设置）相关方法
 
-语法：`str.charCodeAt(index);	`
+```js
+var date = new Date();
+var year = date.setFullYear(2000); // 获取当前年份为2000年
+var month = date.setMonth(11); // 获取当前月份为11月
+var day = date.setDate(1); // 设置当前天数为1号
+// var week = date.setDay() // 不能设置当前星期几
+```
 
-说明：获取字符串中下标为 index 的字符的 ASCII 编码
 
 
 
-### fromCharCode
 
-语法：`String.fromCharCode(num1, ..., numN) `
+## 4、封装日期相关函数
 
-说明：返回一个ASCII编码为num1,...numN对应的字符组成的字符串。
+```js
+// 获取当前月的天数
+function getCurrentDays(date) {
+    // 设置临时日期格式，防止在设置日期的时候，月份+1，-1的转换
+    var tmp = new Date("2000-01-01");
+    tmp.setFullYear(date.getFullYear());
+    tmp.setMonth(date.getMonth() + 1); // date.getMonth() 是比当前月上一天的，但是设置的时候会自动多加一天，抵消了
+    tmp.setDate(0);
+    return tmp.getDate();
+}
 
+// 获取上个月的天数
+function getPrevMonthDays(date) {
+    // 设置临时日期格式，防止在设置日期的时候，月份+1，-1的转换
+    var tmp = new Date("2000-01-01");
+    tmp.setFullYear(date.getFullYear());
+    tmp.setMonth(date.getMonth());
+    tmp.setDate(0);
+    return tmp.getDate();
+}
 
+// 根据日期获取当月的第一天是星期几
+function getWeekByFirstDay(date) {
+    // 设置临时日期格式，防止在设置日期的时候，月份+1，-1的转换
+    var tmp = new Date("2000-01-01");
+    tmp.setFullYear(date.getFullYear());
+    tmp.setMonth(date.getMonth());
+    tmp.setDate(1);
 
-4、字符串的增删改查
+    return tmp.getDay();
+}
+```
 
-字符串的增：str += "a";
 
 
-
-
-
-## 4、字符串（查找）方法
-
-### indexOf
-
-语法：`str.indexOf(searchValue[, fromIndex])`
-
-说明：从fromIndex索引开始（可省略）从前往后查找，第一次出现searchValue的索引值。如果没有找到返回 -1.
-
-
-
-### lastIndexOf
-
-语法：`str.lastIndexOf(searchValue[, fromIndex])`
-
-说明：从fromIndex索引开始（可省略）向前查找，第一次出现searchValue的索引值。表示str字符串中最后出现searchValue的索引值。如果没有找到返回 -1.
-
-
-
-### search
-
-语法：`str.search(regexp)`
-
-说明：查找满足正则表达式regexp的str中第一次出现的索引，Eugene没找到返回-1.
-
-> PS：如果传入一个非正则表达式对象，则会使用 new RegExp(obj) 隐式地将其转换为正则表达式对象。
-
-
-
-### match
-
-语法：`str.match(regexp);`
-
-说明：返回一个根据正则表达式regexp查找str的所有匹配的字符串，然后将匹配的字符串集合以数组形式返回。
-
-regexp：一个正则表达式对象。如果传入一个非正则表达式对象，则会隐式地使用 new RegExp(obj) 将其转换为一个 RegExp 。如果你未提供任何参数，直接使用 match() ，那么你会得到一个包含空字符串的 Array ：[""] 。
-
-
-
-
-
-## 5、字符串（替换）方法
-
-### replace
-
-语法：`str.replace(regexp|substr, newSubStr|function)`
-
-说明：返回一个由替换值替换一些或所有匹配的模式后的新字符串。**他不会改变原字符串。**
-
-regexp|substr：将要被替换的字符串或者正则表达式
-
-newSubStr|function：新的字符串或者一个用来创建新子字符串的函数。
-
-
-
-
-
-6、字符串其他方法
-
-### split
-
-语法：`str.split([separator[, limit]])`
-
-说明：以separator为分割标志，分割出limit个数的字符串。没有limit的话，全部分割。
-
-separator：
-
-> Tip: 如果空字符串("")被用作分隔符，则字符串会在每个字符之间分割。
-
-
-
-
-
-### substring
-
-语法：`str.substring(indexStart[, indexEnd])`
-
-说明：返回一个字符串在开始索引到结束索引之间的一个子集, 或从开始索引直到字符串的末尾的一个子集。
-
-
-
-### slice
-
-语法：`str.slice(beginSlice[, endSlice])`
-
-说明：提取一个字符串的一部分，并返回一新的字符串。
-
-
-
-
-
-**substring 和 slice 的区别：**
-
-1、如果有两个参数 startIndex, endIndex ,都是从startIndex截取到 endIndex 
-
-2、如果有一个参数startIndex，并且大于等于0，都是从startIndex截取到字符串的最后。
-
-3、如果有一个参数startIndex，并且小于0：区别：substring 会返回源字符串的全部；slice 会截取源字符串的最后 startIndex个字符。
-
-
-
-### toUpperCase
-
-### toLowerCase
-
-
-
-### trim
-
-语法：`str.trim()`
-
-说明：去除str两端空格。trim() 方法并不影响原字符串本身，它返回的是一个新的字符串。
-
-> 相应的：
->
-> str.trimLeft(); // 去除str左边空格
->
-> str.trimRight(); // 去除str右边空格
