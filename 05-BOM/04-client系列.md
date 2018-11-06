@@ -73,6 +73,28 @@
 
 
 
+**页面可视区域的大小：**
+
+```js
+document.documentElement.clientWidth || document.body.clientWidth
+document.documentElement.clientHeight || document.body.clientHeight
+```
+
+**页面实际宽高：**
+
+```js
+document.documentElement.scrollWidth || document.body.scrollWidth
+document.documentElement.scrollHeight || document.body.scrollHeight
+```
+
+
+
+
+
+
+
+
+
 ## 1、案例：图片跟着鼠标移动最终版
 
 之前图片跟着鼠标移动的案例有些bug，就是IE8不支持。
@@ -81,7 +103,7 @@
 
 window.event： 谷歌， IE8 支持，但是火狐不支持。
 
-```javascript
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -130,7 +152,7 @@ body {
 
 
 
-思路：
+**思路：**
 
 之前我们封装的兼容代码都在一个函数里面，这里我们封装到一个对象 evt 里面。
 
@@ -473,8 +495,6 @@ body {
 
 
 
----
-
 
 
 # 二、复习
@@ -488,6 +508,4 @@ my$("dv").style.opacity = 0;  // 占位
 my$("dv").style.height = 0; // 占位
 ```
 
-![](https://github.com/Daotin/pic/raw/master/fgx.png)
 
-![Web前端之巅](https://github.com/Daotin/pic/raw/master/wx.jpg)

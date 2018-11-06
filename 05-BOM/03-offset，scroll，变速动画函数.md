@@ -66,12 +66,12 @@ document.documentElement;
 
 ```
 offsetWidth：获取元素的宽（加边框）
-offsetHeight：获取元素的高（加边框）
+offsetHeight：获取元素的高（加边框）	
 offsetLeft：获取元素距离左边位置的值
 offsetTop：获取元素距离上边位置的值
 ```
 
----
+
 
 # 三、scroll 系列
 
@@ -83,6 +83,17 @@ scrollHeight：如果元素中内容高度小于元素的高度，则为元素�
 scrollLeft：元素中的内容往左卷曲出去的距离。（有滚动条的时候）
 scrollTop：元素中的内容往上卷曲出去的距离。（有滚动条的时候）
 ```
+
+
+
+**获取页面实际的宽高：**
+
+```js
+document.documentElement.scrollWidth || document.body.scrollWidth;
+document.documentElement.scrollHeight || document.body.scrollHeight;
+```
+
+
 
 
 
@@ -283,7 +294,7 @@ console.log(Math.floor(-11.8)); // -12
 
 
 
-兼容代码：
+**兼容代码：**
 
 ```javascript
 function getStyle(element, attr) {
@@ -438,7 +449,7 @@ function getStyle(element, attr) {
 
 作用：增加动画的次数。
 
-```javascript
+```html
 <body>
 <input type="button" value="移动" id="btn">
 <div id="dv"></div>
@@ -738,6 +749,4 @@ function getStyle(element, attr) {
 </html>
 ```
 
-![](https://github.com/Daotin/pic/raw/master/fgx.png)
 
-![Web前端之巅](https://github.com/Daotin/pic/raw/master/wx.jpg)

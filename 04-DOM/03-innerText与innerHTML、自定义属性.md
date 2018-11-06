@@ -15,23 +15,23 @@
 
 ```javascript
 // 设置任意标签的文本内容为任意内容
-        function setText(element, text) {
-            (typeof element.TextContent === "undefined") ? (element.innerText = text) : (element.textContent = text);
-        }
+function setText(element, text) {
+    (typeof element.TextContent === "undefined") ? (element.innerText = text) : (element.textContent = text);
+}
 
-        // 获取任意标签的文本内容
-        function getText(element) {
-            return (typeof element.TextContent === "undefined" ? element.innerText : element.textContent);
-        }
+// 获取任意标签的文本内容
+function getText(element) {
+    return (typeof element.TextContent === "undefined" ? element.innerText : element.textContent);
+}
 
 // 示例代码
-        my$("btn").onclick = function () {
-            setText(my$("dv"), "hahahhahha");
-        };
+my$("btn").onclick = function () {
+    setText(my$("dv"), "hahahhahha");
+};
 
-        my$("btn").onclick = function () {
-            console.log(getText(my$("dv")));
-        };
+my$("btn").onclick = function () {
+    console.log(getText(my$("dv")));
+};
 ```
 
 > **1、设置成对标签中文本内容：**
@@ -54,22 +54,22 @@
 ## 2、innerText 和 innerHTML
 
 ```html
-    <div id="dv">
-        哈哈
-        <p>p标签</p>
-    </div>
+<div id="dv">
+    哈哈
+    <p>p标签</p>
+</div>
 
-    <script src="common.js"></script>
-    <script>
-        my$("dv").innerText = "div标签"; // 只显示文本
-        my$("dv").innerHTML = "div标签"; // 只显示文本
+<script src="common.js"></script>
+<script>
+    my$("dv").innerText = "div标签"; // 只显示文本
+    my$("dv").innerHTML = "div标签"; // 只显示文本
 
-        my$("dv").innerText = "<a href='#'>a标签</a>"; // 只显示文本
-        my$("dv").innerHTML = "<a href='#'>a标签</a>"; // 带有a标签格式
+    my$("dv").innerText = "<a href='#'>a标签</a>"; // 只显示文本
+    my$("dv").innerHTML = "<a href='#'>a标签</a>"; // 带有a标签格式
 
-        console.log(my$("dv").innerText); // 哈哈 p标签
-        console.log(my$("dv").innerHTML); // 哈哈 <p>p标签</p>
-    </script>
+    console.log(my$("dv").innerText); // 哈哈 p标签
+    console.log(my$("dv").innerHTML); // 哈哈 <p>p标签</p>
+</script>
 ```
 
 > **innerText 属性：**设置和获取只能得到文本内容。
@@ -82,11 +82,12 @@
 
 ```html
 <p>p标签</p>
+
 <script src="common.js"></script>
 <script>
-      var pObj = document.getElementsByTagName("p")[0];
-      pObj.setAttribute("hello", "world"); // <p hello="world">p标签</p>
-console.log(pObj.getAttribute("hello")); // world
+	var pObj = document.getElementsByTagName("p")[0];
+	pObj.setAttribute("hello", "world"); // <p hello="world">p标签</p>
+	console.log(pObj.getAttribute("hello")); // world
 </script>
 ```
 
@@ -94,11 +95,11 @@ console.log(pObj.getAttribute("hello")); // world
 >
 > 2、相应的，设置也是一样的，通过 `DOM对象.属性` 的方式设置自定义标签，结果设置的只是DOM对象的自定义属性，这个自定义属性不会在标签上显示出来。
 
-> **获取**：通过`DOM对象 .getAttibute("自定义属性的名字")` 来获取自定义属性的值。
+> **获取**：通过`DOM对象.getAttibute("自定义属性的名字")` 来获取自定义属性的值。
 >
-> **设置**：通过`DOM对象 .setAttibute("自定义属性的名字", "自定义属性的值")` 来设置自定义属性。
+> **设置**：通过`DOM对象.setAttibute("自定义属性的名字", "自定义属性的值")` 来设置自定义属性。
 >
-> **移除**：通过`DOM对象 .removeAttibute("自定义属性的名字")` 来设置自定义属性。
+> **移除**：通过`DOM对象.removeAttibute("自定义属性的名字")` 来移除自定义属性。
 >
 > PS：removeAttibute 也可以用来移除元素自带的属性，比如类 class 属性等。`removeAttribute("class")`
 

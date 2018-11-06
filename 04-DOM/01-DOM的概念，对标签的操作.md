@@ -72,13 +72,7 @@ DOM的作用主要是：**操作页面的元素（标签）。**
 
 - 根据 id 等获取元素
 - 为获取的元素注册事件
-- 添加事件处理函数
-
-
-
-> 注意：所有function后面都有分号。
-
-
+- 添加事件处理函数（注意：所有function后面都有分号。）
 
 
 
@@ -117,8 +111,8 @@ DOM的作用主要是：**操作页面的元素（标签）。**
     <script>
         document.getElementById("btn").onclick = function() {
             document.getElementById("im").src = "1.png";
-            document.getElementById("im").width = 600;
-            document.getElementById("im").height = 200;
+            document.getElementById("im").width = "600px";
+            document.getElementById("im").height = "200px";
         };
     </script>
 </body>
@@ -128,8 +122,6 @@ DOM的作用主要是：**操作页面的元素（标签）。**
 
 
 > document.getElementById("xxx"); 返回值是一个标签对象，利用这个对象可以操作其中的元素，像 type，value 等都是它的元素。
-
-> 注意：html 标签里面的 width 和 height 属性是不需要加 px 的，css 的 style 里面的宽高才要加。
 
 
 
@@ -245,7 +237,7 @@ DOM的作用主要是：**操作页面的元素（标签）。**
 <input type="text" value=""><br>
 
 <script>
-    document.getElementById("btn").onclick = function (ev) {
+    document.getElementById("btn").onclick = function () {
         var inputs = document.getElementsByTagName("input");
         for (var i = 0; i < inputs.length; i++) {
             // 判断 type 是否为text
@@ -269,7 +261,7 @@ DOM的作用主要是：**操作页面的元素（标签）。**
 
 <script>
     var btnObj =  document.getElementById("btn");
-    btnObj.onclick = function (ev) {
+    btnObj.onclick = function () {
         // btnObj.value = "Daotin";
         // btnObj.type = "text";
         // btnObj.id = "btn2";

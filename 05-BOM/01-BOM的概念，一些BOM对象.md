@@ -55,43 +55,33 @@ window.confirm(); // 两个按钮，分别返回 true 和 false。
 
 ## 4、window对象方法
 
-### open
+### 4.1、open
 
-描述：打开一个新的浏览器窗口或查找一个已命名的窗口。
+**描述：**打开一个新的浏览器窗口或查找一个已命名的窗口。
 
-语法：`var openId = window.open(新窗口地址,"窗口名",窗口属性);`
+**语法：**`var openId = window.open(新窗口地址,"窗口名",窗口属性);`
 
-示例：`var openId = window.open("sub.html","窗口名","Width=300px, height=250px, left=100px, top=100px");`
+**示例：**`var openId = window.open("sub.html","窗口名","Width=300px, height=250px, left=100px, top=100px");`
 
-width: 新窗口的宽
-
-height：新窗口的高
-
-left：新窗口距离屏幕左边的距离
-
-top：新窗口距离屏幕顶部的距离
-
-
-
-关闭新窗口：
-
-```js
-openId.close(); 
-```
+> width: 新窗口的宽
+>
+> height：新窗口的高
+>
+> left：新窗口距离屏幕左边的距离
+>
+> top：新窗口距离屏幕顶部的距离
 
 
 
+**注意：**如果两次弹出窗口名一样，将不会打开新弹窗，而再之前的弹窗中加载新页面。
 
 
 
-> 注意：如果两次弹出窗口名一样，将不会打开新弹窗，而再之前的弹窗中加载新页面。
-
-子窗口操作父窗口：opener
+**关闭窗口：**
 
 ```js
-document.onclick = function() {
-	opener.document.title='子窗口让我输出的！';
-}
+openId.close(); //关闭id为openId的窗口
+close(); // 关闭当前窗口
 ```
 
 
@@ -100,15 +90,15 @@ document.onclick = function() {
 
 
 
-## 4、页面加载对象
+## 5、页面加载对象
 
-提出问题：
+**提出问题：**
 
 我们知道，如果将 script 标签放在 head 里面的话，页面加载的时候是先加载的 script 标签，之后才加载 body 里面的标签。如果 script 特别大的话，就很影响用户体验。
 
 
 
-解决办法：
+**解决办法：**
 
 1、将 script 标签放在 body 最后。
 
@@ -152,27 +142,37 @@ window.onbeforeunload = function () {
 ```
 
 > `onbeforeunload`：在页面关闭之前触发的事件
+>
+> `onscroll` ：当滚轮滚动时触发。
+>
+> `onresize` ：当窗口大小改变时触发。
 
 
 
-## 5、location 对象（地址栏）
+
+
+
+
+
+
+## 6、location 对象（地址栏）
 
 学习一个对象主要是学习它里面的属性和方法。
 
-### 5.1、属性
+### 6.1、属性
 
 ```javascript
 console.log(window.location.href); // 地址域名	
+console.log(window.location.search);//?_ijt=28855sggj8kcffva8q9bhc1eh0  --- 搜索的内容
 console.log(window.location.hash); // 地址栏上#及后面的内容
 console.log(window.location.host); // localhost:63342 ---- 主机名及端口号
 console.log(window.location.hostname); // localhost  ---- 主机名
 console.log(window.location.port); //63342  ---- 端口号
 console.log(window.location.pathname);// /JS/images/location.html --- 相对路径
 console.log(window.location.protocol);// http:   --- 协议
-console.log(window.location.search);//?_ijt=28855sggj8kcffva8q9bhc1eh0  --- 搜索的内容
 ```
 
-### 5.2、方法
+### 6.2、方法
 
 ```javascript
 document.getElementById("btn").onclick = function () {
@@ -185,17 +185,13 @@ document.getElementById("btn").onclick = function () {
 
 > `location.href` 和 ` location.assign()`： 设置跳转的页面地址，这两个属性和方法作用相同，并且都保存跳转前的地址（在浏览器中可以点击返回按钮）。
 >
-> `location.reload() `： 刷新页面
-
-刷新页面也可以使用：把href =自己本身的地址。
-
-
-
+> `location.reload() `： 刷新页面。刷新页面也可以使用：把href =自己本身的地址
+>
 > `location.replace() `: 设置跳转的页面地址，但是不保存跳转前的地址。
 
 
 
-## 6、history 对象
+## 7、history 对象
 
 ```js
 window.history.length // 返回浏览器历史列表中的 URL 数量
@@ -204,9 +200,13 @@ window.history.back() // 后退，加载 history 列表中的前一个 URL
 window.history.go(number);  //加载 history 列表中的某个具体页面，或者要求浏览器移动到指定的页面数量（负数为后退number页，正数为前进number页）
 ```
 
+`<a href="javascript:window.history.reload()"></a>`
+
+a 标签可以使用 javascript的方式来编写js代码。
 
 
-## 7、navigator 对象
+
+## 8、navigator 对象
 
 ```js
 window.navigator.platform; // 判断浏览器所在的系统平台 // win32
@@ -219,14 +219,16 @@ window.navigator.userAgent; // 判断浏览器的类型，是谷歌火狐还是I
 
 
 
-## screen 对象
+## 9、screen 对象
 
 screen 对象包含有关客户端显示屏幕的信息。
 
+很少使用，用的话只在移动端使用，在PC端固定不变，获取的是设备的宽高，而不是页面的宽高。
+
 ```js
-screen.availHeight // 返回显示屏幕的高度 (除 Windows 任务栏之外)。 
-screen.availWidth//返回显示屏幕的宽度 (除 Windows 任务栏之外)。 
-screen.height //返回显示屏幕的高度。 
+screen.availHeight // 返回可用显示屏幕的高度 (除 Windows 任务栏之外)。 
+screen.availWidth//返回可用显示屏幕的宽度 (除 Windows 任务栏之外)。 
+screen.height //返回显示器屏幕的高度。 
 screen.width  //返回显示器屏幕的宽度。
 ```
 
@@ -234,35 +236,39 @@ screen.width  //返回显示器屏幕的宽度。
 
 
 
+## 10、document
 
+属性：
 
+```js
+document.all   //提供对文档中所有 HTML 元素的访问。是数组类型 
+document.forms // 返回对文档中所有 Form 对象引用。是数组类型
+document.URL    //返回当前文档的 URL。 
+document.bgColor //可以改变文档的颜色；（ document.bgColor="gray";）
+document.documentElement   // html元素
+document.body     // body元素
+```
 
+方法：
 
-
-
-document
-
-
-
-iframe
-
-引入外部链接，一般用于展示，可以一个页面放多个外部链接页面。
-
-```html
-<iframe src="http://www.360.com" width="400px" height="400px"></iframe>
+```js
+document.getElementById() //返回对拥有指定 id 的第一个对象的引用。 
+document.getElementsByName()// 返回带有指定名称的对象集合。 
+document.getElementsByTagName() //返回带有指定标签名的对象集合。  
+document.write() //向文档写 HTML 表达式 或 JavaScript 代码。
 ```
 
 
 
 
 
-defaultStatus 设置或返回窗口状态栏中的默认文本。
+## 11、iframe
 
-status 设置窗口状态栏的文本
+引入外部链接，一般用于展示，可以一个页面放多个外部链接页面。如果操作页面的话，还是会跳转到外部链接网站。
 
-
-
-
+```html
+<iframe src="http://www.360.com" width="400px" height="400px"></iframe>
+```
 
 
 
