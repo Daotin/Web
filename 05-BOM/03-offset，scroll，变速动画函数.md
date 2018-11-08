@@ -171,6 +171,8 @@ console.log(Math.floor(-11.8)); // -12
 > 3、这里就不需要判断 if (Math.abs(current - target) >= onestep) 了，因为每次走的 onestep 总是越来越小，到最后都会变成1，所以不存在走不够或者超出的情况。
 >
 > 4、定时器中加个 return，可以防止走到终点，函数还在不停循环的情况。
+>
+> 5、元素在外部定义的样式使用offset获取，获取到的宽高只有数值没有px。
 
 
 

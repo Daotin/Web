@@ -10,8 +10,8 @@
 
 
 
-# 一、兼容代码
-## 1、封装 innerText 和 TextContent
+## 一、兼容代码
+### 1、封装 innerText 和 TextContent
 
 ```javascript
 // 设置任意标签的文本内容为任意内容
@@ -41,17 +41,17 @@ my$("btn").onclick = function () {
 > textContent 是W3C标准属性，chrome，firefox支持，IE8不支持。
 >
 >
->**2、获取成对标签中文本内容：**
+> **2、获取成对标签中文本内容：**
 >
->在 IE8 下使用 textContent 获取成对标签中文本内容，返回值为 undefined。
+> 在 IE8 下使用 textContent 获取成对标签中文本内容，返回值为 undefined。
 >
->**那么说明，浏览器不支持的属性的类型都为 undefined.**
+> **那么说明，浏览器不支持的属性的类型都为 undefined.**
 >
->通过判断元素有无 textContent 属性（没有则元素的 textContent 属性为 undefined）来决定用 innerText 还是 textContent。
+> 通过判断元素有无 textContent 属性（没有则元素的 textContent 属性为 undefined）来决定用 innerText 还是 textContent。
 
 
 
-## 2、innerText 和 innerHTML
+### 2、innerText 和 innerHTML
 
 ```html
 <div id="dv">
@@ -76,9 +76,15 @@ my$("btn").onclick = function () {
 >
 > **innerHTML 属性：**不仅可以获得文本内容，还可以设置和获取 html 标签，让其显示或得到对应标签的格式。
 
----
 
-# 二、自定义属性操作（设置，获取，移除）
+
+`innerHTML` 和 `innerText` 是获取某个元素内部的内容，而`outerHTML` 和 `outerText`不仅获取某个元素内部的内容还包括这个元素本身内容。
+
+
+
+
+
+## 二、自定义属性操作（设置，获取，移除）
 
 ```html
 <p>p标签</p>
@@ -104,5 +110,51 @@ my$("btn").onclick = function () {
 > PS：removeAttibute 也可以用来移除元素自带的属性，比如类 class 属性等。`removeAttribute("class")`
 
 
-![这里写图片描述](https://img-blog.csdn.net/20180619161221573?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x2b252ZQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
+
+
+## 三、获取元素的所有属性
+
+语法：`getComputedStyle(ele, null)`
+
+示例：
+
+```html
+<body>
+    <p id="p1">您好！</p>
+    <input type="button" value="显示" onclick="test()" />
+</body>
+<script type="text/javascript">
+    function test() {
+        var p1 = document.getElementById("p1");
+        var aClass = window.getComputedStyle(p1, null);
+
+        console.log(aClass); // 所有属性集合对象
+        console.log(aClass["height"]); // 对象中某个具体属性值
+    }
+</script>
+```
+
+
+
+**获取外部样式表的css属性：**
+
+```js
+//IE中用currentStyle
+alert(document.getElementById("layer").currentStyle.width);
+alert(document.getElementById("layer").currentStyle.backgroundColor);
+alert(document.getElementById("layer").currentStyle.height);
+
+//火狐和chrome用getComputedStyle
+var layer = document.getElementById("layer");
+var aClass = window.getComputedStyle(layer, null);
+alert(aClass["width"]);
+alert(aClass["backgroundColor"]);
+alert(aClass["height"]);
+
+//修改css属性是都可以使用style来设置。
+layer.style.width="200px";
+```
+
+
 
