@@ -220,7 +220,7 @@
 
 
 
-### 2、其他操作元素的方法
+### 2、DOM元素增删改查
 
 `appendChild(ele)`：追加元素ele
 
@@ -229,6 +229,8 @@
 `removeChild(ele)`：删除元素ele（或者子元素自杀 `ele.remove();`）
 
 `replaceChild(newEle, oldEle)`：将oldEle修改为newEle元素
+
+
 
 ```html
 <body>
