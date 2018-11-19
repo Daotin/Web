@@ -1,15 +1,3 @@
->大家好，这里是「 从零开始学 Web 系列教程 」，并在下列地址同步更新......
->
-> - github：https://github.com/Daotin/Web
-> - 微信公众号：[Web前端之巅](https://github.com/Daotin/pic/raw/master/wx.jpg)
-> - 博客园：http://www.cnblogs.com/lvonve/
-> - CSDN：https://blog.csdn.net/lvonve/
->
-> 在这里我会从 Web 前端零基础开始，一步步学习 Web 相关的知识点，期间也会分享一些好玩的项目。现在就让我们一起进入 Web 前端学习的冒险之旅吧！
-
-
-![](https://github.com/Daotin/pic/raw/master/fgx.png)
-
 # 一、apply 和 call 方法
 
 **apple 和 call 都可以改变调用其的函数或方法中的 this 指向。**
@@ -256,58 +244,4 @@ console.log(func.age);
 > 方法二、使用数组的方法 forEach 来鉴别
 >
 > 因为每个数组都是 Array 的实例对象，而 forEach 在 Array 的原型对象中，所以其他的伪数组是不能使用的。方法二成功。
-
-
-
-![](https://github.com/Daotin/pic/raw/master/fgx.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

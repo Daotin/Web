@@ -1,16 +1,3 @@
->大家好，这里是「 从零开始学 Web 系列教程 」，并在下列地址同步更新......
->
-> - github：https://github.com/Daotin/Web
-> - 微信公众号：[Web前端之巅](https://github.com/Daotin/pic/raw/master/wx.jpg)
-> - 博客园：http://www.cnblogs.com/lvonve/
-> - CSDN：https://blog.csdn.net/lvonve/
->
-> 在这里我会从 Web 前端零基础开始，一步步学习 Web 相关的知识点，期间也会分享一些好玩的项目。现在就让我们一起进入 Web 前端学习的冒险之旅吧！
-
-![](https://github.com/Daotin/pic/raw/master/fgx.png)
-
-
-
 # 一、jQuery中的Ajax
 
 前面我们写了这么多 Ajax 的代码，其实都是基于 js 的原生代码，在 jQuery 的内部，对 Ajax 已经进行了封装，它提供了很多方法可以供开发者进行调用。不过这些封装都是基于一个方法的基础上进行的修改，这个方法就是`$.ajax()` 。
@@ -131,6 +118,3 @@ $.post(url, {参数: 值}, function(result) {});
 </html>
 ```
 
-
-
-![](https://github.com/Daotin/pic/raw/master/fgx.png)

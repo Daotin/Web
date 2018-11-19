@@ -1,16 +1,3 @@
->大家好，这里是「 从零开始学 Web 系列教程 」，并在下列地址同步更新......
->
-> - github：https://github.com/Daotin/Web
-> - 微信公众号：[Web前端之巅](https://github.com/Daotin/pic/raw/master/wx.jpg)
-> - 博客园：http://www.cnblogs.com/lvonve/
-> - CSDN：https://blog.csdn.net/lvonve/
->
-> 在这里我会从 Web 前端零基础开始，一步步学习 Web 相关的知识点，期间也会分享一些好玩的项目。现在就让我们一起进入 Web 前端学习的冒险之旅吧！
-
-![](https://github.com/Daotin/pic/raw/master/fgx.png)
-
-
-
 # 一、PHP 基础语法
 
 ## 1、基本结构
@@ -25,7 +12,7 @@
 
 ## 2、打印语句
 
-**echo**： 的作用在页面中输入字符串（只能打印字符串，数字等简单类型）
+**echo**： 的作用在页面中输出字符串（只能打印字符串，数字等简单类型）
 
 **print_r** ：输出复杂类型
 
@@ -291,7 +278,7 @@ post 请求：参数在请求体中。
 >
 >   1、我们在输入账号密码，点击提交后，在地址栏卡可以看到：http://localhost/Login/check.php?username=Daotin&passwd=123，参数确实跟在地址之后，用？ 连接，参数之间用 & 连接。
 >
->   2、通过 $_GET[ ] 可以获得请求参数的值。
+>   2、通过` $_GET[“参数名称” ] `可以获得请求参数的值。
 
 
 
@@ -339,6 +326,3 @@ post 请求：参数在请求体中。
 
 大家可以发现，我们之前做的 get 和 post 请求，在提交之后，是会进行页面跳转的，从当前的html界面跳转到php界面了，那么有没有办法可以不进行跳转，就在当前界面得到服务器返回的数据呢？敬请关注下期 Ajax 的内容，它可以做到。
 
-
-
-![](https://github.com/Daotin/pic/raw/master/fgx.png)

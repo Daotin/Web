@@ -6,7 +6,7 @@ Web 前端从入门进阶到高级自学笔记，超详细的前端自学图文�
 
 
 **下列地址也会同步更新：**
-- 微信公众号：[前端队长](https://github.com/Daotin/pic/raw/master/wx.jpg)
+- 微信公众号：[Daotin的梦呓](https://github.com/Daotin/pic/raw/master/wx.jpg)
 - 博客园：[DaotinのBlog](http://www.cnblogs.com/lvonve/)
 
 

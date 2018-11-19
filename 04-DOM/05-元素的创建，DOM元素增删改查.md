@@ -1,15 +1,3 @@
->大家好，这里是「 从零开始学 Web 系列教程 」，并在下列地址同步更新......
->
-> - github：https://github.com/Daotin/Web
-> - 微信公众号：[Web前端之巅](https://github.com/Daotin/pic/raw/master/wx.jpg)
-> - 博客园：http://www.cnblogs.com/lvonve/
->
-> 在这里我会从 Web 前端零基础开始，一步步学习 Web 相关的知识点，期间也会分享一些好玩的项目。现在就让我们一起进入 Web 前端学习的冒险之旅吧！
-
-![](https://github.com/Daotin/pic/raw/master/fgx.png)
-
-
-
 # 一、元素的创建
 
 ## 1、元素创建的三种方式
@@ -279,5 +267,23 @@
 </body>
 ```
 
-> `
+
+
+**removeChild 和 remove 的区别：**
+
+`remove` is a new function. It's a shortcut, making it simpler to remove an element without having to look for the parent node. It's unfortunately not available on old versions of Internet Explorer so, unless you don't want to support this browser, you'll have to use `removeChild` or use a [polyfill](https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove#Polyfill).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

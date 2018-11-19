@@ -1,16 +1,3 @@
->大家好，这里是「 从零开始学 Web 系列教程 」，并在下列地址同步更新......
->
-> - github：https://github.com/Daotin/Web
-> - 微信公众号：[Web前端之巅](https://github.com/Daotin/pic/raw/master/wx.jpg)
-> - 博客园：http://www.cnblogs.com/lvonve/
-> - CSDN：https://blog.csdn.net/lvonve/
->
-> 在这里我会从 Web 前端零基础开始，一步步学习 Web 相关的知识点，期间也会分享一些好玩的项目。现在就让我们一起进入 Web 前端学习的探索之旅吧！
-
-![](https://github.com/Daotin/pic/raw/master/fgx.png)
-
-
-
 ## 一、常见的响应式框架
 
 随着Web应用变的越来越复杂，在大量的开发过程中我们发现有许多功能模块非常相似，比如轮播图、分页、选项卡、导航栏等，开发中往往会把这些具有通用性的功能模块进行一系列封装，使之成为一个个组件应用到项目中，可以极大的节约开发成本，将这些通用的组件缩合到一起就形成了前端框架。
@@ -268,5 +255,3 @@ bootstrap 的 css 样式中，有一个起着支撑整个页面框架的容器�
 ```
 
 
-
-![](https://github.com/Daotin/pic/raw/master/fgx.png)

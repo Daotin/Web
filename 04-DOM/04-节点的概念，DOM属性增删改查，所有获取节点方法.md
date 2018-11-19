@@ -1,15 +1,3 @@
->大家好，这里是「 从零开始学 Web 系列教程 」，并在下列地址同步更新......
->
-> - github：https://github.com/Daotin/Web
-> - 微信公众号：[Web前端之巅](https://github.com/Daotin/pic/raw/master/wx.jpg)
-> - 博客园：http://www.cnblogs.com/lvonve/
->
-> 在这里我会从 Web 前端零基础开始，一步步学习 Web 相关的知识点，期间也会分享一些好玩的项目。现在就让我们一起进入 Web 前端学习的冒险之旅吧！
-
-![](https://github.com/Daotin/pic/raw/master/fgx.png)
-
-
-
 # 一、节点
 
 ## 1、节点的概念
@@ -372,6 +360,4 @@ function getStyle(element, attr) {
 
 > 主要是兼容chrome 和 IE8 之间的差异，其次以获取任意一个父元素的第一个子元素为例，之所以不在 else 里面直接使用 `return element.firstChild;` 主要考虑到标签之间可能有多个文本节点的影响。
 
-
-![这里写图片描述](https://img-blog.csdn.net/20180620163333705?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x2b252ZQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 

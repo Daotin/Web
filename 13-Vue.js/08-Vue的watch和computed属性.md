@@ -1,16 +1,3 @@
->大家好，这里是「 从零开始学 Web 系列教程 」，并在下列地址同步更新......
->
-> - github：https://github.com/Daotin/Web
-> - 微信公众号：[Web前端之巅](https://github.com/Daotin/pic/raw/master/wx.jpg)
-> - 博客园：http://www.cnblogs.com/lvonve/
-> - CSDN：https://blog.csdn.net/lvonve/
->
-> 在这里我会从 Web 前端零基础开始，一步步学习 Web 相关的知识点，期间也会分享一些好玩的项目。现在就让我们一起进入 Web 前端学习的冒险之旅吧！
-
-![](https://github.com/Daotin/pic/raw/master/fgx.png)
-
-
-
 ## 一、Vue的watch属性
 
 我们需要实现这样一个案例：有三个文本框，第一个文本框是姓，第二个文本框是名，第三个文本框是前两个文本框的组合。需求是当前两个文本框数据变化的时候，第三个文本框自动组合。
@@ -220,4 +207,4 @@ nrm指令作用：提供了一些最常用的NPM包镜像地址，能够让我�
 
 
 
-![](https://github.com/Daotin/pic/raw/master/fgx.png)
+

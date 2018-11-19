@@ -45,7 +45,9 @@ document.documentElement.scrollTop || document.body.scrollTop;
 
 
 
+一张图看懂：clientX,offsetX,screenX,pageX.
 
+![](C:\Users\Daotin\Desktop\距离_看图王.jpg)
 
 
 

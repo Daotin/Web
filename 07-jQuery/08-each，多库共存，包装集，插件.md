@@ -1,16 +1,3 @@
->大家好，这里是「 从零开始学 Web 系列教程 」，并在下列地址同步更新......
->
-> - github：https://github.com/Daotin/Web
-> - 微信公众号：[Web前端之巅](https://github.com/Daotin/pic/raw/master/wx.jpg)
-> - 博客园：http://www.cnblogs.com/lvonve/
-> - CSDN：https://blog.csdn.net/lvonve/
->
-> 在这里我会从 Web 前端零基础开始，一步步学习 Web 相关的知识点，期间也会分享一些好玩的项目。现在就让我们一起进入 Web 前端学习的冒险之旅吧！
-
-![](https://github.com/Daotin/pic/raw/master/fgx.png)
-
-
-
 # 一、each 方法
 
 each 方法用来遍历 jQuery 对象的，它的参数是一个事件处理函数，这个事件处理函数有两个参数，第一个参数是索引，第二个参数时索引对应的 DOM 对象，使用的时候注意转成 jQuery 对象。
@@ -134,5 +121,3 @@ jQuery 插件的使用：
 4、复制 index.html 相关代码到自己的文件中。
 
 
-
-![](https://github.com/Daotin/pic/raw/master/fgx.png)
