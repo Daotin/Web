@@ -158,6 +158,8 @@ console.log(xhr.readyState);
 // open 方法已经调用，建立一个与服务端特定端口的连接
 
 xhr.send();
+// => 1
+// send 发送的过程中，状态不变
 
 xhr.addEventListener('readystatechange', function () {
     switch (this.readyState) {
