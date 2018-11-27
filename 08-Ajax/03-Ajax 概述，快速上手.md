@@ -206,6 +206,10 @@ xhr.onload = function () {
 
 
 
+> responseText： 返回的值都是字符串。
+>
+> 如果是 json 类型的字符串转换成json格式，使用 `JSON.parse` 关键字转换。
+
 
 
 ## 三、案例：点击按钮验证用户名是否存在
