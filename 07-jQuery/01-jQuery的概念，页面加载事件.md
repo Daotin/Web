@@ -1,24 +1,24 @@
-# 一、jQuery的概念
+## 一、jQuery的概念
 
-## 1、什么是 JavaScript 库？
+### 1、什么是 JavaScript 库？
 
 JavaScript 开发的过程中，处理浏览器的兼容很复杂而且很耗时，于是一些封装了这些操作的库应运而生。这些库还会把一些常用的代码进行封装。
 
 把一些常用到的方法写到一个单独的 js 文件，使用的时候直接去引用这js文件就可以了，这个 js 文件就是 JavaScript 库。（比如我们自己写的 common.js 就是一个 js 库。）
 
-## 2、常见的 JS 库
+### 2、常见的 JS 库
 
 常见的JavaScript 库：jQuery、Prototype、MooTools。其中jQuery是最常用的一个。
 
-## 3、什么是 jQuery？
+### 3、什么是 jQuery？
 
 jQuery 就是一个 JavaScript 函数库，没有什么特别的。里面封装了一大堆的方法方便我们的开发，其实就是一个加强版的 common.js。因此我们学习jQuery，其实就是学习jQuery这个 js 文件中封装的一大堆方法。
 
-## 4、jQuery 能做什么？
+### 4、jQuery 能做什么？
 
 jQuery 本身就是一堆 JavaScript 函数，JavaScript 是做什么的，jQuery 就是做什么的。毕竟 jQuery 知识 JavaScript 编写的函数库而已，有些功能 jQuery 没有封装，则还需要通过自己写原生 JavaScript 来实现。
 
-## 5、为什么要学 jQuery？
+### 5、为什么要学 jQuery？
 
 jQuery设计的宗旨是 ' Write Less，Do More '，即倡导写更少的代码，做更多的事情。
 
@@ -33,15 +33,15 @@ jQuery的核心特性可以总结为：
 
 极大地简化了 JavaScript 编程。
 
-## 6、jQuery下载
+### 6、jQuery下载
 
 [jQuery官网](http://jquery.com/)
 
 
 
-# 二、jQuery 的顶级对象
+## 二、jQuery 的顶级对象
 
-jQuery 中的顶级对象是：jQuery，可以使用`$` 代替。
+jQuery 中的顶级对象是：`jQuery`，可以使用`$` 代替。
 
 jQuery中所有属性和方法都可以使用`$.属性或方法` 的方式来使用。
 
@@ -53,9 +53,9 @@ jQuery中所有属性和方法都可以使用`$.属性或方法` 的方式来使
 
 
 
-# 三、jQuery对象和DOM对象互转
+## 三、jQuery对象和DOM对象互转
 
-注意：通过 DOM 方式和 jQuery 方法获取的同一个元素，不是相同的对象。
+> 注意：通过 DOM 方式和 jQuery 方法获取的同一个元素，不是相同的对象。
 
 
 
@@ -63,19 +63,23 @@ jQuery中所有属性和方法都可以使用`$.属性或方法` 的方式来使
 
 
 
-DOM对象转jQuery对象：`$(DOM对象)`
+**单个**DOM对象转jQuery对象：`$(DOM对象)`
 
-jQuery对象转DOM对象：`jQuery对象[0]`
+**单个**jQuery对象转DOM对象：`jQuery对象[0]`，或者 `jq对象.get(0)`
+
+> 注意：`$("div").eq(0)` 是选择jquery对象集合中的第1项，仍然是jquery对象，而不是DOM对象。
 
 
 
-*为什么 DOM 和 jQuery 要互转，最开始就用 jQuery不好吗？*
+
+
+**为什么 DOM 和 jQuery 要互转，最开始就用 jQuery不好吗？**
 
 因为有一些兼容或功能没有封装在 jQuery 里面，必须通过原生 js 操作，所以需要 jQuery对象转DOM对象。当这一步操作完之后，再次转回 jQuery 对象，可以更方便的操作页面元素。
 
 
 
-## 1、案例：网页开关灯（使用类选择器方式）
+### 1、案例：网页开关灯（使用类选择器方式）
 
 ```html
 <!DOCTYPE html>
@@ -128,7 +132,7 @@ jQuery对象转DOM对象：`jQuery对象[0]`
 </html>
 ```
 
->   1、jQuery的方方式绑定事件没有 on
+>   1、jQuery的方式绑定事件没有 on
 >
 >   2、className 是DOM对象的方法，jQuery不能调用。
 >
@@ -138,7 +142,7 @@ jQuery对象转DOM对象：`jQuery对象[0]`
 
 
 
-## 2、案例：网页开关灯（使用CSS方式）
+### 2、案例：网页开关灯（使用CSS方式）
 
 ```js
 $("#btn").click(function () {
@@ -164,9 +168,9 @@ $("#btn").click(function () {
 
 
 
-# 四、页面加载事件
+## 四、页面加载事件
 
-## 1、DOM中页面加载事件
+### 1、DOM中页面加载事件
 
 ```js
 window.onload = function (ev) {
@@ -183,9 +187,9 @@ window.onload = function (ev) {
 
 
 
-## 2、jQuery中页面加载事件
+### 2、jQuery中页面加载事件
 
-### 2.1、方式一：DOM转jQuery方式
+#### 2.1、方式一：DOM转jQuery方式
 
 ```js
 $(window).load(function () {
@@ -202,7 +206,7 @@ $(window).load(function () {
 
 
 
-### 2.2、方式二：DOM转jQuery方式
+#### 2.2、方式二：DOM转jQuery方式
 
 ```js
 $(document).ready(function () {
@@ -219,7 +223,7 @@ $(document).ready(function () {
 
 
 
-### 2.3、方式三：jQuery方式（推荐）
+#### 2.3、方式三：jQuery方式（推荐）
 
 ```js
 $(function () {
