@@ -261,7 +261,7 @@ $(function () {
 | `$("div[class=dv]")`     | 获取所有div中有`class="dv"`属性的元素                        |
 | `$("div[class^=d]")`     | 获取所有div中有class属性的值是以d开头的元素                  |
 | `$("div[class$=dv]")`    | 获取所有div中有class属性的值是以d结尾的元素                  |
-| `$("div[class|=dv]")`    | 获取所有div中有class=dv的元素或者class属性值是以`dv-`开头的元素 |
+| `$("div[class\|=dv]")`   | 获取所有div中有class=dv的元素或者class属性值是以`dv-`开头的元素 |
 | `$("div[class!=dv]")`    | 获取所有div中有class!=dv的元素                               |
 | `$("div[class~=dv]")`    | 获取所有div中有class=dv的元素，要求dv是以空格分割的属性值列表中的一个属性。类似`class='cls dv'` |
 | `$("div[class*=dv]")`    | 获取所有div中有class的属性值表示的字符串中包含dv的元素       |
