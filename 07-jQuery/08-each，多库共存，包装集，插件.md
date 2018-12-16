@@ -84,15 +84,67 @@ index.html  ：演示文件（我们可以直接在上面改成自己需要的�
 
 
 
-### 2、插件的制作和使用
+### 2、插件的制作
 
-jQuery插件制作方式主要有三种：
+jQuery插件制作方式主要有两种：
 
-1、通过`$.extend()`来扩展jQuery；
 
-2、通过`$.fn `向jQuery添加新的方法；
 
-3、通过`$.widget()`应用jQuery UI的部件工厂方式创建。
+**2.1、通过`$.fn `向jQuery添加新的方法**
+
+举个🌰：
+
+我们向jQuery中插入一个设置随机颜色的方法 randomColor。
+
+我们只需要在 jQuery 源码的最后，加入下面代码：
+
+```js
+(function ($) {
+    $.fn.randomColor=function () {
+        var str="#";
+        for(var i=0;i<6;i++){
+            str+=Math.floor(Math.random()*16).toString(16);
+        }
+        //this就是调用这个方法jQuery元素
+        this.css("backgroundColor",str);
+    }
+})(jQuery);
+```
+
+我们在使用的时候：
+
+```js
+$("<div></div>").width(50).height(50).randomColor();  // 有点类似函数的动态方法
+```
+
+
+
+**2.2、通过`$.extend()`来扩展jQuery**
+
+再举个🌰：
+
+我们向jQuery中插入一个获取随机颜色的方法 getRandomColor。
+
+```js
+(function ($) {
+    $.extend({
+        //不能使用this
+        getRandomColor:function () {
+            var str="#";
+            for(var i=0;i<6;i++){
+                str+=Math.floor(Math.random()*16).toString(16);
+            }
+            return str;
+        }
+    })
+})(jQuery);
+```
+
+使用的时候：
+
+```js
+console.log($.getRandomColor());  // 有点类似函数的静态方法
+```
 
 
 
@@ -100,14 +152,16 @@ jQuery插件制作方式主要有三种：
 
 
 
-jQuery 插件的使用：
+### 3、jQuery 插件的使用
 
-1、导入下载下来的 css 文件
+使用网上下载的插件，一般分为以下几步：
 
-2、导入 jQuery 官方库
-
-3、导入插件的 jQuery 库文件
-
-4、复制 index.html 相关代码到自己的文件中。
+>1、导入下载下来的 css 文件
+>
+>2、导入 jQuery 官方库
+>
+>3、导入插件的 jQuery 库文件
+>
+>4、复制 index.html 相关代码到自己的文件中。
 
 

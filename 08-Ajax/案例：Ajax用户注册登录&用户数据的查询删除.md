@@ -478,7 +478,6 @@ $showNum = $_GET["showNum"];
 
 // ORDER BY： 以什么排序
 // limit 0,3 : 从第0条开始，显示3条
-
 $sql = "SELECT * FROM mytable WHERE `status` = 1 and (`name` LIKE '%$key%' or pwd like '%$key%') ORDER BY $orderType $orderUpDown limit $showSkip, $showNum"; // 定义查询数据表（mytable）语句
 
 $res = mysql_query($sql); // 执行数据表查询语句，返回值是resouce格式的数据。
