@@ -9,6 +9,12 @@ npm i mongodb@2.2.36 -S
 ```
 
 > 这里使用mongodb模块的2.2.36版本，可能是比较稳定吧。
+>
+> PS：2018.12.20
+>
+> 不是比较稳定，而是不用这个版本，直接服务器保存，搞了一个多小时才发现。。。
+>
+> `POST http://localhost:3000/xxx 500 (Internal Server Error)`
 
 
 
