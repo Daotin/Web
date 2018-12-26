@@ -122,6 +122,16 @@ db.users.find({age:{$ne:18}},{_id:0}) // 筛选条件为age不为18的文档
 db.users.find({age:{$ne:18}},{_id:0}) // 筛选条件为age不为18的文档
 db.users.find({age:{$not:{$gt:18}}},{_id:0}) // 筛选条件为年龄不大于18
 db.users.find({age:{$mod:[3,0]}},{_id:0})  // 筛选条件为age/3余数为0的文档
+
+// 模糊查询🎅🏼
+// https://blog.csdn.net/comhaqs/article/details/23822479
+1、db.goods.find({name:/joe/ig})
+2、db.goods.find({name:{$regex:/joe/ig}})
+3、db.goods.find({goodsName:{$regex: "joe", $options:"ig"}})
+var reg = new RegExp("joe", "ig");
+4、db.goods.find({name:reg})
+5、db.goods.find({name:{$regex:reg}})
+// 以上5种写法均可
 ```
 
 
@@ -159,7 +169,7 @@ db.users.find({},{_id:0}).limit(3).skip(3) // 取users集合中敲过前三个�
 db.users.find({},{_id:0,age:1}).sort({age:1})// 按照年龄升序排列（正数为升序）
 db.users.find({},{_id:0,age:1}).sort({age:-1})// 按照年龄降序排列（负数为升序）
 db.users.find({},{_id:0,age:1,height:1}).sort({age:1,height:1})// 按照年龄升序排列，如果年龄相同，按照身高升序排列
-db.users.find({age:{$gt:35}},{_id:0}).count(err,count=>{console.log(count)}) // 统计年龄大于35岁的文档个数
+db.users.find({age:{$gt:35}},{_id:0}).count((err,count)=>{console.log(count)}) // 统计年龄大于35岁的文档个数
 
 // 设计翻页的时候，一般会这么用：
  db.users.find().limit(y).skip((x-1)*y)
