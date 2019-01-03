@@ -38,6 +38,22 @@ MVVM是前端视图层的概念，主要关注于 视图层分离，也就是说
 
 
 
+### 4、虚拟DOM
+
+当你用传统的源生api或jQuery去操作DOM时，浏览器会从构建DOM树开始从头到尾执行一遍流程。
+
+比如当你在一次操作时，需要更新10个DOM节点，理想状态是一次性构建完DOM树，再执行后续操作。但浏览器没这么智能，收到第一个更新DOM请求后，并不知道后续还有9次更新操作，因此会马上执行流程，最终执行10次流程。显然例如计算DOM节点的坐标值等都是白白浪费性能，可能这次计算完，紧接着的下一个DOM更新请求，这个节点的坐标值就变了，前面的一次计算是无用功。
+
+真实的DOM节点，哪怕一个最简单的div，也会有特别多的属性。
+
+![](images/25.png)
+
+
+
+虚拟DOM就是为了解决这个浏览器性能问题而被设计出来的。虚拟DOM和真实DOM之间会有一个映射的关系。
+
+例如前面的例子，假如一次操作中有10次更新DOM的动作，虚拟DOM不会立即操作DOM，而是将这10次更新的diff内容保存到本地的一个js对象中，最终将这个js对象一次性渲染到DOM树上，通知浏览器去执行绘制工作，这样可以避免大量的无谓的计算量。
+
 
 
 ## 二、Vue.js 基本结构
@@ -109,6 +125,10 @@ methods 为页面事件对象集合。
 
 插值表达式就是以**双重大括号** ，类似 ` {{ msg }}`  的形式插入到 html 代码中。
 
+> 1、插值表达式还可以进行简单的运算（比如加减乘除等），但是不能完全放置js代码。
+>
+> 2、插值表达式只能放在标签之间，而不能放在标签内部。
+
 
 
 ### 2、v-cloak
@@ -157,7 +177,7 @@ data: {
 
 ### 5、v-bind
 
-v-bind 是 Vue中，提供的用于**绑定属性**的指令。
+v-bind 是 Vue中，提供的用于**绑定属性**的指令。**将一个属性的值变成动态值。**
 
 >   注意： `v-bind:` 指令可以被简写为` : `
 
@@ -175,7 +195,7 @@ data: {
 
 ### 6、v-on
 
-v-on 是 Vue 中的事件绑定机制。
+v-on ：给某个元素绑定事件监听函数。注意，函数必须封装在methods内。
 
 >   注意：` v-on:` 指令可以被简写为`@`
 
@@ -196,11 +216,7 @@ methods: { // 这个 methods属性中定义了当前Vue实例所有可用的方�
 
 
 
-
-
-
-
-### 案例：字体滚动播放
+**案例：字体滚动播放**
 
 ```html
 <!DOCTYPE html>
@@ -284,7 +300,7 @@ data: {
 
 
 
-### 案例：简单的计算器
+**案例：简单的计算器**
 
 ```html
 <!DOCTYPE html>
@@ -545,6 +561,10 @@ key 属性可以使得每一遍历的项是唯一的。
 
 v-if 和 v-show 都可以控制元素的显示与否。但是实现原理不同。
 
+v-if：决定某些元素是否存在 (加载性能更高,某个元素不需要被频繁切换时,则应该使用v-if)
+
+v-show：决定某些元素是否显示  (操作性能更高,如果某个元素需要被频繁切换,则应该使用v-show)
+
 > v-if：每次都会重新删除或创建元素。
 >
 > v-show ： 每次不会重新进行DOM的删除和创建操作，只是切换了元素的 display:none 样式。
@@ -570,7 +590,7 @@ v-if和v-show指令中除了可以放简单的值外，还可以**放表达式**
 <h3 v-else>这是用v-if控制的元素</h3> <!--v-else不用写条件-->
 ```
 
-> 注意：v-if和v-else-if和v-else之间，不要加任何其他元素，否则容易出现问题。
+> 注意：v-if和v-else-if和v-else之间，不要加任何其他元素，否则会报错。
 
 
 
@@ -643,7 +663,7 @@ v-if和v-show指令中除了可以放简单的值外，还可以**放表达式**
 
 ## 五、Vue中的样式
 
-### 1、class 样式
+### 1、动态class（使用v-bind绑定）
 
 ```html
 <!DOCTYPE html>
@@ -717,12 +737,78 @@ v-if和v-show指令中除了可以放简单的值外，还可以**放表达式**
 >   1、class 样式需要使用 v-bind 绑定。
 >
 >   2、class 类样式可以是数组和对象集合。
+>
+>   **3、动态class可以和静态class并存，但是静态class不能和静态class并存，动态class也不能和动态class并存。**
 
 
 
+**标签页案例**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        a {
+            padding: 5px 10px;
+            display: inline-block;
+        }
+
+        .active {
+            color: #fff;
+            background-color: salmon;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!--根据item.active老确定active样式是否显示-->
+        <a href="javascript:;" :class="{active: item.active}" v-for="(item,i) in tabs" @click="changeTab(i)">{{item.title}}</a>
+        <ul>
+            <li v-for="(item,i) in tabs" v-show="item.active">
+                <h2>{{item.content}}</h2>
+            </li>
+        </ul>
+    </div>
+</body>
+<!-- 引入在线vue -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            tabs: [
+                { title: 'tab1', content: '内容1', active: true },
+                { title: 'tab2', content: '内容2', active: false },
+                { title: 'tab3', content: '内容3', active: false }
+            ]
+        },
+        methods: {
+            changeTab(i) {
+                let newTabs = this.tabs.map(item => {
+                    item.active = false;
+                    return item;
+                });
+                // console.log(newTabs);
+                newTabs[i].active = true;
+                this.tabs = newTabs;
+            }
+        }
+    });
+</script>
+
+</html>
+```
 
 
-### 2、style 样式
+
+### 2、动态style
 
 可以是对象，也可以是对象数组。
 

@@ -84,8 +84,7 @@ this.$http.jsonp('/someUrl', [config]).then(successCallback, errorCallback);
                 postClick() {
                     // 参数1：测试用的地址：http://vue.studyit.io/api/getlunbo
                     // 参数2：[data]数据，可为Object，FormData，String，这里为空
-                    // 参数3：[config] 可选，但是emulateJSON = "true" 表名表单格式为：application/x-www-form-urlencoded，否则
-                    // 可能有的浏览器不认识。
+                    // 参数3：[config] 可选，但是emulateJSON = "true" 表名表单格式为：application/x-www-form-urlencoded，否则可能有的浏览器不认识。
                     this.$http.post("http://vue.studyit.io/api/post", "", {
                         emulateJSON: true
                     }).then(result => {

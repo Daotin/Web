@@ -13,155 +13,59 @@
 
 ### 1、定义全局组件
 
-定义全局组件有三种方式：
+通过 `Vue.component(cname,option)`函数来定义
 
-1、使用 `Vue.extend` 配合 `Vue.component` 方法：
+其中cname为字符串类型 代表组件名；option用于配置组件相关属性。
 
-```js
-// 1.使用 Vue.extend 来创建全局的Vue组件
-var login = Vue.extend({
-  // 通过 template 属性，指定了组件要展示的HTML结构
-  template: '<h1>登录</h1>'
-});
-
-// 2.使用 Vue.component('组件的名称', 创建出来的组件模板对象) 
-Vue.component('login', login);
-
-// 3.使用组件
-<div id="app">
-	<!-- 如果要使用组件，直接，把组件的名称，以 HTML 标签的形式，引入到页面中即可 -->
-	<login></login>
-</div>
-```
-
-> 注意：
->
-> 使用 Vue.component 定义全局组件的时候，组件名称使用了 驼峰命名（如myLogin），则在引用组件的时候，需要把 大写的驼峰改为小写的字母，同时在两个单词之前，使用 - 链接（`<my-login></my-login>`）；如果不使用驼峰,则直接拿名称来使用即可；
-
-当然，上面两步可以合成一个步骤完成：
+相关属性：例如:data computed methods template watch等等。
 
 ```js
-Vue.component('login', Vue.extend({
-  template: '<h1>登录</h1>'
-}));
-```
+// main.js
+import Vue from 'vue'
 
-
-
-2、直接使用 Vue.component 方法：
-
-```js
-Vue.component('login', {
-  template: '<div><h3>注册</h3><span>123</span></div>'
-});
-```
-
-> 注意：**不论是哪种方式创建出来的组件，组件的 template 属性指向的模板内容，必须有且只能有唯一的一个根元素，否则会报错。**
-
-
-
-3、将模板字符串，定义到 template 标签中：
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <script src="./lib/vue-2.4.0.js"></script>
-</head>
-
-<body>
-  <div id="box">
-    <!-- 3. 使用组件 -->
-    <mycom></mycom>
-  </div>
-  <!-- 2.在 被控制的 #box 外面,使用 template 元素,定义组件的HTML模板结构  -->
-  <template id="tmp1">
-    <!-- 还是需要遵从template 模板内容，必须有且只能有唯一的一个根元素 -->
-    <div>
-      <h3>登录</h3>
-      <p>p标签</p>
-    </div>
-  </template>
-
-  <script>
-    // 1.定义组件
-    Vue.component('mycom', {
-      template: '#tmp1'
-    });
-
-    var vm = new Vue({
-      el: "#box",
-      data: {},
-      methods: {}
-    });
-  </script>
-</body>
-
-</html>
-```
-
-> 注意：
->
-> 1、`template: '#tmp1'` 是定义模板标签的 id ，# 别忘写了。
->
-> 2、被控制的 #box 外面,使用 template 标签；
->
-> 3、 template 标签里面，还是遵从只能有唯一的一个根元素的原则。
-
-
-
-
-
-### 2、定义私有组件
-
-定义私有组件，就是再VM实例中定义组件。
-
-如下，box中可以使用，box2不可以使用。
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <script src="./lib/vue-2.4.0.js"></script>
-</head>
-
-<body>
-  <div id="box">
-    <mycom></mycom>
-  </div>
-
-  <div id="box2">
-    <mycom></mycom>
-  </div>
-
-  <template id="temp">
-    <h3>自定义私有属性</h3>
-  </template>
-
-  <script>
-    var vm = new Vue({
-      el: "#box",
-      data: {},
-      methods: {},
-      // 定义私有组件
-      components: {
-        mycom: {
-          template: '#temp'
+// 全局组件
+// 全局组件的定义一定要在new Vue之前。
+// 定义之后到处可以使用，并且不需再声明
+Vue.component('mydiv', {
+    //不能在顶层元素使用v-for，因为顶层元素只能有一个
+    template: `
+        <div>
+            <div v-for="item in goods">{{item.name}}</div>
+        </div>
+    `,
+    data: function() {
+        return {
+            goods: [
+                { name: 'Daotin', age: 18 },
+                { name: 'lvonve', age: 19 },
+                { name: 'wenran', age: 20 }
+            ]
         }
-      }
-    });
-    var vm2 = new Vue({
-      el: "#box2",
-      data: {},
-      methods: {}
-    });
-  </script>
+    }
+});
+
+new Vue({
+    el: '#app',
+    data:{}
+});
+```
+全局组件的使用：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <!--全局组件的使用-->
+    <my-login></my-login>
 </body>
 
 </html>
@@ -169,45 +73,377 @@ Vue.component('login', {
 
 
 
-### 3、组件的data和methods属性
+> 注意：
+>
+> 0、不论是全局组件还是局部组件，组件的 template 属性指向的模板内容，必须有且只能有唯一的一个顶层元素，否则会报错。
+>
+> 1、使用组件的时候，双标签和单标签的方式都可以。`<my-login></my-login>` 或者 `<my-login />`
+>
+> 2、组件的内部除了有 `template`，还有data，methods，watch，computed等所有vue实例的属性。
+>
+> 3、使用 Vue.component 定义全局组件的时候，组件名称使用了 驼峰命名（如myLogin），则在调用组件的时候，需要把大写的驼峰改为小写的字母，同时在两个单词之前，使用 - 链接（`<my-login></my-login>`）；如果不使用驼峰,则直接拿名称来使用即可；
+>
+> 4、全局组件定义之后可以可以直接使用，不需要import引入
+>
+> 5、定义组件的时候，data为一个匿名函数，其返回值为一个对象。在这个返回对象里面填写需要的数据。
+>
+> 6、定义全局组件的时候，必须在vue初始化之前完成，也就是必须放在new Vue()代码之前。
 
-组件中也可以有自己的data和methods属性，可以传入template中使用。
 
-特点：
 
-- data属性为一个匿名函数，其返回值为一个对象。
-- data 函数返回值为一个对象（**最好是新开辟的对象，否则如果多次引用组件，不是新开辟的对象给的话，对象是同一份，而我们需要每一个组件有自己的对象**），对象中可以放入数据。
-- 组件中 的data和methods,使用方式,和实例中的 data 和methods使用方式完全一样
 
-```html
-<div id="box2">
-  <login></login>
-</div>
 
-<template id="temp2">
-  <div>
-    <input type="button" value="按钮" @click="myclick">
-    <h3>自定义私有属性</h3>
-    <p> {{msg}} </p>
-  </div>
-</template>
+### 2、定义局部组件
 
-<script>
-  Vue.component('login', {
-    template: '#temp2',
-    data: function () {
-      return {
-        msg: '这是组件中的data'
-      }
-    }，
-    methods: {
-      myclick() {
-        console.log("点击按钮");
-      }
-  }
-  });
-</script>
+通过components : { componentname:option} 的形式注册过一个子组件后才能在当前组件内使用该组件。
+
+定义局部组件，就是再vue实例中定义组件。
+
+```js
+// main.js
+import Vue from 'vue'
+
+// 子组件定义的时候，如果提出组件的配置（比如c），那么也要放在new Vue之前。
+let c = {
+    template: `
+        <div>
+            <div v-for="item in names">{{item.name}}</div>
+        </div>
+    `,
+    data: function() {
+        return {
+            names: [
+                { name: 'good1' },
+                { name: 'good2' },
+                { name: 'good3' }
+            ]
+        }
+    }
+};
+
+new Vue({
+    el: '#app',
+    data: {
+        username: 'daotin'
+    },
+    // 定义局部组件
+    components: { 
+    	goods:c
+    }
+});
 ```
+子组件的使用：
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <!--局部组件的使用-->
+    <goods></goods>
+</body>
+
+</html>
+```
+
+> 注意：
+>
+> 1、局部组件要使用的话，在哪个组件使用，就要在哪个组件中定义，也叫注册。
+>
+> 2、定义子组件的时候，如果把option提出来写，也必须放在new Vue 之前。
+
+
+
+
+
+## 三、动态组件
+
+定义三个子组件`Home.js, Goods.js, Users.js`
+
+> 一般组件的文件名首字母大写。
+
+然后创建一个主组件App.js。在main.js里面这样做：
+
+在main.js里面定义局部组件App，然后在main.js里面也可以定义template模板。
+
+在main.js里面定义的模板会覆盖掉index.html里面的`<div id="app"></div>`
+
+这里main.js里面的模板就是子组件App的内容，实际上这样写的目的就是在主页显示App的内容，所有其他组件比如Home.js等在App.js引入进行显示。
+
+```js
+new Vue({
+    el: '#app',
+    data: {},
+    template: '<App/>',
+    components: { App }
+});
+```
+
+看看各个文件的内容：
+
+```js
+// Home.js
+export let Home = {
+    template: `
+        <div>
+            <h2>首页</h2>
+        </div>
+    `
+}
+
+// Goods.js
+export let Goods = {
+    template: `
+        <div>
+            <ul>
+                <li v-for="good in goods">{{good.goodsName}}</li>
+            </ul>
+        </div>
+    `,
+    data() {
+        return {
+            goods: [
+                { goodsName: '苹果' },
+                { goodsName: '香蕉' },
+                { goodsName: '梨' },
+            ]
+        }
+    },
+}
+
+//Users.js
+export let Users = {
+    template: `
+        <div>
+            <ul>
+                <li v-for="user in users">{{user.name}}</li>
+            </ul>
+        </div>
+    `,
+    data() {
+        return {
+            users: [
+                { name: 'lvonve' },
+                { name: 'daotin' },
+                { name: 'wenran' },
+            ]
+        }
+    },
+}
+
+```
+
+主组件App.js：
+
+```js
+// 主组件
+import { Home } from './pages/Home'
+import { Goods } from './pages/Goods'
+import { Users } from './pages/Users'
+
+export let App = {
+    template: `
+        <div>
+            <a href="javascript:;" @click="goPage(nav.name)" v-for="nav in navs">{{nav.text}}</a>
+            
+            <Component :is="currentPage" />
+        </div>
+    `,
+    data() {
+        return {
+            currentPage: 'Goods',
+            navs: [
+                { text: '首页', name: 'Home' },
+                { text: '商品列表', name: 'Goods' },
+                { text: '用户列表', name: 'Users' }
+            ]
+        }
+    },
+    methods: {
+        goPage(pagename) {
+            this.currentPage = pagename;
+        }
+    },
+    components: { Home, Goods, Users }
+}
+```
+
+在主组件先import引入其他组件，然后使用局部组件的方式进行定义，之后使用`<Component is="Home" />` 类似于`<Home />` ，由于这里需要动态显示，所以is可变，就成了`<Component :is="currentPage" />`
+
+这样点击不同的a标签就会显示不同的内容（默认显示Goods组件内容）。
+
+![](images/7.gif)
+
+## 四、父组件向子组件传值
+
+有这样一个需求，我们的Home，Goods，Users组件都需要有一个相同的头部组件Header，但是需要Header里面的内容不同，这就需要父组件Home，Goods，Users传给子组件Header不同的值来显示不同的内容。
+
+定义一个Header组件。
+
+```js
+// Header.js
+export let Header = {
+    template: `
+        <div>
+            <h3>
+                我是Header组件
+            </h3>
+            
+        </div>
+    `
+}
+```
+
+父组件怎么给子组件传值呢？
+
+使用`props`。
+
+父组件传递的方式：在子组件中自定义一个属性，名称随意，这里叫title，属性值为Home，
+
+```js
+template: `
+        <div>
+            <Header title="Home"/>
+            <h2>首页</h2>
+        </div>
+    `,
+```
+
+然后在子组件里面接收父组件传来的数据：使用props接收来自父组件的数据，接收属性为一个数组，里面的值就是传过来的属性名。
+
+既然是数组，就可以接收多个父组件传过来的数据。
+
+```js
+export let Header = {
+    // 使用props接收来自父组件的数据，接收属性为一个数组，里面的值就是传过来的属性名
+    props: ['title'],
+    template: `
+        <div>
+            <h3>我是Header组件</h3>
+            <p>我来自{{title}}</p>
+        </div>
+    `
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -99,7 +99,7 @@ Webpack 本身只能加载`JS/JSON`模块，如果要加载其他类型的文件
 //全局安装
 npm install webpack@3.11.0 -g  
 //局部安装
-npm install webpack@3.11.0 -S
+npm install webpack@3.11.0 -D
 ```
 
 > 全局安装时为了能够使用webpack指令来进行项目的编译等，
@@ -614,6 +614,20 @@ module: {
 ```
 
 > exclude:除去node-modules文件夹里面的js文件
+
+我们在`loader:babel-loader`中加了参数`?presets[]=env`，这只是临时写法。
+
+一般写法是在项目根目录新建一个文件`.babelrc`:
+
+```json
+{
+    "presets":["env"]
+}
+```
+
+和上面是等价的。
+
+
 
 
 
