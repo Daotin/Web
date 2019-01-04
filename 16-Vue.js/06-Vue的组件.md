@@ -155,7 +155,7 @@ new Vue({
 
 > 注意：
 >
-> 1、局部组件要使用的话，在哪个组件使用，就要在哪个组件中定义，也叫注册。
+> 1、局部组件要使用的话，**在哪个组件使用，就要在哪个组件中定义**，也叫注册。
 >
 > 2、定义子组件的时候，如果把option提出来写，也必须放在new Vue 之前。
 
@@ -281,7 +281,9 @@ export let App = {
 
 ![](images/7.gif)
 
-## 四、父组件向子组件传值
+## 四、组件间传值
+
+### 1、父组件向子组件传值
 
 有这样一个需求，我们的Home，Goods，Users组件都需要有一个相同的头部组件Header，但是需要Header里面的内容不同，这就需要父组件Home，Goods，Users传给子组件Header不同的值来显示不同的内容。
 
@@ -335,27 +337,246 @@ export let Header = {
 
 
 
+#### 1.1、props类型验证
+
+我们上面props传递的都是字符串，如果不小心传递的是数组啊，对象啊什么的，显示的时候也只会以字符串的显示显示，如何对props传递的数据进行类型声明呢？
+
+我们需要在子组件里面进行props声明：
+
+```js
+export let Header = {
+    props: {
+        obj: Object,
+        title: String
+    },
+    template: `
+        <div>
+            <h3>我是Header组件</h3>
+            <p>我来自{{title}}</p>
+            <p>{{obj}}</p>
+        </div>
+    `
+}
+```
+
+父组件传值的时候和之前一样：
+
+```js
+import { Header } from '../components/Header'
+
+export let Home = {
+    data() {
+        return {
+            title: 'Home',
+            obj: {
+                username: 'Daotin'
+            }
+        }
+    },
+    template: `
+        <div>
+            <Header :title="title" :obj="obj"/>
+            <h2>首页</h2>
+        </div>
+    `,
+    components: { Header }
+}
+```
 
 
 
+#### 1.2、props必填验证
+
+还有个问题是当父组件不填写title值的时候，子组件不显示，但是不会报错。
+
+**如何设置子组件声明的值为必填属性呢？**
+
+子组件这样设置：
+
+```js
+export let Header = {
+    props: {
+        obj: Object,
+        title: {
+            type: String,
+            required: true
+        }
+    },
+    template: `
+        <div>
+            <h3>我是Header组件</h3>
+            <p>我来自{{title}}</p>
+            <p>{{obj}}</p>
+        </div>
+    `
+}
+```
+
+父组件如果不写`title`属性的话，会报以下错误：
+
+![](images/27.png)
 
 
 
+#### 1.3、props默认值
+
+子组件：
+
+```js
+export let Header = {
+    props: {
+        obj: Object,
+        title: {
+            type: String,
+            default: 'Home'
+            // required: true
+        }
+    },
+    template: `
+        <div>
+            <h3>我是Header组件</h3>
+            <p>我来自{{title}}</p>
+            <p>{{obj}}</p>
+        </div>
+    `
+}
+```
+
+当子组件设置默认属性的时候，就不需要必填属性了，因为有了默认值肯定填写了。
 
 
 
+#### 1.4、props自定义匹配规则
+
+如果父组件传递的是个数组，我们想限制数组的长度怎么办？上面的属性都不可以限制，这时候就需要自定义匹配规则了。
+
+这里我们限制传递过来的数组长度在3-10之间长度。
+
+子组件：
+
+```js
+export let Header = {
+    props: {
+        obj: Object,
+        title: {
+            type: String,
+            default: 'Default Home'
+            // required: true
+        },
+        arr: {
+            type: Array,
+            required: true,
+            validator: function(value) {
+                // value就是父组件传递过来的数组
+                if (value.length >= 3 && value.length <= 10) {
+                    // 满足条件返回true
+                    return true;
+                } else {
+                     // 不满足条件返回false
+                    return false;
+                }
+            }
+        }
+    },
+    template: `
+        <div>
+            <h3>我是Header组件</h3>
+            <p>我来自{{title}}</p>
+            <p>{{obj}}</p>
+        </div>
+    `
+}
+```
+
+父组件这时传递个空数组：
+
+```js
+import { Header } from '../components/Header'
+
+export let Home = {
+    data() {
+        return {
+            title: 'Home',
+            obj: {
+                username: 'Daotin'
+            },
+            arr: []
+        }
+    },
+    template: `
+        <div>
+            <Header :title="title" :obj="obj" :arr="arr"/>
+            <h2>首页</h2>
+        </div>
+    `,
+    components: { Header }
+}
+```
+
+会报错如下，当我们传递的数组的长度满足的时候就不会报错了。
+
+![](images/28.png)
+
+但是我觉得这个提示不明显，我们可以手动报错。
+
+```js
+export let Header = {
+    props: {
+        obj: Object,
+        title: {
+            type: String,
+            default: 'Default Home'
+            // required: true
+        },
+        arr: {
+            type: Array,
+            required: true,
+            validator: function(value) {
+                // value就是父组件传递过来的数组
+                if (value.length >= 3 && value.length <= 10) {
+                    return true;
+                } else {
+                    // return false;
+                    throw new Error('数组的长度必须在3-10之间');
+                }
+            }
+        }
+    },
+    template: `
+        <div>
+            <h3>我是Header组件</h3>
+            <p>我来自{{title}}</p>
+            <p>{{obj}}</p>
+        </div>
+    `
+}
+```
+
+![](images/29.png)
+
+现在报错的信息就很明显了。
 
 
 
+### 2、子组件向父组件传值
 
+在此之前先介绍个插件`string-loader` ，这个插件可以让我们组件的template属性的值提出到单独的html页面，便于书写。
 
+- 安装插件
 
+```
+npm i string-loader -D
+```
 
+- 配置config文件
 
-
-
-
-
+```json
+module: {
+    rules: [
+        { test: /\.html$/, loader: 'string-loader' }
+    ]
+},
+```
 
 
 

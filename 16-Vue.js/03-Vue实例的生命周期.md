@@ -8,13 +8,15 @@ vue实例的生命周期指的是：**从Vue实例创建，运行，到销毁期
 
 ## 二、生命周期函数三个阶段
 
+### 1、实例化期和加载期
+
 **创建期间的生命周期函数**：`beforeCreate` 和 `created`，`beforeMount` 和 `mounted`。
 
 ![](images/6.png)
 
 
 
-
+### 2、更新期
 
 **运行期间的生命周期函数**：`beforeUpdate` 和  `updated`
 
@@ -22,7 +24,7 @@ vue实例的生命周期指的是：**从Vue实例创建，运行，到销毁期
 
 
 
-
+### 3、卸载期
 
 **销毁期间的生命周期函数**：`beforeDestroy` 和 `destroyed`
 
@@ -59,6 +61,59 @@ vue实例的生命周期指的是：**从Vue实例创建，运行，到销毁期
 - `destroyed`：Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。
 
 
+
+示例代码：
+
+```js
+export let User = {
+    data(){
+        return {
+            username: "zhuiszhu",
+            count : 0
+        }
+    },
+    template : `
+        <div>
+            <h3 id="test">{{username}}</h3>
+            <p>用户中心页页面内容</p>
+            <p>{{count}}</p>
+            <button @click="add">+</button>
+        </div>
+    `,
+    methods : {
+        add(){
+            this.count ++
+        }
+    },
+    // 声明周期函数
+    beforeCreate(){
+        console.log(this.username)
+    },
+    created(){
+        console.log(this.username)
+    },
+    beforeMount(){
+        let dom = document.getElementById("test")
+        // console.log(dom)
+    },
+    mounted(){
+        let dom = document.getElementById("test")
+        // console.log(dom)
+    },
+    beforeUpdate(){
+        // console.log("组件即将发生更新")
+    },
+    updated(){
+        // console.log("组件已经发生更新")
+    },
+    beforeDestroy(){
+        // console.log("组件即将被卸载")
+    },
+    destroyed(){
+        // console.log("组件已经被卸载")
+    }
+}
+```
 
 
 
