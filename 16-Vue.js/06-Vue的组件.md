@@ -578,11 +578,266 @@ module: {
 },
 ```
 
+这里创建一个子组件A.js和A组件的template文件A.html。
+
+A组件如何使用外部的template呢？
+
+```html
+<!--A.html-->
+<div>
+    <h4>
+        我说A组件。
+        <span>count = {{count}}</span>
+        <button @click="add">+</button>
+    </h4>
+</div>
+```
+
+首先要导入A.html文件才能使用，导入的方式和js一样。
+
+```js
+// A.js
+
+import htmlA from './A.html'
+
+export let A = {
+    template: htmlA
+}
+```
+
+然后用相同的方式创建B.js和B.html文件。然后在父组件Home.js引入使用A组件和B组件。
+
+现在的代码结构如下：
+
+```js
+// A.js
+import htmlA from './A.html'
+
+export let A = {
+    props: ['title'],
+    template: htmlA,
+    data() {
+        return {
+            count: 0
+        }
+    },
+    methods: {
+        add() {
+            this.count++;
+        }
+    }
+}
+
+// B.js
+import htmlB from './B.html'
+
+export let B = {
+    props: ['cCount'],
+    template: htmlB
+}
+
+// Home.js
+import { Header } from '../components/Header'
+import { A } from '../components/A'
+import { B } from '../components/B'
+
+export let Home = {
+    template: `
+        <div>
+            <Header :title="title"></Header>
+            <h1>首页</h1>
+            <A></A>
+            <B></B>
+        </div>
+    `,
+    data() {
+        return {
+            title: '首页的title',
+            count: 0
+        }
+    },
+    components: { Header, A, B }
+}
+```
+
+A.html和B.html
+
+```html
+<!-- A.html -->
+<div>
+    <h4>
+        我是A组件。
+        <span>count = {{count}}</span>
+        <button @click="add">+</button>
+    </h4>
+</div>
+
+<!-- B.html -->
+<div>
+    <h4>
+        我是B组件。
+        <span>count = {{cCount}}</span>
+    </h4>
+</div>
+```
+
+此时的需求是点击A组件的按钮，A组件的count++，然后将count值传给Home父组件。
+
+子组件传值给父组件使用：`子组件.$emit(事件名，发送给父组件的数据)`
+
+```js
+// A.js
+import htmlA from './A.html'
+
+export let A = {
+    props: ['title'],
+    template: htmlA,
+    data() {
+        return {
+            count: 0
+        }
+    },
+    methods: {
+        add() {
+            this.count++;
+        }
+    },
+    // 监听数据的变化
+    watch: {
+        count() {
+            this.$emit('countChange', this.count);
+        }
+    }
+}
+```
+
+我们在watch里面监听count值的变化，然后将count值使用`this.$emit('countChange', this.count);`发送给父组件，一旦count值发生变化，就会触发countChange事件，然后将this.count发送给父组件。
+
+这时候在父组件监听这个countChange事件，拿到子组件传过来的count：
+
+```js
+import { Header } from '../components/Header'
+import { A } from '../components/A'
+import { B } from '../components/B'
+
+export let Home = {
+    template: `
+        <div>
+            <Header :title="title"></Header>
+            <h1>首页</h1>
+            <A @countChange="change"></A>
+            <B></B>
+        </div>
+    `,
+    data() {
+        return {
+            title: '首页的title',
+            count: 0
+        }
+    },
+    methods: {
+        change(count) {
+            console.log(count); // 打印得到的子组件count值
+            this.count = count;
+        }
+    },
+    components: { Header, A, B }
+}
+```
+
+如果想要change事件传多个值，比如还想传个一个参数为1，在第一个参数的位置，那么模板的写法就要修改：
+
+`<A @countChange="change(1, $event)"></A>` ，第二个参数`$event` 就相当于子组件传来的数据。
+
+其实之前不写参数的时候，就类似与`<A @countChange="change($event)"></A>`这种写法。
 
 
 
+### 3、子组件之间相互传值
+
+**方式一：中间人模式**
+
+通过父组件间接传值（通过props的方式传值。）
+
+> 子组件A --> 父组件 --> 子组件B，
 
 
+
+**方式二：中央事件总线**
+
+创建新的vue实例做中间人传话，分别调用emit()进行触发和on()进行监听。
+
+创建一个`toolVue.js`文件：
+
+```js
+import Vue from 'vue'
+export let media = new Vue();
+```
+
+toolVue文件只负责创建一个vue实例，然后导出组件。
+
+A，B组件引入toolVue组件。然后A的count变化的时候触发countChange函数，在B里面调用countChange函数得到A传递的数据。
+
+```js
+// A.js
+import { media } from '../toolVue'
+import htmlA from './A.html'
+
+export let A = {
+    props: ['title'],
+    template: htmlA,
+    data() {
+        return {
+            count: 0
+        }
+    },
+    methods: {
+        add() {
+            this.count++;
+        }
+    },
+    watch: {
+        count() {
+            // 通过media组件，当count变化时触发countChange，并传入count值
+            media.$emit('countChange', this.count);
+        }
+    },
+    components: { media }
+}
+```
+
+```js
+// B.js
+import { media } from '../toolVue'
+import htmlB from './B.html'
+
+export let B = {
+    // props: ['cCount'],
+    template: htmlB,
+    data() {
+        return {
+            cCount: 0
+        }
+    },
+    components: { media },
+    mounted() {
+        // 通过media，调用countChange函数，得到A的count值
+        // 注意这里面的this是media并不是B，所以要用箭头函数
+        media.$on('countChange', count => {
+            this.cCount = count;
+        })
+    },
+}
+```
+
+完成子组件A的count传递到子组件B。
+
+> // 注意这里面的this是media并不是B，所以要用箭头函数
+> media.$on('countChange', count => {
+> ​    this.cCount = count;
+> })
+
+![](images/8.gif)
 
 
 

@@ -1,3 +1,9 @@
+​	示例文件接到 **Vue的组件**
+
+---
+
+
+
 ## 一、Vue路由
 
 ### 1、什么是路由？
@@ -10,36 +16,46 @@
 
 
 
+承接到**Vue的组件**的示例文件：👇
+
+现在有Home，Goods和Users子组件，我们在点击跳转按钮的时候，页面通过`<Component :is="currentPage" />` 改变了，但是地址url没变，这就是单页面应用。
+
+这样有一个问题就是没法分享给他人，因为地址是相同的，但是看到的内容不同。还有一点就是没有回退功能。
+
+如何解决这个问题？及用到了vue的路由。
+
+
+
 ### 2、路由的基本使用
 
 在vue中使用路由需要用到`vue-router`的插件。
 
-可以到 <https://unpkg.com/vue-router/dist/vue-router.js> 地址下载。
 
 
-
-**使用步骤：**
-
-1、导入`vue-router.js` 组件库。
+1、按照vue-router插件
 
 ```html
-<script src="./lib/vue-2.4.0.js"></script>
-<script src="./lib/vue-router-3.0.1.js"></script>
+npm i vue-router -S
 ```
 
-> 注意：vue-router 包的导入需要在 vue 包之后。
-
-
-
-2、创建一个路由对象， 当 导入 vue-router 包之后，在 window 全局对象中，就有了一个 路由的构造函数，叫做 `VueRouter`，在 new 路由对象的时候，可以为 构造函数，传递一个配置对象。这个配置对象中有一个属性：`routes`，表示 **路由的匹配规则**。
+2、引入并注入路由到vue
 
 ```js
-var routerObj = new VueRouter({
-      routes: [
-        {path: '/login',component: login}, 
-        {path: '/register',component: register}
-      ]
-    });
+import Router from 'vue-router'
+
+Vue.use(Router);
+```
+
+3、创建一个路由实例，参数为一个对象，这个配置对象中有一个属性：`routes`，表示 **路由的匹配规则**。
+
+```js
+let router = new Router({
+    routes : [
+        { path: '/home', component: Home }, //当地址为/home时，显示Home组件
+        { path: '/goods', component: Goods },
+        { path: '/users', component: Users }
+    ]
+});
 ```
 
 > routes 属性是一个数组，数组中的每一项都是一条匹配规则。
@@ -50,147 +66,45 @@ var routerObj = new VueRouter({
 >
 > `component`：表示如果路由是前面匹配到的 path ，则展示 component 属性对应的那个组件。
 
-
-
-3、创建要展示的组件模板对象
+4、将路由规则对象router注册到vue实例
 
 ```js
-var login = {
-  template: '<h1>登录组件</h1>'
-}
-
-var register = {
-  template: '<h1>注册组件</h1>'
-}
-```
-
-> 第二步中， component 属性对应的那个组件就是我们创建的模板对象。
-
-
-
-4、将路由规则对象routerObj 注册到 vm 实例上，用来监听 URL 地址的变化，然后展示对应的组件
-
-```js
-var vm = new Vue({
+new Vue({
   el: "#box",
   data: {},
   methods: {},
-  // 将路由对象注册到vm实例
-  router: routerObj
+  // 将路由对象注册到vue实例
+  router
 });
 ```
 
-
-
-5、一旦路由规则匹配成功，就会在vue-router 提供的元素`router-view` 上显示出来，我们要将`router-view`元素写到vm控制的元素中
+5、一旦路由规则匹配成功，就会在vue-router 提供的标签`router-view` 上显示出来，这个标签就是匹配路由成功后component对应的组件应该显示的位置。
 
 ```html
-<div id="box">
-  <!-- 使用router-view在页面渲染出来-->
-  <router-view></router-view>
-</div>
-```
-
-
-
-6、网页的路由都是由html文件和`#/` ，再加上路由链接地址组成，例如如下的形式：
-
-```
-file:///I:/Web/Demo/Vue/test.html#/login
-file:///I:/Web/Demo/Vue/test.html#/register
-```
-
-我们可以写一个 a 标签来进行 login 和 register 组件间的路由跳转：
-
-```html
-<div id="box">
-  <!-- 通过点击a链接切换路由 -->
-  <a href="#/login">登录</a>
-  <a href="#/register">注册</a>
-  <!-- 5、使用 vue-router 提供的元素router-view在页面渲染出来-->
-  <router-view></router-view>
-</div>
-```
-
-> 注意：a链接的href属性一定是`#/ + 路由链接地址`。
-
-
-
-**示例完整代码：**
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <script src="./lib/vue-2.4.0.js"></script>
-  <!-- 1.引入vue-router文件 -->
-  <script src="./lib/vue-router-3.0.1.js"></script>
-</head>
-
-<body>
-  <div id="box">
-    <!-- 通过点击a链接切换路由 -->
-    <a href="#/login">登录</a>
-    <a href="#/register">注册</a>
-    <!-- 5、使用 vue-router 提供的元素router-view在页面渲染出来-->
+<div>
+    <button @click="goPage(nav.name)" v-for="nav in navs">{{nav.text}}</button>
     <router-view></router-view>
-  </div>
-
-  <script>
-    // 3、创建组件模板对象
-    var login = {
-      template: '<h3>登录组件</h3>'
-    };
-
-    var register = {
-      template: '<h3>注册组件</h3>'
-    };
-
-
-    // 2、创建路由对象
-    var routerObj = new VueRouter({
-      routes: [{
-        path: '/login',
-        component: login
-      }, {
-        path: '/register',
-        component: register
-      }]
-    });
-
-    var vm = new Vue({
-      el: "#box",
-      data: {},
-      methods: {},
-      // 4、将vm实例和路由对象联系起来
-      router: routerObj
-    });
-  </script>
-</body>
-
-</html>
+</div>
 ```
 
-![](images/4.gif)
+然后来看看界面：
 
-示例代码的逻辑是这样的：
-
-**当我们点击超链接的时候，会修改url地址，在此之前，我们已经把路由注册到vm对象身上，这时候路由就会监听到路由地址的改变，于是就会进行路由规则path的匹配，当匹配成功的时候，就会展示path规则对应的component对应的组建模板对象，那么要展示在什么位置呢，这个展示在 router-view 上。**
+![](images/9.gif)
 
 
 
 ### 3、router-link属性
 
-我们之前的超链接是由a标签代替的，并且每次href属性都要加上#，这样太麻烦。
+我们之前的超链接是由a标签代替的，如果要跳转那么并且每次href属性都要加上#，这样太麻烦。
 
 vue-router官方提供了一个`router-link` 的属性可以实现路由的跳转。
 
 ```html
-<router-link to="/login">登陆</router-link>
-<router-link to="/register">注册</router-link>
+<!--app.html-->
+<div>
+    <router-link tag="button" :to="nav.name" v-for="nav in navs">{{nav.text}}</router-link>
+    <router-view></router-view>
+</div>
 ```
 
 我们通过检查可以知道，router-link 会默认渲染为一个a 标签。
@@ -209,25 +123,193 @@ vue-router官方提供了一个`router-link` 的属性可以实现路由的跳�
 
 
 
+### 4、路由嵌套
 
+我们现在想在/home路径下再接子路由a和b，形成嵌套路由/home/a或者/home/b形式的路由。
 
-### 4、路由redirect重定向
+![](images/30.png)
 
-不知道你们发现没有，当刚进入页面的时候，由于页面时根路径，所以不显示任何组建，这样就不合理，我们希望刚进入页面的时候展示登陆组建怎么做呢？
-
-当然，我们可以在路由匹配规则里面加上一条 `{path:'/', component:login}` ，但是不推荐这么做，因为根路径下的界面和登陆下的界面一致，可是url不同，可能导致用户困惑，
-
-那么，我们可以使用 **路由redirect重定向** 来解决这个问题。
+在路由配置规则数组中使用 `children` 属性，实现子路由功能。
 
 ```js
-{ path: '/', redirect: '/login'}
+let router = new Router({
+    routes: [
+        // 路由重定向
+        { path: '/', redirect: '/home' },
+        {
+            path: '/home',
+            component: Home,
+        	// 使用children实现子路由
+            children: [
+                { path: 'a', component: A },
+                { path: 'b', component: B }
+            ]
+        },
+        { path: '/goods', component: Goods },
+        { path: '/users', component: Users }
+    ]
+});
 ```
 
-这样就把根路径重定向到了login组建，当再刚进入主页面的时候，会自动跳转到login路由地址，也就不会展示根路径。
+> 注意：子路由的匹配规则前面不要加 `/` 。
+
+然后在Home的template中加入`<router-view></router-view>`即可。
+
+来看现象：
+
+![](images/10.gif)
+
+**给路由起别名**
+
+我们还可以给路由起个别名，这样在有些路由特别长的时候就很方便。
+
+起别名的方式就是往路由匹配规则加个`name`属性即可。
+
+```js
+let router = new Router({
+    routes: [
+        { path: '/', redirect: '/home' },
+        {
+            path: '/home',
+            component: Home,
+            name: 'h',
+            children: [
+                { path: 'a', component: A, name: 'a' },
+                { path: 'b', component: B, name: 'b' }
+            ]
+        }, //当地址为/home时，显示Home组件
+        { path: '/goods', component: Goods, name: 'g' },
+        { path: '/users', component: Users, name: 'u' }
+    ]
+});
+```
+
+那么我们在使用router-link跳转的时候，属性to就是动态的：
+
+```html
+<router-link tag="button" :to="{name:'a'}" v-for="nav in navs">{{nav.text}}</router-link>
+```
+
+然后重定向redirect也可以使用name：
+
+```js
+{ path: '/', redirect: {name:'h'} },
+```
 
 
 
-### 5、路由高亮显示
+
+
+### 5、多视图路由
+
+之前我们是在Home中加载A，B组件，现在有如下需求：
+
+![](images/31.png)
+
+我们在加载/home/one路由的时候，没有名字的router-view加载A组件，有名字的router-view加载B组件；
+
+在加载/home/two路由的时候，没有名字的router-view加载A2组件，有名字的router-view加载B2组件；
+
+这种在Home中显示多个router-view的方式就叫做多视图路由。
+
+
+
+首先在Home的template中添加router-view：
+
+```html
+<div>
+    <h1>首页</h1>
+    <router-view></router-view>
+    <router-view name="b"></router-view>
+</div>
+```
+
+接着配置路由：
+
+```:arrow_down:
+let router = new Router({
+    routes: [
+        { path: '/', redirect: '/home' },
+        {
+            path: '/home',
+            component: Home,
+            name: 'h',
+            children: [{
+                    path: 'one',
+                    components: {
+                        b: B,
+                        default: A
+                    },
+                    name: 'a'
+                },
+                {
+                    path: 'two',
+                    components: {
+                        b: B2,
+                        default: A2
+                    },
+                    name: 'b'
+                }
+            ]
+        }, //当地址为/home时，显示Home组件
+        { path: '/goods', component: Goods, name: 'g' },
+        { path: '/users', component: Users, name: 'u' }
+    ]
+});
+```
+
+由于一个router-view要加载的有两个路由，所以component变成components，复数，然后是个对象，有name=b的就是b：B组件，没有name的就是default：A组件。
+
+演示：
+
+![](images/11.gif)
+
+
+
+
+
+### 6、编程式导航
+
+编程式导航就是通过js来实现页面跳转（之前都是通过标签router-link来跳转的），比如如果用户登录成功跳转道首页，这个判断的功能只能通过js来实现。
+
+我在app.html添加一个按钮：
+
+```js
+<button @click='goHome'>跳转到首页</button>
+```
+
+
+
+然后在app.js里面实现点击事件：
+
+通过`父组件.$router.push('路由地址')` 或者是`父组件.$router.push({name:'路由别名'})`的方式进行跳转。
+
+```js
+methods: {
+    goHome() {
+        this.$router.push('/home');
+        this.$router.push({ name: 'h' });
+    }
+},
+```
+
+> `this.$router.push`和`this.$router.replace`的区别:
+>
+> push会保留跳转前的地址，而replace不会。通过名字也可以看出端倪。
+>
+> 还有`this.$router.go(1)` 执行浏览前进或者后退次数。
+
+
+
+
+
+
+
+
+
+
+
+### 7、路由高亮显示
 
 我们在点击登陆和注册链接的时候，可不可以让被点击的链接高亮显示呢？
 
@@ -271,7 +353,7 @@ var routerObj = new VueRouter({
 
 
 
-### 6、路由切换添加动画效果
+### 8、路由切换添加动画效果
 
 既然 router-view 是显示组件的，那么我们可以给 router-view 来添加动画效果：
 
@@ -299,192 +381,118 @@ var routerObj = new VueRouter({
 
 
 
-### 7、给路由传递参数
+### 9、给路由传递参数
+
+
+
+#### 方式一：问号传参
 
 我们可以在路由中，使用查询字符串的方式给路由传递参数。
 
 ```html
-<router-link to="/login?id=10&name=daotin">登录</router-link>
+<div>
+    <h1>商品列表页面</h1>
+    <ul>
+        <router-link tag='li' :to="{name:'d',query:{gid:goods.goodsID}}" v-for="goods in list">
+            <h4>商品名:{{goods.name}}</h4>
+            <p>价格:{{goods.price}}</p>
+        </router-link>
+    </ul>
+</div>
 ```
+
+当然上面传递的方式就类似于传统的问号传参方式。比如 `/detail?gid=4` 这样的方式传递，如果想写在to里面就用上面的方式。
+
+
 
 给路由传递参数后，我们并**不需要修改路由匹配规则**。
 
 我们给路由传递参数就是为了拿到参数，那么如何获取参数呢？
 
-**方式一：**
-
 在我们的组件模板对象里面，可以使用`this.$route.query` 的方式获取我们传入的参数对象。
 
 ```js
-var login = {
-template: '<h3>登录组件 --- {{$route.query.id}}  --- 	{{$route.query.name}}</h3>',
-}; // 登录组件 --- 10 --- daotin
-```
-
-
-
-**方式二：**
-
-可以在路由匹配规则中，使用占位符代替路由传递时的参数。
-
-path 中的 `:id` 表示以后路由中后面跟着的是个id值，`:name` 也一样。
-
-```html
-<router-link to="/login/20/Daotin">登陆</router-link>
-
-var routerObj = new VueRouter({
-routes: [
-	{path: '/', redirect: '/login'}, 
-	{path: '/login/:id/:name',component: login}, 
-	{path: '/register',component: register}
-],
-});
-```
-
-在获取参数的时候，不是用query了，而是params。
-
-```js
-var login = {
-    template: '<h3>登录组件 --- {{$route.params.id}}  --- {{$route.params.name}}</h3>',
-};
-```
-
-
-
-### 8、路由嵌套
-
-什么是路由嵌套？
-
-我们的登陆和注册都是平级的关系，那么我们登陆和注册的组件里面可不可以嵌套其他的组件呢？当然可以。
-
-使用 `children` 属性，实现子路由。
-
-```js
-var router = new VueRouter({
-      routes: [
-        {
-          path: '/account', component: account,
-          // 使用 children 属性，实现子路由，同时，子路由的 path 前面，不要带 / ，否则永远以根路径开始请求。
-          children: [
-            { path: 'login', component: login },
-            { path: 'register', component: register }
-          ]
+export let Detail = {
+    template : require("./index.html"),
+    data(){
+        return {
+            goodsid : 0
         }
-        // 下面是错误的
-        // { path: '/account/login', component: login },
-        // { path: '/account/register', component: register }
-      ]
-    })
+    },
+    // 加载后获取路由参数
+    mounted(){
+        let goodsid = this.$route.query.gid
+        this.goodsid = goodsid
+    }
+} 
 ```
 
-> 注意：子路由的匹配规则前面不要加 `/` 。
 
 
+#### 方式二：路径传参
 
-**完整示例：**
+首先在路由匹配规则中，使用占位符代替路由传递时的参数。
+
+path 中的 `:newGid`表示如果以后路由后面跟内容了，那么内容的属性就是gid。
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <script src="./lib/vue-2.4.0.js"></script>
-  <!-- 1.引入vue-router文件 -->
-  <script src="./lib/vue-router-3.0.1.js"></script>
-  <style>
-    .myClass {
-      color: red;
-      background-color: yellow;
-    }
-
-    .v-enter,
-    .v-leave-to {
-      opacity: 0;
-    }
-
-    .v-enter-active,
-    .v-leave-active {
-      transition: opacity 0.5s ease;
-    }
-  </style>
-</head>
-
-<body>
-  <div id="box">
-    <router-link to="/login">登陆</router-link>
-    <router-link to="/register">注册</router-link>
-    <router-view></router-view>
-  </div>
-
-  <template id="login">
-    <div>
-      <h2>主login</h2>
-      <router-link to="/login/login1">登陆</router-link>
-      <router-link to="/login/register1">注册</router-link>
-
-      <router-view></router-view>
-    </div>
-  </template>
-
-  <script>
-    // 3、创建组件模板对象
-    var login = {
-      template: '#login',
-    };
-
-    var register = {
-      template: '<h3>注册组件</h3>'
-    };
-
-    var login1 = {
-      template: '<h3>登录子组件</h3>',
-    };
-
-    var register1 = {
-      template: '<h3>注册子组件</h3>'
-    };
-
-
-    // 2、创建路由对象
-    var routerObj = new VueRouter({
-      routes: [
-          { path: '/', redirect: '/login' }, 
-          {
-            path: '/login', component: login,
-            children: [
-              { path: 'login1', component: login1 },
-              { path: 'register1', component: register1 }
-            ]
-          }, 
-          { path: '/register', component: register }],
-        
-      linkActiveClass: 'myClass'
-    });
-
-    var vm = new Vue({
-      el: "#box",
-      data: {},
-      methods: {},
-      // 4、将vm实例和路由对象联系起来
-      router: routerObj
-    });
-  </script>
-</body>
-
-</html>
+{path : '/detail/:newGid',component:Detail,name:"d"},
 ```
 
-在 login 下面有两个子组件 login1 和 register1，使用 children 来匹配子路由的规则，进行显示，而不会让之前主login显示的受到影响。
+然后在传递参数时，就不是用query了，而是params。
 
-![](images/6.gif)
+```html
+<div>
+    <h1>商品列表页面</h1>
+    <ul>
+        <router-link tag='li' :to="{name:'d',params:{newGid:goods.goodsID}}" v-for="goods in list">
+            <h4>商品名:{{goods.name}}</h4>
+            <p>价格:{{goods.price}}</p>
+        </router-link>
+    </ul>
+</div>
+```
+
+这时候，传过去时就不是问号的形式，而是路径的形式，如：`/detail/4`
+
+获取的时候也不是query而是params。
+
+```js
+export let Detail = {
+    template : require("./index.html"),
+    data(){
+        return {
+            goodsid : 0
+        }
+    },
+    // 加载后获取路由参数
+    mounted(){
+        let newGoodsid = this.$route.params.newGid
+        this.goodsid = newGoodsid
+    }
+} 
+```
+
+
+
+上面的路由传参都是采用to传参，也就是标签传参，怎么使用编程式导航传参？
+
+其实和to是一样的：
+
+```js
+this.$router.push({name:'d',query:{gid:goods.goodsID}})
+this.$router.push({name:'d',params:{newGid:goods.goodsID}})
+```
 
 
 
 
 
-### 9、命名视图实现经典布局
+
+
+
+
+### 命名视图实现经典布局
 
 **什么是命名视图？**
 
