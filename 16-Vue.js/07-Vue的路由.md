@@ -297,9 +297,9 @@ methods: {
 >
 > push会保留跳转前的地址，而replace不会。通过名字也可以看出端倪。
 >
-> 还有`this.$router.go(1)` 执行浏览前进或者后退次数。
+> 还有`this.$router.go(1)` 执行浏览指针的前进或者后退次数。
 
-
+![](images/32.png)
 
 
 
@@ -455,7 +455,7 @@ path 中的 `:newGid`表示如果以后路由后面跟内容了，那么内容�
 
 这时候，传过去时就不是问号的形式，而是路径的形式，如：`/detail/4`
 
-获取的时候也不是query而是params。
+获取的时候也不是query而是params，`this.$route.params`。
 
 ```js
 export let Detail = {
@@ -467,8 +467,8 @@ export let Detail = {
     },
     // 加载后获取路由参数
     mounted(){
-        let newGoodsid = this.$route.params.newGid
-        this.goodsid = newGoodsid
+        let newGoodsid = this.$route.params.newGid;
+        this.goodsid = newGoodsid;
     }
 } 
 ```
@@ -482,6 +482,170 @@ export let Detail = {
 ```js
 this.$router.push({name:'d',query:{gid:goods.goodsID}})
 this.$router.push({name:'d',params:{newGid:goods.goodsID}})
+```
+
+
+
+### 10、vue路由守卫
+
+什么是路由守卫？简单来说就是路由在跳转之前的验证，当满足条件时才会进行跳转。
+
+路由守卫也称导航守卫，分为`全局守卫`，`路由守卫`和`组件守卫`
+
+
+
+#### 10.1、全局守卫
+
+注册全局守卫应该在路由模块暴露出去之前定义，使用`router.beforeEach(function(to,from,next){})`来注册一个全局守卫。
+
+参数：
+
+- to：代表目标路径对象
+
+- from：来源路径对象
+
+- next：用于决定是否继续进行跳转。该方法参数有三种情况：
+
+  当next()函数不传参数或者传入true的时候 则允许正常跳转；
+
+  当next()函数传入false时 会中断跳转(阻止跳转)；
+
+  当next()函数中**传入路径**时或者**对象**时(比如:{name:'xxx'})则会重定向到指定路径。
+
+> 定义在router上的路由守卫 ，全局范围内有效，只要有路径跳转就会触发该守卫。
+
+假如我现在从首页/home跳转到/home/two，根据随机数是否大于0.5决定是否跳转：
+
+```js
+import Vue from 'vue'
+import Router from 'vue-router'
+
+import { Home } from './pages/Home'
+import { Goods } from './pages/Goods'
+import { Users } from './pages/Users'
+
+import { A } from './components/A'
+import { B } from './components/B'
+import { A2 } from './components/A2'
+import { B2 } from './components/B2'
+
+Vue.use(Router);
+
+let router = new Router({
+    routes: [
+        { path: '/', redirect: '/home' },
+        {
+            path: '/home',
+            component: Home,
+            name: 'h',
+            children: [{
+                    path: 'one',
+                    components: {
+                        b: B,
+                        default: A
+                    },
+                    name: 'a'
+                },
+                {
+                    path: 'two',
+                    components: {
+                        b: B2,
+                        default: A2
+                    },
+                    name: 'b'
+                }
+            ]
+        }, //当地址为/home时，显示Home组件
+        { path: '/goods', component: Goods, name: 'g' },
+        { path: '/users', component: Users, name: 'u' }
+    ]
+});
+
+// 当有路由跳转的时候，就会执行这个函数
+router.beforeEach(function(to, from, next) {
+    console.log(to, from);
+    let num = Math.random();
+    console.log(num);
+    next(num > 0.5 ? true : false);
+});
+
+export { router };
+```
+
+
+
+可以看到只有随机数大于0.5的时候，页面才真正发生了变化，跳转到了/home/two:
+
+![](images/12.gif)
+
+我们把路径对象展开可以看到所有有关路径的信息：
+
+![](images/33.png)
+
+
+
+全局守卫还有一个`router.afterEach(function(to,from){})` ，还是在路由跳转之前执行，它在决定跳转后 以及真正跳转前执行，其中形参 to from同上。
+
+
+
+#### 10.2、路由守卫
+
+路由守卫就是针对单个路由对象配置的守卫。
+
+假如我在users组件配置路由守卫，那么只有跳转到users路由时才会触发该守卫，跳转到其他路由时不会触发该守卫。
+
+路由守卫的注册写在路由匹配规则数组里面：
+
+```js
+let router = new Router({
+    routes: [
+        //...
+        {
+            path: '/users',
+            component: Users,
+            name: 'u',
+            beforeEnter: (to, from, next) => {
+                next(confirm('Entey Users?'));
+            }
+        }
+    ]
+});
+```
+
+示例：
+
+![](images/13.gif)
+
+
+
+#### 10.3、组件守卫
+
+组件守卫是针对单个组件进行监听，在访问到该组件时才会触发。
+
+既然是组件守卫就写在组件里面，这里以进入Home组件为例：
+
+```js
+export let Home = {
+    template: `
+        <div>
+            <h1>首页</h1>
+            <router-view></router-view>
+            <router-view name="b"></router-view>
+        </div>
+    `,
+    // 在路由跳转时,如果会访问到当前组件,则会触发该守卫
+    beforeRouteEnter(to, from, next) {
+        next(confirm('Enter Home?'));
+    },
+    // 在路由跳转时,如果离开当前组件,则会触发该守卫
+    beforeRouteLeave (to, from, next) {
+        next(confirm('Leave Home?'));
+    },
+    // 在当前路径下,当路由的参数发生变化时，才会触发该路由守卫
+    beforeRouteUpdate(to, from, next) {
+        console.log(to.params.path);
+    }
+}
 ```
 
 
