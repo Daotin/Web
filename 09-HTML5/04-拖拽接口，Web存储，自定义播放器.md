@@ -187,10 +187,19 @@ sessionStorage的使用：将存储数据到本地。存储的容量 **5MB** 左
 
 提供的方法：
 
--   **setItem(key,value)** ：存储数据，以键值对的方式存储，
--   **getItem(key)** ：获取数据，通过指定名称的key获取对应的value值，
--   **removeItem(key)** ：删除数据，通过指定名称key删除对应的值，
--   **clear()** ：清空所有存储的内容。
+- **setItem(key,value)** ：存储数据，以键值对的方式存储，
+
+- **getItem(key)** ：获取数据，通过指定名称的key获取对应的value值，
+
+- **removeItem(key)** ：删除数据，通过指定名称key删除对应的值，
+
+- **clear()** ：清空所有存储的内容。
+
+- **sessionStorage.length**，获取存储数据的个数，
+
+  然后获取其中的key：`var tk = sessionStorage.key(i)`
+
+  然后获取其中的value：`sessionStorage.getItem(tk)`
 
 
 

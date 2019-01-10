@@ -1,8 +1,8 @@
-使用webpack开发vue
+## 使用webpack开发vue
 
 
 
-1、搭建webpack环境
+### 1、搭建webpack环境
 
 ```
 npm init -y
@@ -19,7 +19,7 @@ npm i vue -S
 
 
 
-2、配置config文件
+### 2、配置config文件
 
 ```js
 let Hwp = require('html-webpack-plugin');
@@ -52,7 +52,7 @@ module.exports = {
 
 
 
-4、测试vue项目
+### 4、测试vue项目
 
 ```js
 // main.js

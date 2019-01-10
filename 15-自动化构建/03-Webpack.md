@@ -375,13 +375,13 @@ npm run start
 
 
 
-七、打包图片文件到js
+## 七、打包图片文件到js
 
 1、安装插件
 
 ```js
 // 图片相关插件（url-loader是对象file-loader的上层封装，使用时需配合file-loader使用。）
-npm install file-loader url-loader -S
+npm install file-loader url-loader -D
 ```
 
 
@@ -648,7 +648,7 @@ console.log(user, age);
 
 
 
-十二、使用jquery
+## 十二、使用jquery
 
 方式一：在线cdn
 
