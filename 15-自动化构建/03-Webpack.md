@@ -629,6 +629,24 @@ module: {
 
 
 
+如果使用到ES6的高级语法，比如展开符`...`时，上面的插件就满足不了了，需要另一个插件：
+
+```
+npm i babel-preset-stage-2 -D
+```
+
+然后修改`.babelrc` :
+
+```json
+{
+    "presets":["env", "stage-2"]
+}
+```
+
+
+
+
+
 
 
 3、在main.js书写测试代码

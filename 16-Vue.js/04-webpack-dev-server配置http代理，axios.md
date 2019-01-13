@@ -70,7 +70,8 @@ devServer: {
     // 每当我们访问/zhuiszhu地址的时候，就把请求转发给target地址的服务器。
     proxy: {
         '/zhuiszhu': {
-            target: 'http://39.105.136.190:3000'
+            target: 'http://39.105.136.190:3000',
+            secure: false
         }
     }
 }

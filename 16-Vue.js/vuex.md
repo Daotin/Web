@@ -239,7 +239,7 @@ npm i babel-preset-stage-2 -D
 
 
 
-
+### 3、mutations
 
 #### 修改state
 
