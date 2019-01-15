@@ -3,17 +3,17 @@
 定义一个slot组件，然后往这个组件中添加数据，父组件调用这个子组件：
 
 ```jsx
-import { Text } from './test';
+import { Slot } from './Slot';
 
-ReactDOM.render(<Text username="Daotin"></Text>, document.getElementById('app'));
+ReactDOM.render(<Slot>我是插入的内容</Slot></Slot>, document.getElementById('app'));
 ```
 
 slot组件：通过`this.props.children`获取插入的内容。
 
 ```jsx
 export class Slot extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
     }
 
     render() {

@@ -614,3 +614,54 @@ static propTypes = {
 
 
 
+#### 3.3、子传父
+
+在react中没有自定义事件，所以不能使用子组件emit事件，父组件on来监听事件。
+
+但是可以通过：
+
+> 父组件像子组件传递参数的时候，传递的是函数，子组件执行这个函数，然后通过这个函数的参数传递到父组件上实现子传父的功能。
+
+示例：
+
+```jsx
+export class Home extends React.Component {
+    constructor() {
+        super();
+        this.receive = this.receive.bind(this);
+    }
+    render() {
+        return (
+            <div>
+                <Box sendFun={this.receive} />
+            </div>
+        );
+    }
+    receive(data) {
+        // data即是子组件传来的数据
+        console.log(data);
+    }
+}
+
+class Box extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '我是子组件'
+        }
+        this.send = this.send.bind(this);
+    }
+    render() {
+        return (<div>
+            <button onClick={this.send}>发送</button>
+        </div>)
+    }
+    send() {
+        // 调用父组件的方法，将子组件数据通过父组件函数参数传给父组件
+        this.props.sendFun(this.state.name);
+    }
+}
+```
+
+
+
