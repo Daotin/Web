@@ -152,6 +152,8 @@ export class MyRouter extends React.Component {
 刚开启服务打开浏览器的时候，默认不会显示任何东西，我们希望自动跳转到/home路由如何设置？
 
 ```jsx
+import { BrowserRouter as Router, HashRouter, Route, Switch,  Redirect} from 'react-router-dom';
+
 <Switch>
     {/* 在根路径下自动跳转到home页 */}
     <Redirect path="/" exact={true} to="/home" />
@@ -191,9 +193,9 @@ import { Link } from "react-router-dom";
 
 react不能像vue那样，直接加class属性，react需要注意两点：
 
-1、不能在Link上面添加，只能在`NavLink`上面添加。
-
-2、类名不叫 active-class，而是 activeClassName.
+> 1、不能在Link上面添加，只能在`NavLink`上面添加类样式。
+>
+> 2、类样式名不叫 active-class，而是 `activeClassName`.
 
 ```jsx
 import { Link, Route, Switch, NavLink } from "react-router-dom";
@@ -205,11 +207,11 @@ import { Link, Route, Switch, NavLink } from "react-router-dom";
 
 ### 6、多视图路由
 
-react的路由匹配采用分布式路由，即**不需要一个单独的文件来书写理由匹配规则，而是直接写在理由上。**
+react的路由匹配采用分布式路由，即**不需要一个单独的文件来书写路由匹配规则，而是直接写在路由上。**
 
 
 
-多视图路由就是一次显示多个路由匹配的组件。
+多视图路由就是：一次显示多个路由匹配的组件。
 
 其实不加`Switch`的方式就是多视图路由，所有的Route路由匹配到的都会显示出来。
 
@@ -237,7 +239,7 @@ export class Home extends React.Component {
                 <h4>首页</h4>
                 <Link to={{ pathname: '/home/goods', search: '?goodsid=8' }} >跳转到goods页</Link>
                 
-                {/* 添加子路由 */}
+                {/* 添加子路由A */}
                 <Route pathname="/home/a" component={A} />
             </div>
         );
@@ -251,7 +253,7 @@ export class Home extends React.Component {
 
 ### 8、编程式导航
 
-说人话就是js代码触发路由跳转。
+什么是编程式导航？说人话就是js代码触发路由跳转，而不是在标签中设置路由跳转。
 
 举例：在Home页点击按钮，跳转到Goods页。
 
@@ -263,6 +265,7 @@ export class Home extends React.Component {
         this.goGoods = this.goGoods.bind(this);
     }
     goGoods() {
+        // 使用push或者replace跳转
         this.props.history.push('/goods');
     }
     render() {
@@ -279,7 +282,7 @@ export class Home extends React.Component {
 >
 > 1、并不是所有组件的`this.props`所有history属性。只有当前的组件是**通过路由加载出来**的（也就是通过`<Route path="/home" exact={true} component={Home} />`加载出来）才会有history属性。
 >
-> 2、如果不是通过路由加载出来的组件，但是想要编程式导航怎么办？**可以由它的父组件传递参数过来。**
+> 2、如果不是通过路由加载出来的组件，但是想要编程式导航怎么办？**可以由它的父组件传递`this.props.history`过来。如果它父组件有的话**。
 >
 > 比如：Home组件下加载Box组件，Home组件给Box组件传递参数。
 >
@@ -293,7 +296,7 @@ export class Home extends React.Component {
 
 示例：点击goods列表，传递id给detail组件。
 
-9.1、问号传参
+#### 9.1、问号传参
 
 ```jsx
 //goods.js
@@ -335,6 +338,7 @@ export class Goods extends React.Component {
 
 ```jsx
 // detail.js
+import url from 'url';
 
 componentDidMount() {
     // 问号传参：获取传递过来的id
@@ -343,16 +347,16 @@ componentDidMount() {
 }
 ```
 
-由于在webpack可以使用node的一些插件，比如url，可以方便获取到`this.props.location.search`中的id值，而不需要自己解析。
+> 由于在webpack可以使用node的一些插件，比如url，可以方便获取到`this.props.location.search`中的id值，而不需要自己解析。
 
 
 
-9.2、路径传参
+#### 9.2、路径传参
 
 首先要在路由配置：
 
 ```jsx
-<Route path="/detail/:id" exact={true} component={Detail} />
+<Route path="/detail/:goodsid" exact={true} component={Detail} />
 ```
 
 然后在goods.js里面和问号传参基本一致，只是问号改成了路径。
@@ -377,7 +381,7 @@ componentDidMount() {
 
 
 
-9.3、大量数据传参
+#### 9.3、state传参
 
 如果要传递大量数据，使用`state`进行传递，这种传递的方式**不会在地址栏显示。**
 
