@@ -303,7 +303,11 @@ fs.readdir("msg", (err, data) => {
  * 删除目录
  * （目录必须为空才可以，没有强制删除其内容的指令）
  */
-fs.rmdir("logs");
+fs.rmdir("logs", (err, data) => {
+    if(!err) {
+         console.log(data);
+    }
+});
 
 /**
  * 读取目录或文件的相关信息
@@ -411,7 +415,7 @@ let server = http.createServer((req, res) => {
  * 参数3：打印语句
  */
 server.listen(3000, () => {
-    console.log("server running at http://locolhost:3000");
+    console.log("server running at http://localhost:3000");
 });
 ```
 
