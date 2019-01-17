@@ -27,10 +27,10 @@
 >
 >
 >
-> 1. 用户访问 View，（同时将View中视图更新的函数赋值给Store的一个变量bindUpdate）
+> 1. 用户访问 View，（同时将View中视图更新的函数赋值给Store的监听函数subscribe）
 > 2. View 发出用户的 Action
 > 3. Dispatcher 收到 Action，要求 Store 进行相应的更新
-> 4. Store 更新后，（执行Store的bindUpdate函数，即View的更新函数来更新View视图）
+> 4. Store 更新后，（触发Store的subscribe函数来更新View视图）
 
 
 
@@ -367,7 +367,7 @@ componentWillUnmount() {
 
 
 
-其实可以继续优化：
+##### 继续优化
 
 我们使用event的时候，new了一个对象，可是就只用到了on和emit方法，太浪费内存了。
 
@@ -542,7 +542,7 @@ export class Controller extends React.Component {
         super(props);
         this.store = store;
         this.state = this.store.getState();
-        this.store.bindUpdate(this.updateView.bind(this));
+        this.store.subscribe(this.updateView.bind(this));
     }
 
     updateView() {
@@ -584,7 +584,7 @@ store的state来自哪里呢？
 
 3、在派发器dispatcher中配置对应的case 
 并且从action中拿到数据后，设置到对应store中即可
-通过各自组件的HomeStore.setState(action);进行设置。
+通过各自组件的类似`HomeStore.setState(action);`方式进行设置。
 store的state更新了，注意需要在容器组件加载完成后绑定视图更新方法，视图更新方法就是组件获取最新store的state数据。
 
 
