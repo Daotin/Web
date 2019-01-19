@@ -71,7 +71,8 @@ devServer: {
     proxy: {
         '/zhuiszhu': {
             target: 'http://39.105.136.190:3000',
-            secure: false
+            secure: false,
+            changeOrigin: true
         }
     }
 }
