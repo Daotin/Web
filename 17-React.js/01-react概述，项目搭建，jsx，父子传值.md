@@ -358,7 +358,7 @@ myClick(num) {
 
 由于onClick需要的是函数体，所以在myClick里面返回值就是一个函数体。
 
-不过需要注意的是，在myClick内部，this就是Box类，所以不需要在构造函数中绑定this，而是在返回的函数体中绑定this。
+> 不过需要注意的是，在myClick内部，this就是Box类，所以不需要在构造函数中绑定this，而是在返回的函数体中绑定this。
 
 
 
