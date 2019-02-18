@@ -215,15 +215,15 @@ html5支持绝大部分主流浏览器，比如国外的 chrome，firefox，safa
 
 **表单标签新增的一些属性：**
 
-autofocus：自动获取焦点
+`autofocus`：自动获取焦点
 
-required：不能为空
+`required`：不能为空
 
-disabled：
+`disabled`：禁用
 
-checked：单选和多选选中状态
+`checked`：单选和多选选中状态
 
-hidden：隐藏
+`hidden`：隐藏
 
 
 
@@ -246,7 +246,13 @@ hidden：隐藏
 src:播放文件的路径
 controls:音频播放器的控制器面板
 autoplay:自动播放
-loop:循环播放-->
+loop:循环播放
+muted：静音
+preload: 
+	auto 默认加载音频文件所有数据；  
+	metadata：仅加载多媒体文件元数据（文件属性）
+	none: 不加载任何内容。
+-->
 <audio src="../mp3/aa.mp3" controls></audio>
 
 <!--video：视频-->
@@ -271,6 +277,16 @@ height:视频的高度
 </video>
 </body>
 ```
+
+
+
+补充(20190218)：
+
+可以通过js控制音视频的播放：
+
+
+
+
 
 
 
@@ -366,3 +382,4 @@ document.createElement("footer");
 
 方式二：引入第三方插件 “html5shiv.js” 文件，就可以使得 html5 支持 IE8及以下浏览器。
 
+​	

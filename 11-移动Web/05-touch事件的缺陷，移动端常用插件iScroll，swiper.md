@@ -72,6 +72,8 @@ iScroll不仅仅是 滚动。它可以处理任何需要与用户进行移动交
 你可以很容易的挂靠大量的自定义事件（onBeforeScrollStart, *
 开箱即用的多平台支持。从很老的安卓设备到最新的iPhone，从Chrome浏览器到IE浏览器。
 
+API:http://caibaojian.com/iscroll-5/
+
 
 
 **使用方式：**
