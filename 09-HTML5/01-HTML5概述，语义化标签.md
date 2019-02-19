@@ -280,9 +280,30 @@ height:视频的高度
 
 
 
-补充(20190218)：
+**媒体标签的方法：**
 
-可以通过js控制音视频的播放：
+参考连接：[HTML 音频/视频 - 菜鸟教程](http://www.runoob.com/tags/ref-av-dom.html)
+
+可以通过js控制音视频的播放：(所有网页音视频的控制都应该使用js控制，播放的控件自己画，这样才能达到跨平台界面相同。)
+
+1、获取媒体标签的dom元素（例如叫mdom）
+
+2、控制媒体的行为的方法和属性
+
+```js
+// 方法
+mdom.play() // 开始播放
+mdom.pause() // 暂停播放
+mdom.load() // 重新加载音视频
+
+// 属性
+mdom.paused // 是否是暂停状态
+currentTime： // 获取或者设置当前音视频播放时长
+duration	// 返回当前音频/视频的长度（以秒计）。需要在媒体加载完成后获取
+       // 一般使用  mdom.addEventListener('durationchange',function() { 
+        //               console.log(this.duration) 
+         //         }
+```
 
 
 
