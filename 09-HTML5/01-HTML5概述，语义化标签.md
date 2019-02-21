@@ -250,7 +250,7 @@ loop:循环播放
 muted：静音
 preload: 
 	auto 默认加载音频文件所有数据；  
-	metadata：仅加载多媒体文件元数据（文件属性）
+	metadata：仅加载多媒体文件元数据（文件属性，比如文件时长，音质信息等）
 	none: 不加载任何内容。
 -->
 <audio src="../mp3/aa.mp3" controls></audio>
@@ -280,15 +280,17 @@ height:视频的高度
 
 
 
-**媒体标签的方法：**
+**媒体标签的方法：（20190221）**
 
 参考连接：[HTML 音频/视频 - 菜鸟教程](http://www.runoob.com/tags/ref-av-dom.html)
 
 可以通过js控制音视频的播放：(所有网页音视频的控制都应该使用js控制，播放的控件自己画，这样才能达到跨平台界面相同。)
 
+参看连接：http://www.w3school.com.cn/tags/html_ref_audio_video_dom.asp
+
 1、获取媒体标签的dom元素（例如叫mdom）
 
-2、控制媒体的行为的方法和属性
+2、控制媒体的行为的方法和属性和触发事件。
 
 ```js
 // 方法
@@ -297,12 +299,41 @@ mdom.pause() // 暂停播放
 mdom.load() // 重新加载音视频
 
 // 属性
-mdom.paused // 是否是暂停状态
+autoplay // 设置或返回歌曲是否自动播放
+controls // 设置或返回是否显示原生播放控件
+currentSrc // 获取当前的播放地址
+paused // 是否是暂停状态
 currentTime： // 获取或者设置当前音视频播放时长
+defaultMuted // 设置或返回当前音频视频是否默认静音
+muted      // 设置或返回当前音视频是否静音
 duration	// 返回当前音频/视频的长度（以秒计）。需要在媒体加载完成后获取
        // 一般使用  mdom.addEventListener('durationchange',function() { 
         //               console.log(this.duration) 
          //         }
+defaultPlaybackRate // 设置或返回默认的播放速度
+                    // 正值为正向播放，负值为负向播放
+				  // 1 为正常速度， <1 慢速， >1 加速
+playbackRate     // 设置或返回当前的播放速度，值同上
+ended  // 返回当前资源是否播放结束
+error   // 返回播放错误信息
+loop   // 设置或返回是否循环播放
+
+preload // 设置加载机制（自动，metadata，none）
+readyState  // 返回当前音视频是否准备完毕
+volume    // 设置或返回当前音量
+
+
+// 事件
+canplay // 当前资源可以被播放的时候
+durationchange // 当播放总时长发送改变的时候
+pause      // 当前资源被暂停时
+play       // 当前资源被播放时
+playing    // 包含上面play时机，但是因网络原因导致播放终止而后重新开始播放时只会触发playing
+ratechange // 播放速度发生变化时触发
+seeked     // 由用户更改当前播放时长时触发
+seeking    // 由用户刚开始更改播放时长时触发
+timeupdate // 当播放位置发生变化时触发（无论是否由用户操作）
+volumechange  // 当音量发生变化时触发
 ```
 
 
