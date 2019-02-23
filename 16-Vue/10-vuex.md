@@ -24,8 +24,6 @@ Vuex 是一个专为 Vue.js 应用程序开发的**状态管理模式**。它采
 
 ### 1、store模式
 
-
-
 安装vuex
 
 ```
@@ -65,7 +63,17 @@ const store = new Vuex.Store({
 export { store }
 ```
 
-
+> 注意：将store.js文件导入到vue实例中：
+>
+> ```
+> new Vue({
+>     el: "#app",
+>     components: { App },
+>     template: `<App />`,
+>     router,
+>     store
+> })
+> ```
 
 然后各个组件在获取数据的时候，是在computed属性中获取的，例如User组件（我们在user组件也把所有的数据都显示出来吧）：
 

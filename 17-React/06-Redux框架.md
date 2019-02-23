@@ -139,6 +139,7 @@ export class ListController extends React.Component{
     }
 
     componentWillUnmount(){
+        // 解绑视图更新函数
         this.unsub()
     }
 	// 视图更新函数

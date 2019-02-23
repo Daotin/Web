@@ -12,7 +12,7 @@ foxfire是5px，chrome是3px。
 
 ```css
 /*方式一*/
-div {fint-size: 0;}
+div {font-size: 0;}
 /*方式二*/
 img{display: block;}
 /*方式三*/

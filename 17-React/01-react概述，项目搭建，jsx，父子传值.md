@@ -27,19 +27,12 @@ React主要用于构建UI。你可以在React里传递多种类型的参数，�
 ```json
 "emmet.includeLanguages": {"javascript": "javascriptreact"},
 "emmet.triggerExpansionOnTab": true,
+// 设置对象一行显示
+// 参考链接：https://github.com/beautify-web/js-beautify/issues/315#issuecomment-397524391
+"beautify.config": {
+    "brace_style": "collapse,preserve-inline"
+},
 ```
-
-
-
-vscode react插件推荐：
-
-代码自动补全：
-
-```
-ES7 React/Redux/GraphQL/React-Native snippets
-```
-
-
 
 
 
@@ -80,7 +73,6 @@ ES7 React/Redux/GraphQL/React-Native snippets
         "webpack": "^3.11.0"
     }
 }
-
 ```
 
 

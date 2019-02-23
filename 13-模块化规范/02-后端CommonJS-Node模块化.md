@@ -8,17 +8,17 @@
 
 ### 语法：
 
-**commonJS 暴露模块语法：**
+**commonJS 导出模块语法：**
 
-```
-module.exports = value;
-exports.xxx = value;
+```js
+module.exports = Object|Function|Array|String|Number|Boolean;  //一个文件内只能使用一次
+exports.xxx = Object|Function|Array|String|Number|Boolean; //一个文件可以导出多次
 ```
 
-**commonJS 引入模块语法：**
+**commonJS 导入模块语法：**
 
-```
-var module = require(模块名或模块路径);
+```js
+let xxx = require(模块名或模块路径);
 // 如果是使用npm下载的第三方模块，直接使用模块名
 // 如果是在项目目录下的自定义模块，使用模块路径
 ```
@@ -69,6 +69,7 @@ npm install uniq --save
 
 
 4、模块化编码
+
 * module1.js
   ```js
   module.exports = {

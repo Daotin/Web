@@ -2,7 +2,7 @@ npm又称为包管理工具。
 
 
 
-一般安装nodejs会自带npm管理工具。
+一般安装nodejs时会自带npm管理工具。
 
 
 
@@ -45,7 +45,7 @@ npm install jquery --save // npm i jquery --sava
 3、卸载某个工具（已jQuery为例）
 
 ```js
-npm uninstall jquery // uninstall没有简单写法
+npm uninstall jquery -S   // uninstall没有简单写法，后面的参数就是安装时的参数
 ```
 
 
@@ -64,6 +64,7 @@ npm uninstall jquery // uninstall没有简单写法
 
 ```js
 npm info jquery //查看模块的相关信息
+npm run start   //执行package.json 中的script属性的脚本
 ```
 
 
@@ -81,8 +82,8 @@ npm i nrm -g
 然后，下面几个指令是nrm经常用到的：
 
 ```js
-nrm ls //查看可用的源列表
-nrm test //测试每个源的访问速度
+nrm ls 		//查看可用的源列表
+nrm test 	//测试每个源的访问速度
 nrm use cnpm //切换到指定的源
 ```
 

@@ -147,7 +147,7 @@ let myFunc = (str) => {
     console.log("event 事件触发1次" + str);
 }
 
-// 事假监听方式一
+// 事件监听方式一
 event.on("daotin", myFunc);
 // 事件监听方式二
 event.addListener("daotin", (str) => {
@@ -165,14 +165,15 @@ setTimeout(() => {
 ```
 
 >**事假监听有三种：**
->event.on("daotin", myFunc);
->event.addListener("daotin", (str) => {
->​    console.log("event 事件触发2次" + str);
->});
+>`event.on("daotin", myFunc);`
 >
->event.once("daotin", (str) => {  **// event.emit抛发多次的时候只执行一次**
+>`event.addListener("daotin", (str) => {
 >​    console.log("event 事件触发2次" + str);
->});
+>});`
+>
+>`event.once("daotin", (str) => {  **// event.emit抛发多次的时候只执行一次**
+>​    console.log("event 事件触发2次" + str);
+>});`
 >
 >
 >
@@ -182,11 +183,11 @@ setTimeout(() => {
 >
 >2、不能使用off解绑
 >
->event.removeListener("daotin", myFunc);
+>`event.removeListener("daotin", myFunc);`
 >
->event.removeAllListeners("daotin")  // 删除指定事件上的所有监听函数，此时不需要函数名。
+>`event.removeAllListeners("daotin")`  // 删除指定事件上的所有监听函数，此时不需要函数名。
 >
->event.removeAllListeners() // 如果不传参数(事件名) 则所有事件的所有监听函数都会被删除
+>`event.removeAllListeners()` // 如果不传参数(事件名) 则所有事件的所有监听函数都会被删除
 >
 >
 >
@@ -195,8 +196,6 @@ setTimeout(() => {
 >参数1：事件名
 >
 >参数2：参数（如果是多个参数，可以传入一个对象）。
-
-
 
 
 
