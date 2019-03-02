@@ -433,5 +433,3 @@ document.createElement("footer");
 ```
 
 方式二：引入第三方插件 “html5shiv.js” 文件，就可以使得 html5 支持 IE8及以下浏览器。
-
-​	
