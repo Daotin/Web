@@ -1,5 +1,3 @@
-# transform
-
 `transform` 字面上就是变形，改变的意思。在CSS3中transform主要包括以下几种：移动 `translate`，缩放`scale`，旋转`rotate`，翻转`skew`，改变旋转轴心等。
 
 ## 1、元素的移动：translate

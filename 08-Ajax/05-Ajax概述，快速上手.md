@@ -1,4 +1,4 @@
-# 一、Ajax 概述
+## 一、Ajax 概述
 
 Ajax 全称：Asynchronous JavaScript and XML（异步 JavaScript 和 XML）。它不是一种新的编程语言，而是一种用于创建更好更快以及交互性更强的Web应用程序的技术。它可以在无需重新加载整个网页的情况下，能够更新部分网页的技术。而传统的网页（不使用 AJAX）如果需要更新内容，必需重载整个网页面。
 
@@ -35,7 +35,7 @@ Ajax 全称：Asynchronous JavaScript and XML（异步 JavaScript 和 XML）。�
 
 
 
-# 二、Ajax快速上手
+## 二、Ajax快速上手
 
 使用 Ajax 的过程可以类比平常我们访问网页过程 ：
 
@@ -65,7 +65,7 @@ Ajax 全称：Asynchronous JavaScript and XML（异步 JavaScript 和 XML）。�
 
 
 
-## 1、创建对象
+### 1、创建对象
 
 在IE6及以下的时候，是不支持 XMLHttpRequest 对象的，那么与之对应写法为：
 
@@ -86,7 +86,7 @@ if(window.XMLHttpRequest) {
 
 
 
-## 2、open 方法
+### 2、open 方法
 
 第一个参数是请求的方式，是 get 请求还是 post 请求。一般取决后端开发的php文件里面写的是 get 还是 post。
 
@@ -96,7 +96,7 @@ if(window.XMLHttpRequest) {
 
 
 
-## 3、send 方法
+### 3、send 方法
 
 对于 get 方式，参数为 null；
 
@@ -118,7 +118,7 @@ xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
 
 
-## 4、onreadystatechange 回调函数
+### 4、onreadystatechange 
 
 之所以是回调函数，这样不会阻塞当前的操作，什么时候服务器返回数据，什么时候使用。这就是异步。
 
@@ -212,7 +212,7 @@ xhr.onload = function () {
 
 
 
-## 三、案例：点击按钮验证用户名是否存在
+**案例：点击按钮验证用户名是否存在**
 
 ```html
 <!DOCTYPE html>

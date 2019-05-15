@@ -1,8 +1,8 @@
-# 一、渐变
+## 一、渐变
 
 渐变是CSS3当中比较丰富多彩的一个特性，通过渐变我们可以实现许多炫丽的效果，有效的减少图片的使用数量，并且具有很强的适应性和可扩展性。可分为**线性渐变**、**径向渐变**。
 
-## 1、线性渐变
+### 1、线性渐变
 
 线性渐变：**指沿着某条直线朝一个方向产生渐变效果。**
 
@@ -40,7 +40,7 @@ background: linear-gradient(to right, blue, green 20%, yellow 50%, purple 80%, r
 
 
 
-## 2、径向渐变
+### 2、径向渐变
 
 径向渐变：**指从一个中心点开始沿着四周产生渐变效果。**
 
@@ -91,7 +91,7 @@ background: radial-gradient(circle farthest-side at right top, red, yellow 50%, 
 
 
 
-## 3、重复渐变
+### 3、重复渐变
 
 **语法：**
 
@@ -143,9 +143,9 @@ repeating-radial-gradient /*径向重复渐变*/
 
 
 
-# 二、background 属性
+## 二、background 属性
 
-## 1、复习background属性
+### 1、复习background属性
 
 ```css
 /*添加背景颜色*/
@@ -180,9 +180,9 @@ background-attachment:scroll（默认） | fixed
 
 
 
-## 2、新增的background属性
+### 2、新增的background属性
 
-### 2.1、background-size
+#### 2.1、background-size
 
 CSS里的 `background-size` 属性能够让程序员决定如何在指定的元素里展示，它通过各种不同是属性值改变背景尺寸呈现的大小。往往建议不要将图放大，如果有需要，尽量让图缩小，以保证图片的精度。
 
@@ -207,7 +207,7 @@ background-size: cover;
 
 
 
-### 2.2、background-origin 
+#### 2.2、background-origin 
 
 作用：**提升用户的响应区域。**
 
@@ -233,7 +233,7 @@ background-origin: padding-box|border-box|content-box;
 
 
 
-### 2.3、background-clip
+#### 2.3、background-clip
 
 `background-clip`：属性**规定背景的绘制区域.**
 
@@ -265,7 +265,7 @@ background-clip: border-box|padding-box|content-box;
 
 
 
-### 2.4、案例：精灵图的使用
+#### 2.4、案例：精灵图的使用
 
 需求：为一个块元素设置精灵图背景，精灵图很小，但是需要更大的展示区域，能够以更大的范围响应用户的需要，但是只需要显示指定的背景图片。
 
@@ -304,7 +304,7 @@ background-clip: border-box|padding-box|content-box;
 
 
 
-# 三、透明度
+## 三、透明度
 
 css3新增透明度属性：`opacity`
 
