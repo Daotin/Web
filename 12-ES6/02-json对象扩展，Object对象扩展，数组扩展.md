@@ -62,7 +62,7 @@ Object.create(prototype, [descriptors])
 
 打印结果：Obj2下面的`__proto__ `指向的原型对象中有Obj1的属性，**相当于继承了Obj1属性。**
 
-![](images/1.png)
+![](./images/1.png)
 
 
 
@@ -102,7 +102,7 @@ Object.create(prototype, [descriptors])
 
 
 打印结果：
-![](images/3.png)
+![](./images/3.png)
 
 
 
@@ -119,7 +119,7 @@ Object.defineProperties(object, descriptors)
 
 这个属性对象同样有：value， writable，configurable，enumerable 属性。
 
-![](images/5.png)
+![](./images/5.png)
 
 
 
@@ -128,7 +128,7 @@ Object.defineProperties(object, descriptors)
 -   `get` ：用来获取当前属性的回调函数。
 -   `set` ：修改当前属性值得触发的回调函数，并且实参即为修改后的值。
 
-![](images/6.png)
+![](./images/6.png)
 
 由上图可知，**直接修改对象的值是不可以的，必须设置set属性，这样在修当前属性值的时候，会自动调用 set 。类似的，在访问当前属性的时候，会自动调用 get**
 
@@ -141,7 +141,7 @@ Object.defineProperties(object, descriptors)
 -   `get propertyName(){}` ：用来得到当前属性值的回调函数
 -   `set propertyName(){}` ：用来监视当前属性值变化的回调函数
 
-![](images/7.png)
+![](./images/7.png)
 
 
 
@@ -161,7 +161,7 @@ Object.defineProperties(object, descriptors)
 
 
 
-![](images/8.png)
+![](./images/8.png)
 
 
 

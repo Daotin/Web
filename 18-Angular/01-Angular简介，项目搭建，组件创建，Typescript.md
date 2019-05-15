@@ -32,11 +32,11 @@ npm i angular-cli -g
 
 > 注意：有时候安装总是失败，npm不能使用淘宝镜像。
 
-![](img/1.png)
+![](./img/1.png)
 
 切换npm镜像到cnpm：
 
-![](img/2.png)
+![](./img/2.png)
 
 验证Angular-cli版本：
 
@@ -46,7 +46,7 @@ ng -v
 
 如下图显示则为安装成功：
 
-![](img/3.png)
+![](./img/3.png)
 
 
 
@@ -58,13 +58,13 @@ ng -v
 ng new firstAngular
 ```
 
-![](img/4.png)
+![](./img/4.png)
 
 
 
 看下app文件夹：
 
-![](img/5.png)
+![](./img/5.png)
 
 我们之前说过，一个angular项目至少要有一个主模块，app.module.ts就是主模块。上面的四个文件就是主模块中的一个组件。
 
@@ -129,7 +129,7 @@ export class AppComponent {
 ng g component Message // 简写 ng g c Message
 ```
 
-![](img/6.png)
+![](./img/6.png)
 
 
 
@@ -145,7 +145,7 @@ ng g component Message // 简写 ng g c Message
 
 在主组件Component中使用Message组件：
 
-![](img/7.png)
+![](./img/7.png)
 
 > 注意：
 >

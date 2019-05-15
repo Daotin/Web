@@ -151,7 +151,7 @@ export class NewDIYMathService {
 }
 ```
 
-![](img/8.png)
+![](./img/8.png)
 
 
 

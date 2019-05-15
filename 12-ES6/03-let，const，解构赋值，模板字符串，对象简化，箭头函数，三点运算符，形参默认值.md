@@ -340,13 +340,13 @@ console.log(foo(1, 2));
 
 arguments 是个伪数组，但是三点运算符是**真数组**，可以使用 forEach 等方法。
 
-![](images/9.png)
+![](./images/9.png)
 
 
 
 2、三点（可变参数）运算符只能是**最后部分形参参数。** 但是前面是可以有参数来占位的。
 
-![](images/11.png)
+![](./images/11.png)
 
 
 

@@ -6,7 +6,7 @@
 
 走秀后台接口文档地址：<http://39.105.136.190:3000/>
 
-![](images/34.png)
+![](./images/34.png)
 
 
 
@@ -44,11 +44,11 @@ export let Home = {
 
 这时候我们看到了一个熟悉的错误，这明显是跨域导致的。
 
-![](images/35.png)
+![](./images/35.png)
 
 现在我们项目ajax请求的图示如下：
 
-![](images/36.png)
+![](./images/36.png)
 
 ### 1、什么是http代理
 

@@ -2,7 +2,7 @@
 
 Webpack 中文官网 https://www.webpackjs.com/
 
-![](images/14.png)
+![](./images/14.png)
 
 
 
@@ -451,7 +451,7 @@ devtool: 'source-map'
 
 我们可以在目标文件的最后发现有个映射文件的声明的注释，这个注释不能删除，否则就无法实现映射功能。
 
-![](images/20.png)
+![](./images/20.png)
 
 
 
@@ -700,7 +700,7 @@ https://www.webpackjs.com/plugins/
 
 https://webpack.docschina.org/plugins/
 
-![](images/19.png)
+![](./images/19.png)
 
 
 

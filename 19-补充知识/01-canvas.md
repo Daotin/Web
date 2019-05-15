@@ -39,7 +39,7 @@ can.stroke()
 can.fill();
 ```
 
-![](img/1.png)
+![](./img/1.png)
 
 
 
@@ -89,7 +89,7 @@ can.lineTo(700, 200);
 can.stroke()
 ```
 
-![](img/2.png)
+![](./img/2.png)
 
 
 
@@ -120,7 +120,7 @@ can.stroke()
 	can.lineTo(300, 300);
 ```
 
-![](img/3.png)
+![](./img/3.png)
 
 ### 5、画矩形
 
@@ -131,14 +131,14 @@ can.rect(100,100,100,100);
 can.stroke();
 ```
 
-![](img/4.png)
+![](./img/4.png)
 
 ```js
 // 画完即填充
 can.fillRect(100,100,100,100);
 ```
 
-![](img/5.png)
+![](./img/5.png)
 
 ### 6、画圆弧
 
@@ -149,7 +149,7 @@ can.arc(500,300,200,0,2*Math.PI/360*90,false);
 can.stroke()
 ```
 
-![](img/6.png)
+![](./img/6.png)
 
 示例：
 
@@ -161,7 +161,7 @@ can.closePath()//将图形起点和终点用线连接起来使之成为封闭的
 can.fill()
 ```
 
-![](img/7.png)
+![](./img/7.png)
 
 
 
@@ -180,7 +180,7 @@ can.fillRect(0,0,200, 10);
 
 > 旋转整个画布的坐标系（参考坐标为画布的(0,0)位置）
 
-![](img/8.png)
+![](./img/8.png)
 
 
 
@@ -195,7 +195,7 @@ can.fillRect(0,0,200, 10);
 
 **整个画布**：x方向缩放为原来的0.5，y方向拉伸为原来的2倍。
 
-![](img/9.png)
+![](./img/9.png)
 
 
 
@@ -208,7 +208,7 @@ can.translate(100,100)
 can.fillRect(0,0,200, 10);
 ```
 
-![](img/10.png)
+![](./img/10.png)
 
 
 
@@ -221,9 +221,9 @@ can.save() // 存档：保存当前画布坐标系状态
 can.restore() // 读档：恢复之前保存的画布坐标系状态
 ```
 
-![](img/11.png)
+![](./img/11.png)
 
-![](img/12.png)
+![](./img/12.png)
 
 
 
@@ -396,7 +396,7 @@ can.restore() // 读档：恢复之前保存的画布坐标系状态
 </html>
 ```
 
-![](img/13.png)
+![](./img/13.png)
 
 
 
@@ -636,4 +636,4 @@ can.restore() // 读档：恢复之前保存的画布坐标系状态
 </html>
 ```
 
-![](img/1.gif)
+![](./img/1.gif)

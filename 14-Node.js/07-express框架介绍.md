@@ -40,11 +40,11 @@ express -e expressDemo //项目名
 
 项目构建好了会自动创建如下文件：
 
-![](img/4.png)
+![](./img/4.png)
 
 其中就有了package.json项目依赖文件列表。我们可以看到有我们必须的express依赖。
 
-![](img/5.png)
+![](./img/5.png)
 
 可以看到有很多依赖项目没有的，怎么一次性下载所由需要的依赖呢？
 

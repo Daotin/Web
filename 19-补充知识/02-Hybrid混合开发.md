@@ -12,9 +12,9 @@ Hybrid App是指介于web-app、native-app这两者之间的app,它虽然看上�
 
 
 
-![](img/14.png)
+![](./img/14.png)
 
-![](img/16.png)
+![](./img/16.png)
 
 
 
@@ -30,7 +30,7 @@ hybrid开发app一般遵循：
 
 下载安装HbuilderX之后，在运行里面安装手机运行的插件：
 
-![](img/15.png)
+![](./img/15.png)
 
 
 
@@ -183,7 +183,7 @@ document.addEventListener('plusready', function() {}
 
 ```
 
-![](img/19.png)
+![](./img/19.png)
 
 
 
@@ -248,7 +248,7 @@ document.addEventListener('plusready', function() {}
 
 ```
 
-![](img/18.png)
+![](./img/18.png)
 
 
 
@@ -332,4 +332,4 @@ document.addEventListener('plusready', function() {}
 
 ```
 
-![](img/17.png)
+![](./img/17.png)

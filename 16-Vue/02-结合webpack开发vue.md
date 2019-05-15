@@ -77,7 +77,7 @@ let app = new Vue({
 
 这时候会报错：
 
-![](images/26.png)
+![](./images/26.png)
 
 原因是：
 

@@ -122,7 +122,7 @@ export let Users = {
 </div>
 ```
 
-![](images/37.png)
+![](./images/37.png)
 
 但是现在有个不好的地方就是，每个组件都需要使用`this.$store.state`来获取其中的数据，显得有些麻烦，有没有简单的办法呢？
 

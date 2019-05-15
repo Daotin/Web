@@ -15,7 +15,7 @@
 
 Gulp 中文主页: http://www.gulpjs.com.cn/
 
-![](images/11.png)
+![](./images/11.png)
 
 gulp是与grunt功能类似的**前端项目构建**工具, 也是基于Nodejs的**自动任务运行器** 。能自动化地完成 javascript/coffee/sass/less/html/image/css 等文件的合并、压缩、检查、监听文件变化、浏览器自动刷新、测试等任务。
 
@@ -261,7 +261,7 @@ npm install gulp-less gulp-clean-css --save-dev
 >
 > 3、所以，grup其实可以同步可以异步，但是它的异步才是它最大的卖点。
 
-![](images/13.png)
+![](./images/13.png)
 
 **4、页面引入css测试**
 
@@ -341,7 +341,7 @@ gulp.task('watch', ['default'], function () {
 
 
 
-![](images/2.gif)
+![](./images/2.gif)
 
 
 
@@ -387,7 +387,7 @@ gulp.task('server', ['default'], function () {
   gulp.watch(['src/css/*.css', 'src/less/*.less'], ['css']);
 });
 ```
-![](images/3.gif)
+![](./images/3.gif)
 
 
 
@@ -434,7 +434,7 @@ gulp.task('server', ['default'], function () {
 
 
 
-![](images/4.gif)
+![](./images/4.gif)
 
 
 

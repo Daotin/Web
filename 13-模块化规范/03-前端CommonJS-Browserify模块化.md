@@ -89,7 +89,7 @@ browserify js/src/app.js -o js/dist/bundle.js
 
 **答案：因为浏览器无法识别 require。）**
 
-![](img/1.png)
+![](./img/1.png)
 
 
 

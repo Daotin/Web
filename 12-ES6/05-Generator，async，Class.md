@@ -250,7 +250,7 @@ async function foo(){
     console.log(asyncPrint('hello async', 2000));
 ```
 
-![](images/14.png)
+![](./images/14.png)
 
 asyncPrint 执行的时候，先打印的是“函数执行”，之后进入到 timeout 函数，由于是异步执行，但是timeout未执行完成，所以 await 在等待，相当于挂起。而这一边 asyncPrint会立即返回一个 Promise对象。之后另一边timeout、执行完成，打印出“延时时间”，之后打印“hello async”。
 

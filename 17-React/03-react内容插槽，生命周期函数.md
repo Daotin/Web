@@ -28,7 +28,7 @@ export class Slot extends React.Component {
 
 ## 二、react的生命周期
 
-![](img/1.webp)
+![](./img/1.webp)
 
 
 

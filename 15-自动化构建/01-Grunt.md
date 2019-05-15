@@ -15,7 +15,7 @@
 
 Grunt 中文主页 : http://www.gruntjs.net/
 
-![](images/1.png)
+![](./images/1.png)
 
 Grunt 是一套前端**自动化构建**工具，一个基于nodeJs的命令行工具。
 
@@ -77,7 +77,7 @@ npm install -g grunt-cli
 npm install grunt --save-dev
 ```
 
-![](images/2.png)
+![](./images/2.png)
 
 
 
@@ -110,7 +110,7 @@ grunt
 ```
 提示：`Fatal error: Unable to find Gruntfile.` 说明我们没有添加 `Gruntfile.js` 文件，在执行 grunt 命令的时候，会先找 Gruntfile.js 文件，这文件里面描述的是要执行什么任务。
 
-![](images/4.png)
+![](./images/4.png)
 
 
 
@@ -152,7 +152,7 @@ grunt
 
 此配置可以在官网找到：
 
-![](images/3.png)
+![](./images/3.png)
 
 
 
@@ -160,7 +160,7 @@ grunt
 
 再次执行命令: `grunt`  -------- 提示成功, 但没有任何效果(还没有使用插件定义任务，我们将其注释掉了)
 
-![](images/5.png)
+![](./images/5.png)
 
 
 
@@ -251,7 +251,7 @@ grunt.registerTask('default', ['concat']);
 grunt concat（或者直接使用grunt，会按顺序自动执行任务列表的任务。）
 ```
 
-![](images/6.png)
+![](./images/6.png)
 
 
 
@@ -291,11 +291,11 @@ grunt.registerTask('default', ['concat', 'uglify']);
 ```
 grunt uglify（或者直接使用grunt，会按顺序自动执行任务列表的任务。先执行 concat，再执行uglify）
 ```
-![](images/7.png)
+![](./images/7.png)
 
 压缩后的文件：
 
-![](images/8.png)
+![](./images/8.png)
 
 
 
@@ -380,7 +380,7 @@ grunt.registerTask('default', ['concat', 'uglify', 'jshint']);
 ```
 grunt   //提示语句后未加分号 -->修改后重新编译
 ```
-![](images/9.png)
+![](./images/9.png)
 
 
 
@@ -446,7 +446,7 @@ grunt.registerTask('default', ['concat', 'uglify', 'jshint', 'cssmin']);
 ```
 grunt    //在dist/css/下生成dist.min.css
 ```
-![](images/10.png)
+![](./images/10.png)
 
 
 
@@ -510,7 +510,7 @@ grunt.registerTask('mywatch', ['default','watch']);
   ```
 
 
-![](images/1.gif)
+![](./images/1.gif)
 
 
 

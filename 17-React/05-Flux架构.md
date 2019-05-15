@@ -19,7 +19,7 @@
 
 
 
-![](img/3.png)
+![](./img/3.png)
 
 
 
@@ -418,19 +418,19 @@ export let store = {
 
 之前store的更新方式是在dispatcher中调用store的更新各个更新方法进行更新，如果方法很多的话，就要写很多方法比较麻烦。并且每个方法中都需要emit更新视图。
 
-![](img/4.png)
+![](./img/4.png)
 
 
 
-![](img/5.png)
+![](./img/5.png)
 
 
 
 所以我们在store中增加一个类似react的setState方法，一次性更改所有store的state。
 
-![](img/6.png)
+![](./img/6.png)
 
-![](img/7.png)
+![](./img/7.png)
 
 
 

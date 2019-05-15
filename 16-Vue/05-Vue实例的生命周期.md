@@ -12,7 +12,7 @@ vue实例的生命周期指的是：**从Vue实例创建，运行，到销毁期
 
 **创建期间的生命周期函数**：`beforeCreate` 和 `created`，`beforeMount` 和 `mounted`。
 
-![](images/6.png)
+![](./images/6.png)
 
 
 
@@ -20,7 +20,7 @@ vue实例的生命周期指的是：**从Vue实例创建，运行，到销毁期
 
 **运行期间的生命周期函数**：`beforeUpdate` 和  `updated`
 
-![](images/7.png)
+![](./images/7.png)
 
 
 
@@ -28,7 +28,7 @@ vue实例的生命周期指的是：**从Vue实例创建，运行，到销毁期
 
 **销毁期间的生命周期函数**：`beforeDestroy` 和 `destroyed`
 
-![](images/8.png)
+![](./images/8.png)
 
 
 
@@ -121,7 +121,7 @@ export let User = {
 
 **整个生命周期的图示为：**
 
-![](images/lifecycle.png)
+![](./images/lifecycle.png)
 
 
 

@@ -174,11 +174,11 @@ npm i babel-preset-react -D
 
 之后编译运行，会报错说 React 找不到：
 
-![](img/1.png)
+![](./img/1.png)
 
 我们先看看原来的代码编译之后的样子：
 
-![](img/2.png)
+![](./img/2.png)
 
 
 

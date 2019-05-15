@@ -35,7 +35,7 @@ ES6的Promise是一个构造函数, 用来生成promise实例。
 
 用图示的方法表示：
 
-![](images/13.png)
+![](./images/13.png)
 
 示例：
 
@@ -64,7 +64,7 @@ ES6的Promise是一个构造函数, 用来生成promise实例。
 
 
 
-![](images/12.png)
+![](./images/12.png)
 
 
 

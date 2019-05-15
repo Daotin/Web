@@ -2,7 +2,7 @@ vue项目结构
 
 
 
-![](images/vue电商项目结构.jpg)
+![](./images/vue电商项目结构.jpg)
 
 
 
@@ -10,7 +10,7 @@ vue项目结构
 
 webpack+vue项目代码结构：
 
-![](images/38.png)
+![](./images/38.png)
 
 
 
