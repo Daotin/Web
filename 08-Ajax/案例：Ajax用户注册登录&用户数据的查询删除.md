@@ -570,7 +570,7 @@ echo JSON_encode($obj);
 
 #### 演示：
 
-![](images/2.gif)
+![](./images/2.gif)
 
 
 

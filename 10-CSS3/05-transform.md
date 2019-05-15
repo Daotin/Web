@@ -178,7 +178,7 @@ transform: translateX(700px) rotate(-90deg);
 </html>
 ```
 
-![](images/2.gif)
+![](./images/2.gif)
 
 
 
@@ -255,7 +255,7 @@ transform: translateX(700px) rotate(-90deg);
 </html>
 ```
 
-![](images/3.gif)
+![](./images/3.gif)
 
 
 
@@ -305,7 +305,7 @@ transform: translateX(700px) rotate(-90deg);
 </html>
 ```
 
-![](images/7.png)
+![](./images/7.png)
 
 
 
@@ -406,7 +406,7 @@ transform: rotate3d(1,1,1,330deg);
 </html>
 ```
 
-![](images/9.png)
+![](./images/9.png)
 
 
 

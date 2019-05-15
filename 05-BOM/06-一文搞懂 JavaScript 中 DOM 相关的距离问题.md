@@ -52,7 +52,7 @@
 
 
 
-![](images/4.png)
+![](./images/4.png)
 
 
 
@@ -72,7 +72,7 @@
 
 当我把滚动条加上的时候：
 
-![](images/5.png)
+![](./images/5.png)
 
 
 
@@ -92,7 +92,7 @@
 
 当文字过长滚动条可以滑动的时候：
 
-![](images/6.png)
+![](./images/6.png)
 
 > textarea.clientWidth = 200(可见区域) + 5(padding) + 5(padding) - 17(滚动条宽度)
 >
@@ -117,7 +117,7 @@ textarea.onscroll = function () {
 };
 ```
 
-![](images/7.png)
+![](./images/7.png)
 
 
 
@@ -185,7 +185,7 @@ offset是偏移的意思，既然是偏移就要有一个参照物，这个参�
 
 下面有张图对上面的内容进行了总结，并给出了不同浏览器下的兼容性：
 
-![](images/1.png)
+![](./images/1.png)
 
 
 
@@ -197,7 +197,7 @@ offset是偏移的意思，既然是偏移就要有一个参照物，这个参�
 
 鼠标事件中有很多描述鼠标事件发生时的坐标信息的，给大家介个图看看：
 
-![](images/8.png)
+![](./images/8.png)
 
 
 
@@ -205,11 +205,11 @@ offset是偏移的意思，既然是偏移就要有一个参照物，这个参�
 
 
 
-![](images/2.jpg)
+![](./images/2.jpg)
 
 
 
-![](images/4.jpg)
+![](./images/4.jpg)
 
 
 

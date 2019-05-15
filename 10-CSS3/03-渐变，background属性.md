@@ -32,7 +32,7 @@ background: linear-gradient(direction, color1, color2 [stop], color3...);
 background: linear-gradient(to right, blue, green 20%, yellow 50%, purple 80%, red);
 ```
 
-![](images/2.1.png)
+![](./images/2.1.png)
 
 
 
@@ -87,7 +87,7 @@ background: radial-gradient(shape size at position, start-color, ..., color [sto
 background: radial-gradient(circle farthest-side at right top, red, yellow 50%, blue);
 ```
 
-![](images/2.2.png)
+![](./images/2.2.png)
 
 
 
@@ -137,7 +137,7 @@ repeating-radial-gradient /*径向重复渐变*/
 </body>
 ```
 
-![2](images/2.png)
+![2](./images/2.png)
 
 
 
@@ -225,7 +225,7 @@ background-origin: padding-box|border-box|content-box;
 - `padding-box`：从padding的左上角位置开始填充背景，会与padding重叠；
 - `content-box`：从内容左上角的位置开始填充背景。
 
-![3](images/3.png)
+![3](./images/3.png)
 
 
 
@@ -296,7 +296,7 @@ background-clip: border-box|padding-box|content-box;
 </html>
 ```
 
-![4](images/4.png)
+![4](./images/4.png)
 
 由图可见，返回箭头下 a 的范围变大了，那么用户点击的响应区域也就大了。
 

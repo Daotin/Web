@@ -108,7 +108,7 @@ html5支持绝大部分主流浏览器，比如国外的 chrome，firefox，safa
 
 以前我们要做下面这个结构可能会这么布局：
 
-![1](images/1.png)
+![1](./images/1.png)
 
 
 
@@ -124,7 +124,7 @@ html5支持绝大部分主流浏览器，比如国外的 chrome，firefox，safa
 
 那么在 html5 下语义化标签怎么做呢？
 
-![1](images/2.gif)
+![1](./images/2.gif)
 
 ```html
 <header></header>

@@ -79,7 +79,7 @@ animation-duration: 2s;
 >
 >   `100%`：动画终点位置，也可以写成 to。
 
-![](images/4.gif)
+![](./images/4.gif)
 
 
 
@@ -185,7 +185,7 @@ animation-play-state: running;
 >
 >   3、然后在鼠标放上去的时候，使得动画暂停。
 
-![](images/5.gif)
+![](./images/5.gif)
 
 
 
@@ -321,7 +321,7 @@ animation-play-state: running;
 
 > 我们让秒针step(60)一步一步走，效果更好。
 
-![](images/6.gif)
+![](./images/6.gif)
 
 
 
@@ -371,7 +371,7 @@ woff字体是Web字体中最佳格式，他是一个开放的TrueType/OpenType�
 
 需要注意的是，我们在使用 Web 字体的时候，应该首先把需要用到特殊字体的这些字写好，然后在网络上生成这些字体对应的 Web 字体库，并将其下载下来。下图为一个网站生成和下载web字体的网站，点击立即使用就可以了：
 
-![](images/10.png)
+![](./images/10.png)
 
 
 

@@ -8,7 +8,7 @@
 
 假如有两个盒子，盒子A和盒子B，如果盒子A在盒子B的上面，当我们使用 tap 事件点击盒子A的时候，盒子B会触发 click 事件，这就是点透。
 
-![](images/6.png)
+![](./images/6.png)
 
 触发这两个事件的顺序是 tap 事件，然后是 click 事件。因为 tap 事件内部是 touch 事件处理的，而 touch 事件是先于 click 事件触发的。
 

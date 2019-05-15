@@ -50,7 +50,7 @@ echo json_encode($list);
 
 获取到的数据如下：
 
-![](images/2.png)
+![](./images/2.png)
 
 
 
@@ -79,7 +79,7 @@ echo json_encode($list);
 
 于是就获取到了我们想要的数据：
 
-![](images/3.png)
+![](./images/3.png)
 
 
 
@@ -183,7 +183,7 @@ echo json_encode($list);
 
 
 
-![](images/4.png)
+![](./images/4.png)
 
 
 
@@ -195,7 +195,7 @@ echo json_encode($list);
 
 所以我们数据库的数据现在是下面的样子：
 
-![](images/5.png)
+![](./images/5.png)
 
 
 

@@ -451,7 +451,7 @@ localStorage的使用：
 
 
 
-![6](images/6.png)
+![6](./images/6.png)
 
 
 

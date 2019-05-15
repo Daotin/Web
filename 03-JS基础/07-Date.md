@@ -331,4 +331,4 @@ function getWeekByFirstDay(date) {
 
 
 
-![](images/1.gif)
+![](./images/1.gif)

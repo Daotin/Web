@@ -229,7 +229,7 @@ document.cookie="name=value;domain=.google.com";
 </html>
 ```
 
-![1](E:\Web\github\Web\04-DOM\images\1.png)
+![](./images/1.png)
 
 **cookie_login**
 
@@ -276,7 +276,7 @@ document.cookie="name=value;domain=.google.com";
 </html>
 ```
 
-![2](E:\Web\github\Web\04-DOM\images\2.png)
+![](./images/2.png)
 
 
 
@@ -358,5 +358,5 @@ document.cookie="name=value;domain=.google.com";
 </html>
 ```
 
-![3](E:\Web\github\Web\04-DOM\images\3.png)
+![](./images/3.png)
 

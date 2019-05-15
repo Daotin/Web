@@ -72,7 +72,7 @@ table { border-collapse:collapse; border-spacing:0; }
 
 > overflow 属性规定当内容溢出元素框时发生的事情.
 
-![](images/图片28.png)
+![](./images/图片28.png)
 
 > `visible`: 默认值。如果内容超出了元素框，则会在框外显示。
 > `hidden`: 如果内容超出了元素框，则会隐藏超出的内容。
@@ -145,7 +145,7 @@ position:fixed;
 
 **定位的盒子居中：子绝父相，然后子盒子先往右走父盒子的一半50%，在向左走子盒子的一半(margin-left:负值。**
 
-![](images/图片29.png)
+![](./images/图片29.png)
 
 
 
@@ -158,7 +158,7 @@ position:fixed;
 - h1可以包含p，div等标签（一般不这样）。
 - 行内元素尽量包含行内元素，行内元素不要包含块元素。
 
-![](images/图片30.png)
+![](./images/图片30.png)
 
 
 
@@ -181,7 +181,7 @@ vertical-align 主要用在 inline-block 标签上，效果最好。
 默认属性是: vertical-align:baseline;
 ```
 
-![](images/图片31.png)
+![](./images/图片31.png)
 
 
 

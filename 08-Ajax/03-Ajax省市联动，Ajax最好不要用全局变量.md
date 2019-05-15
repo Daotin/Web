@@ -96,7 +96,7 @@
 </html>
 ```
 
-![](images/1.gif)
+![](./images/1.gif)
 
 
 

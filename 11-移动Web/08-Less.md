@@ -4,7 +4,7 @@ LESS 是一种动态的样式表语言，通过简洁明了的语法定义，使
 
 
 
-![](images/9.png)
+![](./images/9.png)
 
 
 
@@ -28,7 +28,7 @@ LESS 是一种动态的样式表语言，通过简洁明了的语法定义，使
 
 
 
-![](images/10.png)
+![](./images/10.png)
 
 
 
@@ -54,7 +54,7 @@ lessc .\test.less .\test.css
 
 
 
-![](images/11.png)
+![](./images/11.png)
 
 
 

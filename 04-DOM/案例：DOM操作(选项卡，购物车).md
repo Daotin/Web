@@ -120,7 +120,7 @@
 
 
 
-![](images/5.gif)
+![](./images/5.gif)
 
 
 
@@ -392,7 +392,7 @@
 
 
 
-![](images/6.gif)
+![](./images/6.gif)
 
 
 
@@ -547,4 +547,4 @@
 
 
 
-![](images/7.gif)
+![](./images/7.gif)

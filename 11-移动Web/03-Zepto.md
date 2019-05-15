@@ -1,6 +1,6 @@
 ## 一、Zepto简介 
 
-![](images/18.png)
+![](./images/18.png)
 
 Zepto是一个轻量级的针对现代高级浏览器的 **JavaScript库**， 它**与jquery有着类似的api。**
 
@@ -489,5 +489,5 @@ $(function () {
 });
 ```
 
-![](images/1.gif)
+![](./images/1.gif)
 

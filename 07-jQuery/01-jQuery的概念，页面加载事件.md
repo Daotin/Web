@@ -248,4 +248,4 @@ $(function () {
 
 #### 2.4、onload 与 ready 的区别
 
-![](img/2.png)
+![](./img/2.png)
