@@ -1,5 +1,3 @@
-# 一、BOM
-
 ## 1、BOM的概念
 
 BOM（Browser Object Model）：浏览器对象模型。

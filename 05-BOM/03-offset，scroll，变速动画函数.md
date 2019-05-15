@@ -1,4 +1,4 @@
-# 一、直接使用 document 获取的元素
+## 一、document 元素
 
 ```javascript
 // 获取 body
@@ -11,7 +11,7 @@ document.documentElement;
 
 
 
-## 1、案例：图片跟着鼠标移动
+**案例：图片跟着鼠标移动**
 
 ```html
 <!DOCTYPE html>
@@ -45,10 +45,8 @@ document.documentElement;
 
 
 
----
 
-
-# 二、offset系列
+## 二、offset系列
 
 ```
 offsetWidth：获取元素的宽（加边框）
@@ -59,7 +57,7 @@ offsetTop：获取元素距离上边位置的值
 
 
 
-# 三、scroll 系列
+## 三、scroll 系列
 
 scroll：卷曲
 
@@ -83,7 +81,7 @@ document.documentElement.scrollHeight || document.body.scrollHeight;
 
 
 
-## 1、封装获取 scrollLeft 和 scrollTop 的函数
+**封装获取 scrollLeft 和 scrollTop 的函数**
 
 ```javascript
 function getScroll() {
@@ -100,7 +98,7 @@ function getScroll() {
 
 
 
-# 四、变速动画函数
+## 四、变速动画函数
 
 ```javascript
 // 变速动画移动函数
@@ -164,9 +162,7 @@ console.log(Math.floor(-11.8)); // -12
 
 
 
-## 1、案例：筋斗云
-
-
+**案例：筋斗云**
 
 ```html
 <!DOCTYPE html>
@@ -270,7 +266,7 @@ console.log(Math.floor(-11.8)); // -12
 
 
 
-# 五、获取任意元素的任意属性值
+## 五、获取任意元素的任意属性值
 
 在 window 下有一个方法：`window.getComputedStyle(element, string)`  可以获取一个元素所有的属性值。
 
@@ -294,9 +290,9 @@ function getStyle(element, attr) {
 
 
 
-# 六、为变速动画函数增强
+## 六、为变速动画函数增强
 
-## 1、增加任意一个属性值
+### 1、增加任意一个属性值
 
 ```html
 <!DOCTYPE html>
@@ -374,7 +370,7 @@ function getStyle(element, attr) {
 
 
 
-## 2、增加任意多个属性值
+### 2、增加任意多个属性值
 
 ```html
 <body>
@@ -431,7 +427,7 @@ function getStyle(element, attr) {
 
 
 
-## 3、增加回调函数
+### 3、增加回调函数
 
 回调函数：当一个函数作为参数的时候，这个函数就是回调函数。
 
@@ -504,7 +500,7 @@ function getStyle(element, attr) {
 
 
 
-## 4、增加透明度和层级
+### 4、增加透明度和层级
 
 透明度：opacity
 
@@ -610,7 +606,7 @@ function getStyle(element, attr) {
 
 
 
-## 5、案例：手风琴效果
+### 5、案例：手风琴效果
 
 ```html
 <!DOCTYPE html>

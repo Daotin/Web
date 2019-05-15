@@ -1,4 +1,4 @@
-# 一、client 系列
+## 一、client 系列
 
 ```html
 <!DOCTYPE html>
@@ -73,13 +73,7 @@ document.documentElement.scrollHeight || document.body.scrollHeight
 
 
 
-
-
-
-
-
-
-## 1、案例：图片跟着鼠标移动最终版
+### 1、案例：图片跟着鼠标移动
 
 之前图片跟着鼠标移动的案例有些bug，就是IE8不支持。
 
@@ -209,7 +203,7 @@ body {
 
 
 
-## 2、案例：淘宝宝贝放大镜
+### 2、案例：淘宝宝贝放大镜
 
 ```html
 <!DOCTYPE html>
@@ -345,7 +339,7 @@ body {
 
 
 
-## 3、案例：DIY 滑动栏
+### 3、案例：DIY 滑动栏
 
 ```html
 <!DOCTYPE html>
@@ -481,9 +475,9 @@ body {
 
 
 
-# 二、复习
+## 二、复习
 
-## 1、元素隐藏的不同方式
+### 1、元素隐藏的不同方式
 
 ```javascript
 my$("dv").style.display = "none"; // 不占位
