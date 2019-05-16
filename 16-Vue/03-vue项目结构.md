@@ -2,7 +2,7 @@ vue项目结构
 
 
 
-![](./images/vue电商项目结构.jpg)
+![](./images/structure.jpg)
 
 
 

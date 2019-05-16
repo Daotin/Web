@@ -441,7 +441,7 @@ server.listen(3000, () => {
 
 响应正文：
 
-![](./img/http请求流程.jpg)
+![](./img/6.jpg)
 
 
 
