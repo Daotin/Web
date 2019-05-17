@@ -495,7 +495,7 @@ computed: {
 },
 ```
 
-然后页面：`<div>age之和：{{allAge}}</div>` 就会显示所有用户age之和。
+然后页面：`<div>age之和：{ {allAge} }</div>` 就会显示所有用户age之和。
 
 
 

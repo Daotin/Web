@@ -93,7 +93,7 @@ methods 为页面事件对象集合。
   <!-- 将来 new 的Vue实例，会控制这个 元素中的所有内容 -->
   <!-- Vue 实例所控制的这个元素区域，就是我们的 V  -->
   <div id="app">
-    <p>{{ msg }}</p>
+    <p>{{ info }}</p>
   </div>
 
   <script>
@@ -104,7 +104,7 @@ methods 为页面事件对象集合。
       el: '#app',  // 表示，当前我们 new 的这个 Vue 实例，要控制页面上的哪个区域
       // 这里的 data 就是 MVVM中的 M，专门用来保存 每个页面的数据的
       data: { // data 属性中，存放的是 el 中要用到的数据
-        msg: '欢迎学习Vue'; // 通过 Vue 提供的指令，很方便的就能把数据渲染到页面上，程序员不再手动操作DOM元素了【前端的Vue之类的框架，不提倡我们去手动操作DOM元素了】
+        info: '欢迎学习Vue'; // 通过 Vue 提供的指令，很方便的就能把数据渲染到页面上，程序员不再手动操作DOM元素了【前端的Vue之类的框架，不提倡我们去手动操作DOM元素了】
       }
     })
   </script>
@@ -113,7 +113,7 @@ methods 为页面事件对象集合。
 </html>
 ```
 
->   {{ msg }} ：在 html 中可以直接使用 **双重大括号** 的方式使用 data 中的数据。
+>   {{ info }} ：在 html 中可以直接使用 **双重大括号** 的方式使用 data 中的数据。
 
 
 
@@ -123,7 +123,7 @@ methods 为页面事件对象集合。
 
 ### 1、插值表达式
 
-插值表达式就是以**双重大括号** ，类似 ` {{ msg }}`  的形式插入到 html 代码中。
+插值表达式就是以**双重大括号** ，类似 ` {{ info }}`  的形式插入到 html 代码中。
 
 > 1、插值表达式还可以进行简单的运算（比如加减乘除等），但是不能完全放置js代码。
 >
@@ -133,7 +133,7 @@ methods 为页面事件对象集合。
 
 ### 2、v-cloak
 
-在 使用 `{{ msg }}` 的方式插入数据的时候，如果网速特别慢的话，  `{{ msg }}`  所代表的值不会立即显示出来，而会显示  {{ msg }} 这个字符串本身，怎么解决这个问题呢？
+在 使用 `{{ info }}` 的方式插入数据的时候，如果网速特别慢的话，  `{{ info }}`  所代表的值不会立即显示出来，而会显示  {{ info }} 这个字符串本身，怎么解决这个问题呢？
 
 **使用 v-cloak 和 CSS 表达式结合，能够解决插值表达式闪烁的问题，这样会在网络未加载完时，不显示字符串本身。**
 
@@ -146,7 +146,7 @@ methods 为页面事件对象集合。
   }
 </style>
 ...
-<p v-cloak> {{ msg }} </p>
+<p v-cloak> {{ info }} </p>
 ```
 
 
@@ -156,7 +156,7 @@ methods 为页面事件对象集合。
 默认 v-text 是没有闪烁问题的，但是 v-text 会覆盖元素中原本的内容，而 v-cloak 只会替换插值表达式，不会把 整个元素的内容清空。
 
 ```html
-<span v-text="msg"></span>
+<span v-text="info"></span>
 ```
 
 
@@ -166,10 +166,10 @@ methods 为页面事件对象集合。
 **v-text 知识插入的纯文本格式内容，而 v-html 可以插入为 html 标签的代码，并解析出来。**
 
 ```html
-<span v-html="msg"></span>
+<span v-html="info"></span>
 ...
 data: {
-  msg: '<h1>哈哈，我是一个大大的H1， 我大，我骄傲</h1>'
+  info: '<h1>哈哈，我是一个大大的H1， 我大，我骄傲</h1>'
 },
 ```
 
@@ -235,14 +235,14 @@ methods: { // 这个 methods属性中定义了当前Vue实例所有可用的方�
     <div id="box">
         <input type="button" value="摇起来" id="btn1" @click="move">
         <input type="button" value="停下来" id="btn2" @click="stop">
-        <h2 v-text="msg"></h2>
+        <h2 v-text="info"></h2>
     </div>
 
     <script>
         var vm = new Vue({
             el: "#box",
             data: {
-                msg: "落霞与孤鹜齐飞，秋水共长天一色。",
+                info: "落霞与孤鹜齐飞，秋水共长天一色。",
                 timeId: null
             },
             methods: {
@@ -253,9 +253,9 @@ methods: { // 这个 methods属性中定义了当前Vue实例所有可用的方�
 
                     var that = this;
                     this.timeId = setInterval(function () {
-                        var start = that.msg.substring(0, 1);
-                        var end = that.msg.substring(1);
-                        that.msg = end + start;
+                        var start = that.info.substring(0, 1);
+                        var end = that.info.substring(1);
+                        that.info = end + start;
                     }, 200);
                 },
                 stop: function () {
@@ -291,10 +291,10 @@ v-bind 只能实现数据的单向绑定，从 M 自动绑定到 V（即**修改
 示例：
 
 ```html
-<input type="text" style="width:100%;" v-model="msg">
+<input type="text" style="width:100%;" v-model="info">
 ...
 data: {
-	msg: 'hello vue.'
+	info: 'hello vue.'
 },
 ```
 

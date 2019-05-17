@@ -156,7 +156,7 @@ export let Home = {
 
 **也就是子组件向子组件里面插槽的内容传递数据。**
 
-这时候，父组件可以获取到Box组件中的数据，`<Box>{{Box的data中的属性}}</Box>` ，但是如果这个数据写在里面的内容上就获取不到了。比如获取count属性，如下面这样：
+这时候，父组件可以获取到Box组件中的数据，`<Box>{ {Box的data中的属性} }</Box>` ，但是如果这个数据写在里面的内容上就获取不到了。比如获取count属性，如下面这样：
 
 ```js
 // Home.js
@@ -214,7 +214,7 @@ export let Home = {
             <A @countChange="change"></A>
             <B :cCount="count"></B>
             <Box>
-                <h3 slot='h' slot-scope='BoxData'>头部{{BoxData.dcount}}</h3>
+                <h3 slot='h' slot-scope='BoxData'>头部{ {BoxData.dcount}}</h3>
                 <p>中部</p>
                 <button slot='f'>底部</button>
             </Box>
@@ -225,7 +225,7 @@ export let Home = {
 }
 ```
 
-上面的`<h3 slot='h' slot-scope='BoxData'>头部{{BoxData.dcount}}</h3>` 就从子组件的内容上获得子组件的数据。
+上面的`<h3 slot='h' slot-scope='BoxData'>头部{ {BoxData.dcount}}</h3>` 就从子组件的内容上获得子组件的数据。
 
 
 
