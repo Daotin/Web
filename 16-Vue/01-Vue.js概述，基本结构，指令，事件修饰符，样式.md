@@ -129,6 +129,12 @@ methods 为页面事件对象集合。
 >
 > 2、插值表达式只能放在标签之间，而不能放在标签内部。
 
+使用 `v-once` 也能执行一次性地插值，但是当数据改变时，插值处的内容不会更新。
+
+```html
+<span v-once>这个将不会改变: {{ info }}</span>
+```
+
 
 
 ### 2、v-cloak
@@ -163,7 +169,7 @@ methods 为页面事件对象集合。
 
 ### 4、v-html 
 
-**v-text 知识插入的纯文本格式内容，而 v-html 可以插入为 html 标签的代码，并解析出来。**
+**v-text 只是插入的纯文本格式内容，而 v-html 可以插入为 html 标签的代码，并解析出来。**
 
 ```html
 <span v-html="info"></span>
@@ -172,6 +178,10 @@ data: {
   info: '<h1>哈哈，我是一个大大的H1， 我大，我骄傲</h1>'
 },
 ```
+
+> 1、v-html会将整个标签替换为info 的内容。
+>
+> 2、你的站点上动态渲染的任意 HTML 可能会非常危险，因为它很容易导致 XSS 攻击。请只对可信内容使用 HTML 插值，**绝不要**对用户提供的内容使用插值。
 
 
 
@@ -190,6 +200,32 @@ data: {
 ```
 
 > title 里面的内容就不是字符串了，而是会将 data 中的变量进行替换得到一个字符串整体。
+
+
+
+### 温馨提示：
+
+上面的例子中，我们一直都只绑定简单的属性键值。但实际上，对于所有的数据绑定，Vue.js 都提供了完全的 JavaScript 表达式支持。如下都是可以的：
+
+```js
+{{ number + 1 }}
+
+{{ ok ? 'YES' : 'NO' }}
+
+{{ message.split('').reverse().join('') }}
+
+<div v-bind:id="'list-' + id"></div>
+```
+
+>  注意：每个绑定都只能包含单个表达式，所以下面的例子都不会生效。
+
+```js
+<!-- 这是语句，不是表达式 -->
+{{ var a = 1 }}
+
+<!-- 流控制也不会生效，请使用三元表达式 -->
+{{ if (ok) { return message } }}
+```
 
 
 
@@ -277,6 +313,42 @@ methods: { // 这个 methods属性中定义了当前Vue实例所有可用的方�
 >   2、VM实例，会自动监听自己身上 data 中所有数据的改变，只要数据一发生变化，就会自动把最新的数据，从data 上同步到页面中去；【好处：程序员只需要关心数据，不需要考虑如何重新渲染DOM页面】
 
 ![](./images/01.gif)
+
+
+
+### 动态参数【2.6.0 新增内容】
+
+从 2.6.0 开始，可以用方括号括起来的 JavaScript 表达式作为一个指令的参数：
+
+```html
+<a v-bind:[attributeName]="url"> ... </a>
+```
+
+现在 attributeName 也是动态的了。如果 Vue 实例有一个 data 属性 attributeName，其值为 "href"，那么这个绑定将等价于 v-bind:href。
+
+同样地，你可以使用动态参数为一个动态的事件名绑定处理函数：
+
+```html
+<a v-on:[eventName]="doSomething"> ... </a>
+```
+
+同样地，当 eventName 的值为 "focus" 时，v-on:[eventName] 将等价于 v-on:focus。
+
+> 注意：
+>
+> 1、如果动态参数attributeName 预期会求出一个字符串，异常情况下值为 null。**这个特殊的 null 值可以被显性地用于移除绑定。**任何其它非字符串类型的值都将会触发一个警告。
+>
+> 2、动态参数中不能有**空格或引号**，你可以使用计算属性替代这种复杂表达式。
+>
+> 如：`<a v-bind:['foo' + bar]="value"> ... </a>`
+>
+> 3、如果在DOM中使用动态参数的话，需要留意浏览器会把特性名全部强制转为小写：
+>
+> `<a v-bind:[someAttr]="value"> ... </a>` ，在 DOM 中使用模板时这段代码会被转换为 `v-bind:[someattr]`
+
+
+
+
 
 ### 7、v-model
 
@@ -557,6 +629,16 @@ key 属性可以使得每一遍历的项是唯一的。
 
 
 
+> *added in 20190610*
+>
+> 你也可以用 of 替代 in 作为分隔符，因为它更接近 JavaScript 迭代器的语法：
+>
+> `<div v-for="item of items"></div>`
+
+
+
+
+
 ### 9、v-if/v-show
 
 v-if 和 v-show 都可以控制元素的显示与否。但是实现原理不同。
@@ -591,6 +673,143 @@ v-if和v-show指令中除了可以放简单的值外，还可以**放表达式**
 ```
 
 > 注意：v-if和v-else-if和v-else之间，不要加任何其他元素，否则会报错。
+
+
+
+#### 用key管理可被复用的元素(来自官方文档)
+
+*added in 20190610*  
+
+Vue 会尽可能高效地渲染元素，通常会复用已有元素而不是从头开始渲染。这么做除了使 Vue 变得非常快之外，还有其它一些好处。例如，如果你允许用户在不同的登录方式之间切换：
+
+```html
+<template v-if="loginType === 'username'">
+  <label>Username</label>
+  <input placeholder="Enter your username">
+</template>
+<template v-else>
+  <label>Email</label>
+  <input placeholder="Enter your email address">
+</template>
+```
+
+那么在上面的代码中切换 loginType 将不会清除用户已经输入的内容。因为两个模板使用了相同的元素，<input> 不会被替换掉——仅仅是替换了它的 placeholder。
+
+这样也不总是符合实际需求，所以 Vue 为你提供了一种方式来表达“这两个元素是完全独立的，不要复用它们”。只需添加一个具有唯一值的 key 属性即可：
+
+```html
+<template v-if="loginType === 'username'">
+  <label>Username</label>
+  <input placeholder="Enter your username" key="username-input">
+</template>
+<template v-else>
+  <label>Email</label>
+  <input placeholder="Enter your email address" key="email-input">
+</template>
+```
+
+现在，每次切换时，输入框都将被重新渲染。但是，label 元素仍然会被高效地复用，因为它们没有添加 key 属性。
+
+
+
+#### 【重要】避免 v-if 和 v-for 用在同一个元素上(来自官方文档)
+
+*added in 20190610*
+
+主要原因：
+
+> v-for 比 v-if 具有更高的优先级。
+
+一般我们在两种常见的情况下会倾向于这样做：
+
+- 为了过滤一个列表中的项目 (比如 v-for="user in users" v-if="user.isActive")。在这种情形下，请将 users 替换为一个计算属性 (比如 activeUsers)，让其返回过滤后的列表。
+
+- 为了避免渲染本应该被隐藏的列表 (比如 v-for="user in users" v-if="shouldShowUsers")。这种情形下，请将 v-if 移动至容器元素上 (比如 ul, ol)。
+
+详解以上两点：
+
+1、当 Vue 处理指令时，v-for 比 v-if 具有更高的优先级，所以这个模板：
+
+```html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="user.isActive"
+    :key="user.id"
+  >
+    {{ user.name }}
+  </li>
+</ul>
+```
+
+将会进行如下计算：
+
+```js
+this.users.map(function (user) {
+  if (user.isActive) {
+    return user.name
+  }
+})
+```
+
+因此哪怕我们只渲染出一小部分用户的元素，也得在每次重渲染的时候遍历整个列表，不论活跃用户是否发生了变化。
+
+因此，通过将其更换为在如下的一个计算属性上遍历：
+
+```js
+computed: {
+  activeUsers: function () {
+    return this.users.filter(function (user) {
+      return user.isActive
+    })
+  }
+}
+```
+
+```html
+<ul>
+  <li
+    v-for="user in activeUsers"
+    :key="user.id"
+  >
+    {{ user.name }}
+  </li>
+</ul>
+```
+
+我们将会获得如下好处：
+
+- 过滤后的列表只会在 users 数组发生相关变化时才被重新运算，过滤更高效。
+- 使用 v-for="user in activeUsers" 之后，我们在渲染的时候只遍历活跃用户，渲染更高效。
+
+2、第二个场景我们将 shouldShowUsers 放到ul上：
+
+```html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="shouldShowUsers"
+    :key="user.id"
+  >
+    {{ user.name }}
+  </li>
+</ul>
+```
+
+更改为：
+
+```html
+<ul v-if="shouldShowUsers">
+  <li
+    v-for="user in users"
+    :key="user.id"
+  >
+    {{ user.name }}
+  </li>
+</ul>
+```
+
+通过将 v-if 移动到容器元素，我们不会再对列表中的每个用户检查 shouldShowUsers。取而代之的是，我们只检查它一次，且不会在 shouldShowUsers 为否的时候运算 v-for。
 
 
 
@@ -808,9 +1027,79 @@ v-if和v-show指令中除了可以放简单的值外，还可以**放表达式**
 
 
 
+### class属性对象与三元运算写法
+
+*added in 20190610*
+
+下面两种写法是等价的：
+
+```html
+<!-- 留言 -->
+<div class="m-leave-msg" :class="showOther === 2 ? 'show' : ''">
+    <leavemsg :ak="ak" @back-main="toMain"></leavemsg>
+</div>
+<!-- 满意度 -->
+<div class="m-leave-msg" :class="showOther === 3 ? 'show' : ''">
+    <Satisfaction :sessionId="sessionId" @back-main="toMain"></Satisfaction>
+</div>
+```
+
+等价于：
+
+```html
+<!-- 留言 -->
+<div class="m-leave-msg" :class="{show:showOther === 2}">
+    <leavemsg :ak="ak" @back-main="toMain"></leavemsg>
+</div>
+<!-- 满意度 -->
+<div class="m-leave-msg" :class="{show:showOther === 3}">
+    <Satisfaction :sessionId="sessionId" @back-main="toMain"></Satisfaction>
+</div>
+```
+
+
+
+在组件中使用class
+
+*added in 20190610*
+
+如果你在组件上使用了class属性，这些类将被添加到该组件的根元素上面。这个元素上已经存在的类不会被覆盖。
+
+例如，如果你声明了这个组件：
+
+```js
+Vue.component('my-component', {
+  template: '<p class="foo bar">Hi</p>'
+})
+```
+
+然后在使用它的时候添加一些 class：
+
+```html
+<my-component class="baz boo"></my-component>
+```
+
+则 HTML 会被渲染为：
+
+```html
+<p class="foo bar baz boo">Hi</p>
+```
+
+而不会覆盖之前的class属性。
+
+
+
 ### 2、动态style
 
 可以是对象，也可以是对象数组。
+
+直接对象的形式：
+
+```html
+<p :style="{ 'max-width':maxWidth+'px' }></p>
+```
+
+直接绑定到一个样式对象通常更好，这会让模板更清晰：
 
 ```html
 <body>

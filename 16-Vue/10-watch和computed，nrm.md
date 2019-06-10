@@ -181,6 +181,109 @@ function 处理函数有两个参数：
 
 
 
+### 计算属性缓存 vs 方法 
+
+*added in 20190610.*
+
+你可能已经注意到我们可以通过在表达式中调用方法来达到同样的效果：
+
+```html
+<body>
+  <div id="box">
+    <input type="text" v-model="firstname"> +
+    <input type="text" v-model="lastname"> =
+    <input type="text" v-model="fullname()">
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: "#box",
+      data: {
+        firstname: '',
+        lastname: '',
+      },
+      methods: {
+          fullname: function () {
+              return this.firstname + '-' + this.lastname;
+          }
+      },
+      computed: {}
+    });
+  </script>
+</body>
+```
+
+我们可以将同一函数定义为一个方法而不是一个计算属性。两种方式的最终结果确实是完全相同的。然而，不同的是计算属性是基于它们的响应式依赖进行缓存的。只在相关响应式依赖发生改变时它们才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 fullname 计算属性会立即返回之前的计算结果，而不必再次执行函数。
+
+这也同样意味着下面的计算属性将不再更新，因为 Date.now() 不是响应式依赖：
+
+```js
+computed: {
+  now: function () {
+    return Date.now()
+  }
+}
+```
+
+相比之下，每当触发重新渲染时，调用方法将总会再次执行函数。
+
+我们为什么需要缓存？假设我们有一个性能开销比较大的计算属性 A，它需要遍历一个巨大的数组并做大量的计算。然后我们可能有其他的计算属性依赖于 A 。如果没有缓存，我们将不可避免的多次执行 A 的 getter！
+
+> **如果你不希望有缓存，请用方法来替代。**
+
+
+
+### 计算属性的getter和setter
+
+*added in 20190610*
+
+```js
+computed: {
+    'fullName': function () {
+        return this.firstname + '-' + this.lastname;
+    }
+}
+```
+
+上面例子的写法默认会解析成下面的形式：
+
+```js
+computed:{
+    fullName:{
+        get:function() {
+            return this.firstname + '-' + this.lastname;
+        }
+    }
+}
+```
+
+计算属性默认只有 getter ，不过在需要时你也可以提供一个 setter ：
+
+```js
+computed: {
+  fullName: {
+    // getter
+    get: function () {
+      return this.firstName + '-' + this.lastName
+    },
+    // setter
+    set: function (newValue) {
+      var names = newValue.split(' ')
+      this.firstName = names[0]
+      this.lastName = names[names.length - 1]
+    }
+  }
+}
+```
+
+现在再运行 vm.fullName = 'John Doe' 时，setter 会被调用，vm.firstName 和 vm.lastName 也会相应地被更新。
+
+
+
+
+
+
+
 ### 3、watch，computed，methods的区别
 
 - `computed`属性的结果会被缓存，除非依赖的响应式属性变化才会重新计算。主要当作属性来使用；
