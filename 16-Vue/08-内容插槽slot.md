@@ -8,6 +8,7 @@
     - [1、slot的基本使用](#1slot的基本使用)
     - [2、具名slot](#2具名slot)
     - [3、slot-scope](#3slot-scope)
+    - [补充](#3补充)
 
 <!-- /TOC -->
 
@@ -78,6 +79,8 @@ export let Home = {
 
 这时候就用到了vue的内容插槽slot。
 
+
+
 我们在Box.html代码里面写上：
 
 ```html
@@ -95,7 +98,11 @@ export let Home = {
 
 ### 2、具名slot
 
-现在有一个问题就是父组件想将不同的标签插入到不同的slot中怎么办？原来的slot会把父组件在子组件插入的所有内容全部替换slot，没有区分。所以为了区分，我们给slot价格名字。
+> 注意：本章节 `具名slot` 方法在 2.6.0 后已废弃，新的使用具名插槽方法参看《补充》章节。
+
+现在有一个问题就是父组件想将不同的标签插入到不同的slot中怎么办？
+
+原来的slot会把父组件在子组件插入的所有内容全部替换slot，没有区分。所以为了区分，我们给slot加个名字。
 
 我们想在header，main和footer分别插入不同的内容。
 
@@ -150,11 +157,33 @@ export let Home = {
 
 
 
-### 3、slot-scope
+*(added in 20190715)*
 
-**使用场景：父组件使用子组件，需要使用插槽的时候，而插槽又需要用到子组件的数据，这时候会使用slot-scope。**
+###  编译作用域
 
-**也就是子组件向子组件里面插槽的内容传递数据。**
+当你想在一个插槽中使用数据时，例如：
+
+```html
+<Box url="/app">
+    <h3>头部{{ user.name }}</h3>
+</Box>
+```
+
+该插槽跟 Box 一样可以访问相同的实例属性 (父组件的数据)，而**不能**访问 `<Box>` 的里面的数据。例如 `url` 是访问不到的：
+
+也就是说，**子组件的插槽和子组件本身都可以访问父组件的数据，但是子组件的插槽访问不到子组件本身的数据。**
+
+如何让子组件中的插槽访问到子组件本身的数据？
+
+往下看：
+
+
+
+### 3、作用域插槽slot-scope
+
+> 注意：自 2.6.0 起有所更新。 `slot-scope` 已废弃，更新内容见《补充》章节。
+
+**使用场景：子组件中的插槽需要用到子组件的数据，这时候会使用slot-scope。也就是子组件向子组件里面插槽的内容传递数据。**
 
 这时候，父组件可以获取到Box组件中的数据，`<Box>{ {Box的data中的属性} }</Box>` ，但是如果这个数据写在里面的内容上就获取不到了。比如获取count属性，如下面这样：
 
@@ -226,6 +255,100 @@ export let Home = {
 ```
 
 上面的`<h3 slot='h' slot-scope='BoxData'>头部{ {BoxData.dcount}}</h3>` 就从子组件的内容上获得子组件的数据。
+
+
+
+*(added in 20190715)*
+
+### 补充
+
+> 在 2.6.0 中，我们为具名插槽和作用域插槽引入了一个新的统一的语法 (即 `v-slot` 指令)。它取代了 `slot` 和 `slot-scope` 这两个目前已被废弃但未被移除且仍在[文档中](https://cn.vuejs.org/v2/guide/components-slots.html#废弃了的语法)的特性。
+
+
+
+#### 具名插槽
+
+有时我们需要多个插槽。例如对于一个带有如下模板的 `<base-layout>` 组件：
+
+```html
+<div class="container">
+  <header>
+    <!-- 我们希望把页头放这里 -->
+  </header>
+  <main>
+    <!-- 我们希望把主要内容放这里 -->
+  </main>
+  <footer>
+    <!-- 我们希望把页脚放这里 -->
+  </footer>
+</div>
+```
+
+对于这样的情况，`<slot>` 元素有一个特殊的特性：`name`。这个特性可以用来定义额外的插槽：
+
+```html
+<div class="container">
+  <header>
+    <slot name="header"></slot>
+  </header>
+  <main>
+    <slot></slot>
+  </main>
+  <footer>
+    <slot name="footer"></slot>
+  </footer>
+</div>
+```
+
+> 一个不带 `name` 的 `<slot>` 出口会带有隐含的名字`default`。
+
+在向具名插槽提供内容的时候，我们可以在元素上使用 `v-slot` 指令，并以 `v-slot` 的参数的形式提供其名称：
+
+```html
+<base-layout>
+  <template v-slot:header>
+    <h1>Here might be a page title</h1>
+  </template>
+
+  <p>A paragraph for the main content.</p>
+  <p>And another one.</p>
+
+  <template v-slot:footer>
+    <p>Here's some contact info</p>
+  </template>
+</base-layout>
+```
+
+> Tips：已废弃的方案采用的是 `slot="header"` 的方式。
+
+现在元素中的所有内容都将会被传入相应的插槽。
+
+任何没有被包裹在带有 `v-slot` 元素的中的内容都会被视为`默认插槽`的内容。
+
+然而，如果你希望更明确一些，仍然可以在元素中包裹`默认插槽`的内容：
+
+```html
+<base-layout>
+  <template v-slot:header>
+    <h1>Here might be a page title</h1>
+  </template>
+
+  <template v-slot:default>
+    <p>A paragraph for the main content.</p>
+    <p>And another one.</p>
+  </template>
+
+  <template v-slot:footer>
+    <p>Here's some contact info</p>
+  </template>
+</base-layout>
+```
+
+
+
+#### 作用域插槽
+
+
 
 
 
