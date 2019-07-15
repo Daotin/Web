@@ -813,74 +813,10 @@ computed: {
 
 
 
-## 四、事件修饰符
-
-+ `.stop`  ：  阻止冒泡
-
-+ `.prevent` ：    阻止默认事件（比如点击超链接，阻止跳转到默认网页）
-
-+ `.capture`  ：  添加事件侦听器时使用事件捕获模式（与冒泡模式相反）
-
-+ `.self`  ：只当事件在该元素本身（比如不是子元素）触发时触发回调
-
-+ `.once`  ：事件只触发一次，之后还原标签本身的行为。
 
 
 
-示例：
-
-```html
-    <div id="app">
-
-        <!-- 使用  .stop  阻止冒泡 -->
-        <div class="inner" @click="div1Handler">
-            <input type="button" value="戳他" @click.stop="btnHandler">
-        </div>
-
-        <!-- 使用 .prevent 阻止默认行为（跳转到百度首页） -->
-        <a href="http://www.baidu.com" @click.prevent="linkClick">有问题，先去百度</a>
-
-        <!-- 使用  .capture 实现捕获触发事件的机制：跟冒泡相反，从外到里-->
-        <div class="inner" @click.capture="div1Handler">
-            <input type="button" value="戳他" @click="btnHandler">
-        </div>
-
-        <!-- 使用 .self 实现只有点击当前元素时候，才会触发事件处理函数 -->
-        <div class="inner" @click.self="div1Handler">
-            <input type="button" value="戳他" @click="btnHandler">
-        </div>
-
-        <!-- 使用 .once 只触发一次事件处理函数（如下案例只触发一次点击事件，之后还原标签本身的行为） -->
-        <a href="http://www.baidu.com" @click.prevent.once="linkClick">有问题，先去百度</a>
-
-    </div>
-```
-
-
-
-`.stop` 和 `.self` 的区别：
-
-```html
-        <!-- stop 会阻止冒泡行为 -->
-        <div class="outer" @click="div2Handler">
-            <div class="inner" @click="div1Handler">
-                <input type="button" value="戳他" @click.stop="btnHandler">
-            </div>
-        </div>
-
-        <!-- .self 只会阻止自己身上冒泡行为的触发，并不会真正阻止冒泡的行为 -->
-        <div class="outer" @click="div2Handler">
-            <div class="inner" @click.self="div1Handler">
-                <input type="button" value="戳他" @click="btnHandler">
-            </div>
-        </div>
-```
-
-
-
-
-
-## 五、Vue中的样式
+## 四、Vue中的样式
 
 ### 1、动态class（使用v-bind绑定）
 
