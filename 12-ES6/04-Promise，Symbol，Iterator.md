@@ -14,6 +14,12 @@ ES6的Promise是一个构造函数, 用来生成promise实例。
 - `fullfilled`: 成功状态
 - `rejected`: 失败状态
 
+只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是Promise这个名字的由来，它的英语意思就是“承诺”，表示其他手段无法改变。
+
+一旦状态改变，就不会再变，任何时候都可以得到这个结果。
+
+Promise对象的状态改变，只有两种可能：从pending变为fulfilled和从pending变为rejected。只要这两种情况发生，状态就凝固了，不会再变了，会一直保持这个结果，这时就称为 resolved（已定型）。
+
 
 
 
@@ -30,6 +36,22 @@ ES6的Promise是一个构造函数, 用来生成promise实例。
 **5、 Promise的实例对象有一个方法then，参数为两个匿名函数，第一个匿名函数处理Promise的状态为fullfilled的情况；第二个匿名函数处理Promise的状态为rejected的情况；**
 
 **6、上面说到，在异步操作成功或者失败的时候，会调用resolve和reject函数，在这两个回调函数中可以传入参数，这个参数可以直接带入到then中两个匿名函数的参数中使用。比如获取到ajax的数据，可以将获取的数作为参数传入resolve的参数中，然后会自动将这个参数传入then的第一个匿名函数中，reject也一样。**
+
+
+
+用代码表示：
+
+```js
+function timeout(ms) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, ms, 'done');
+  });
+}
+
+timeout(100).then((value) => {
+  console.log(value);
+});
+```
 
 
 
@@ -66,11 +88,59 @@ ES6的Promise是一个构造函数, 用来生成promise实例。
 
 ![](./images/12.png)
 
+### 3、promise执行顺序
+
+Promise 新建后就会立即执行。
+
+```js
+let promise = new Promise(function(resolve, reject) {
+  console.log('Promise');
+  resolve();
+});
+
+promise.then(function() {
+  console.log('resolved.');
+});
+
+console.log('Hi!');
+
+// Promise
+// Hi!
+// resolved
+```
+
+上面代码中，Promise 新建后立即执行，所以首先输出的是Promise。然后，then方法指定的回调函数，将在当前脚本所有同步任务执行完才会执行，所以resolved最后输出。
+
+```js
+new Promise((resolve, reject) => {
+  resolve(1);
+  console.log(2);
+}).then(r => {
+  console.log(r);
+});
+// 2
+// 1
+```
+
+上面代码中，调用resolve(1)以后，后面的console.log(2)还是会执行，并且会首先打印出来。这是因为立即 resolved 的 Promise 是在本轮事件循环的末尾执行，**总是晚于本轮循环的同步任务**。
+
+然而——
+
+一般来说，调用resolve或reject以后，Promise 的使命就完成了，后继操作应该放到then方法里面，而不应该直接写在resolve或reject的后面。所以，最好在它们前面加上return语句，这样就不会有意外。
+
+```js
+new Promise((resolve, reject) => {
+  return resolve(1);
+  // 后面的语句不会执行
+  console.log(2);
+})
+```
 
 
 
+### 4、小栗子
 
-**promise案例：获取新闻内容和评论内容**
+使用 promise 获取新闻内容和评论内容：
 
 ```js
     // 定义一个请求news的方法
@@ -125,7 +195,123 @@ ES6的Promise是一个构造函数, 用来生成promise实例。
 
 
 
+### 5、catch
 
+`Promise.prototype.catch`方法是`.then(null, rejection)`或`.then(undefined, rejection)`的别名，用于指定发生错误时的回调函数。
+
+当状态就会变为`rejected`，就会调用`catch`方法指定的回调函数，处理这个错误。另外，`then`方法指定的回调函数，如果运行中抛出错误，也会被`catch`方法捕获。
+
+```js
+new Promise((resolve, reject) => {
+  reject(1);
+  console.log(2);
+}).catch(r => {
+  console.log(r);
+});
+// 2
+// 1
+```
+
+> 一般来说，不要在`then`方法里面定义 Reject 状态的回调函数（即`then`的第二个参数），总是使用`catch`方法。
+
+```js
+// 不好的写法
+promise
+  .then(function(data) {
+    // success
+  }, function(err) {
+    // error
+  });
+
+// 好的写法
+promise
+  .then(function(data) { //cb
+    // success
+  })
+  .catch(function(err) {
+    // error
+  });
+```
+
+上面代码中，第二种写法要好于第一种写法，理由是第二种写法可以捕获前面`then`方法执行中的错误，也更接近同步的写法（`try/catch`）。因此，建议总是使用`catch`方法，而不使用`then`方法的第二个参数。
+
+
+
+### 6、finally
+
+`finally`方法用于指定不管 Promise 对象最后状态如何，都会执行的操作。该方法是 ES2018 引入标准的。
+
+```js
+promise
+.then(result => {···})
+.catch(error => {···})
+.finally(() => {···});
+```
+
+上面代码中，不管`promise`最后的状态，在执行完`then`或`catch`指定的回调函数以后，都会执行`finally`方法指定的回调函数。
+
+
+
+
+
+### 7、Promise静态方法
+
+#### 7.1、all和race
+
+有时候需要同时处理多个ajax请求，如何在都获取到数据的时候才进行下一步操作呢？
+
+`Promise.all` 就派上用场了。
+
+```js
+Promise.all([ajax1(), ajax2(), ajax3()])
+	.then(function(res) {
+    // res 处理
+})
+.catch(function(err) {
+    // err 错误处理
+})
+```
+
+其中`ajax1`,`ajax2`,`ajax3` 返回值都是 Promise 实例。
+
+> 当 ajax1(), ajax2(), ajax3() 状态全为 `fulfilled` 的时候，才会调用`then`方法。
+>
+> 当 ajax1(), ajax2(), ajax3() 状态有一个为 `rejected` 的时候，就会调用`catch`方法。
+
+
+
+而 rece 与all 用法相同，但是结果相反：
+
+```js
+Promise.rece([ajax1(), ajax2(), ajax3()])
+	.then(function(res) {
+    // res 处理
+})
+.catch(function(err) {
+    // err 错误处理
+})
+```
+
+> 当 ajax1(), ajax2(), ajax3() 状态有一个为 `fulfilled` 的时候，就会调用`then`方法。
+>
+> 当 ajax1(), ajax2(), ajax3() 状态全为 `rejected` 的时候，才会调用`catch`方法。
+
+
+
+#### 7.2、resolve和reject
+
+`Promise.resolve(value) `方法返回一个已给定值解析后的新的Promise对象，从而能继续使用then的链式方法调用。
+
+```js
+var promise1 = Promise.resolve(123);
+
+promise.then(function(value) {
+  console.log(value);
+  // expected output: 123
+});
+```
+
+而 `Promise.reject()` 和 resolve 一样。
 
 
 
