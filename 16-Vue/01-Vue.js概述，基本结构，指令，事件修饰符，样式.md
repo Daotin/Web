@@ -224,7 +224,7 @@ data: {
 {{ var a = 1 }}
 
 <!-- 流控制也不会生效，请使用三元表达式 -->
-{{ if (ok) { return message } }}
+{ {    if (ok) { return message }     } }
 ```
 
 
