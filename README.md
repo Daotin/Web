@@ -1,4 +1,8 @@
-**📚 从零开始学 Web 系列教程。长期更新中......**
+# 📚 从零开始学 Web 系列教程
+
+![](https://img.shields.io/badge/stars-129-blue.svg)
+![](https://img.shields.io/badge/forks-47-blue.svg)
+![](https://img.shields.io/badge/licence-MIT-success.svg)
 
 Web 前端从入门进阶到高级自学笔记，超详细的前端自学图文教程。
 
