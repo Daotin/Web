@@ -385,12 +385,12 @@ componentDidMount() {
 
 如果要传递大量数据，使用`state`进行传递，这种传递的方式**不会在地址栏显示。**
 
-```jsx
-<Link to={ { pathname: `/detail/${item.goodsId}`, state: { name: item.name, price: item.price }  } } key={item.goodsId} >
+···
+<Link to={{ pathname: `/detail/${item.goodsId}`, state: { name: item.name, price: item.price }  }} key={item.goodsId} >
     <h3>名称：{item.name}</h3>
     <p>价格：{item.price}</p>
 </Link >
-```
+···
 
 > 这种state传参的写法，需要注意to的值不再是字符串拼接，而是一个对象。
 
