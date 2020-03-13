@@ -513,8 +513,7 @@ computed: {
 
 
 
-> 实际上，除了有mapState，mapActions，mapMutations，mapGetters都有，且用法相同。
-
+> 实际上，除了有mapState，mapActions，mapMutations，mapGetters都有，且用法相同。 **需要注意的是，mapState，mapGetters 是写在`computed`里面，而mapActions，mapMutations 写在 `methods` 里面。**
 
 
 我们将user组件进行进行改造：
