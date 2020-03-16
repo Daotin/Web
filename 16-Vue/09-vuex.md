@@ -646,6 +646,12 @@ import userStore from './userStore'
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
+    // 可以有自己的根状态，所有的组件都可以使用。比如用户的登录信息等
+    state:{
+        userInfo:{
+            name: 'daotin'
+        }
+    },
     modules: {
         home: homeStore,
         user: userStore
