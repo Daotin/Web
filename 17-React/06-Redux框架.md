@@ -611,7 +611,7 @@ export let getListAction = dispatch => {
 
 包括首页，商品列表，详情页和页面。
 
-有道云笔记链接：http://note.youdao.com/noteshare?id=e6b82f2de0baa14e7e4be059c1143581&sub=C3F7D4882A2F4F8F9F400EFDC4AE5CC9
+文章链接：https://github.com/Daotin/daotin.github.io/issues/133
 
 
 
