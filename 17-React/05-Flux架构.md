@@ -596,22 +596,6 @@ store的state更新了，注意需要在容器组件加载完成后绑定视图�
 5、路由部分引入的组件 注意需要切换成容器组件。
 
 
+## 简易flux项目
 
-**示例文件：fluxDemo**
-
-http://note.youdao.com/noteshare?id=9ce61a4f780b8aa1f59805ec9797feaf&sub=0A5A79094AD9405CAF5855B9E5A37D43
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+链接：https://github.com/Daotin/daotin.github.io/issues/132#issue-602918224
