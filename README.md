@@ -11,6 +11,8 @@
 
 > 建议 Chrome 用户下载 `Octotree` 或者 `GayHub` 插件，查看目录文件更方便哦~
 
+---
+
 个人微信公众号「[前端队长](https://github.com/Daotin/pic/raw/master/wx.jpg)」，专注前端与认知，欢迎关注！(*/ω＼*)
 
 ![image](https://user-images.githubusercontent.com/23518990/90120671-977e8580-dd8d-11ea-93b8-5c5557e0b4ee.png)
