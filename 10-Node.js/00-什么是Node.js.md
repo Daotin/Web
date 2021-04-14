@@ -1,7 +1,3 @@
-这个文档比较详细：
-- http://nodejs.cn/learn
-- https://zhuanlan.zhihu.com/p/47822968
-
 ## 几个要点：
 
 - Nodejs 是基于 Chrome 的 V8 引擎开发的一个 C++ 程序，目的是提供一个 **JS 的运行环境**。
@@ -33,3 +29,8 @@ Node.js作者也将Node.js开发完成，但是 Node.js 缺少一个包管理器
 后来的事情大家都知道，Node.js 火了。随着 Node.js 的火爆，大家开始用 npm 来共享 JS 代码了，于是 jQuery 作者也将 jQuery 发布到 npm 了。
 
 所以现在，你可以使用 npm install jquery 来下载 jQuery 代码。现在用 npm 来分享代码已经成了前端的标配。
+
+
+## 参考文档：
+- http://nodejs.cn/learn
+- https://zhuanlan.zhihu.com/p/47822968
