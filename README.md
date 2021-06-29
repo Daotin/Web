@@ -22,7 +22,8 @@
 
 个人微信公众号「[前端队长](https://github.com/Daotin/pic/raw/master/wx.jpg)」，专注前端与认知，欢迎关注！(*/ω＼*)
 
-![image](https://user-images.githubusercontent.com/23518990/90120671-977e8580-dd8d-11ea-93b8-5c5557e0b4ee.png)
+![image](https://user-images.githubusercontent.com/23518990/123825362-6ec59700-d931-11eb-8360-698332ceef07.png)
+
 
 
 
