@@ -95,6 +95,29 @@ rem 是按照 html 的字号决定的，那么我们可以这样做，我们先�
 
 **1、设置各种屏幕尺寸下的 HTML 的字号大小。** 
 
+```css
+@media screen and (device-width: 320px) {
+  html {
+    font-size: 16px;
+  }
+}
+@media screen and (device-width: 360px) {
+  html {
+    font-size: 18px;
+  }
+}
+@media screen and (device-width: 375px) {
+  html {
+    font-size: 18.75px;
+  }
+}
+@media screen and (device-width: 414px) {
+  html {
+    font-size: 20.07px;
+  }
+}
+```
+
 **2、将 UI 下各个元素，不论是元素还是边距，边框等值全部除以每一份的大小，单位为 rem 即可得到在不同屏幕下的不同缩放大小。**
 
 比如：640px 的 UI，设置为：`元素等/32 rem;`
@@ -127,4 +150,113 @@ rem 是按照 html 的字号决定的，那么我们可以这样做，我们先�
 ```
 >  Tips：把 rem 理解成`份`  的意思更好理解，你在640px上占多少份，在实际的屏幕上就占多少份。
 
+## 移动端适配补充（2021-07-22）
 
+我们可以看到，我们在书写的时候每次这样除以一个32或者37.5还挺难看的，而且css还不能使用，在less或者sass这种css处理器上才可以使用除号：
+
+```less
+{
+    height:218/32rem;
+    border: 3/32rem dashed #dedede;
+    padding-top:36/32rem;
+    font-size: 104/32rem;
+}
+```
+
+```less
+{
+    height:218/37.5rem;
+    border: 3/37.5rem dashed #dedede;
+    padding-top:36/37.5rem;
+    font-size: 104/37.5rem;
+}
+```
+
+
+
+所以，为了兼容css，也为了好看，我们就不要分成20份了，我们可以把640px的UI分成`6.4`份，把750px的UI分成`7.5`份，这样每一份的大小都是`100px`。
+
+以后就不需要写成`36/37.5rem;` 的形式，而是 `0.36rem` 的形式，是不是好看多了。
+
+
+
+**继续改进：**
+
+从上文看出，为了适配320px，360px，375px等等尺寸的屏幕，我们需要写多个媒体查询，而且还没有做到连续，只是挑选出了几个经典的尺寸进行媒体查询设置html的font-size大小，如果出现一个350px的，我们就只能使用320px的适配了。
+
+```css
+@media screen and (device-width: 320px) {
+  html {
+    font-size: 16px;
+  }
+}
+@media screen and (device-width: 360px) {
+  html {
+    font-size: 18px;
+  }
+}
+@media screen and (device-width: 375px) {
+  html {
+    font-size: 18.75px;
+  }
+}
+@media screen and (device-width: 414px) {
+  html {
+    font-size: 20.07px;
+  }
+}
+
+```
+
+于是，我们需要通过js动态设置不同尺寸html的font-size大小。
+
+
+
+我们已750px的UI为例，把它分成7.5份，每一份100（100的话是为了好算）。
+
+如果UI中有一个300px的元素的话，我们在320px的设备中应该显示多少呢？
+
+
+
+**计算过程：**
+
+- 300px在UI中占（300/100=3）份
+- 那么在320px中也应该占3份，320px因为也是分成7.5份的，那么就应该是（320/7.5）× 3 = 128px
+
+
+
+**写出rem形式的通用公式就是：**
+
+- 设置 html 的 font-size： `deviceWidth/7.5`
+
+- 在使用的时候在UI上是300px占了3份，所以320px也占3份就是：`3rem`，类比在UI上是320px就是`3.2rem` 。。。
+
+
+
+所以，我们发现只要设置好了html的font-size后，我们只需要在使用的时候把图形**在原UI尺寸的基础上除以100，然后加上rem即可**。
+
+
+
+那么回到上面的问题，**如何使用js动态设置 html的font-size？**
+
+在脚本开始的时候，获取设备宽度`deviceWidth`，然后设置html的font-size大小。这样就不必写很多媒体查询了。
+
+```js
+<script type="text/javascript">
+    (function() {
+        var deviceWidth = document.documentElement.clientWidth;
+        deviceWidth = deviceWidth < 320 ? 320 : deviceWidth > 640 ? 640 : deviceWidth;
+        document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px'; // 设计稿是750px
+    	// document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px'; // 设计稿是640px
+    })();
+</script>
+
+```
+
+
+
+**参考链接：**
+
+- https://juejin.cn/post/6844903721697017864
+
+- https://www.manster.me/?p=311
