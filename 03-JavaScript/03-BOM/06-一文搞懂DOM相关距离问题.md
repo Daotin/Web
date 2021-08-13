@@ -1,7 +1,9 @@
 
-## *(added in 20210813)*
+## 内容更新
 
-最新内容已更新至博客：[一文搞懂JavaScript中各种宽高位置（全）](https://daotin.github.io/2021/08/08/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82JavaScript%E4%B8%AD%E5%90%84%E7%A7%8D%E5%AE%BD%E9%AB%98%E4%BD%8D%E7%BD%AE.html)（更新日期：2021-08-08）
+最新内容已更新至博客：[一文搞懂JavaScript中各种宽高位置（全）](https://daotin.github.io/2021/08/08/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82JavaScript%E4%B8%AD%E5%90%84%E7%A7%8D%E5%AE%BD%E9%AB%98%E4%BD%8D%E7%BD%AE.html)
+
+> 更新日期 *(added in 2021-08-13)*
 
 以下内容为旧的，可以不必查看。
 
