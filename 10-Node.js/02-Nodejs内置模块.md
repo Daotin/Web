@@ -444,7 +444,7 @@ server.listen(3000, () => {
 ![](./img/6.jpg)
 
 
-
+> PS：所有Node自带模块都可以在这里找到：http://nodejs.cn/api/
 
 
 
