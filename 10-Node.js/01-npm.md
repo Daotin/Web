@@ -18,9 +18,9 @@ npm -v
 
 如果需要使用npm下载安装软件，需要在项目下有一个`package.json` 文件。这个文件可以自己创建，也可以使用npm指令创建，用npm指令创建简单一些，不用在意修改其中的内容。
 
+## 创建模块化开发项目
 
-
-1、创建package.json文件
+**1、创建package.json文件**
 
 ```js
 npm init
@@ -28,7 +28,7 @@ npm init
 
 创建的过程中会提示输入项目的名称等等一些问题，如果不在意的话，一路回车即可。
 
-2、向项目添加工具（这里以jQuery为例）
+**2、向项目添加工具（这里以jQuery为例）**
 
 ```js
 npm install jquery --save // npm i jquery --sava
@@ -42,7 +42,7 @@ npm install jquery --save // npm i jquery --sava
 
 
 
-3、卸载某个工具（已jQuery为例）
+**3、卸载某个工具（已jQuery为例）**
 
 ```js
 npm uninstall jquery -S   // uninstall没有简单写法，后面的参数就是安装时的参数
@@ -67,10 +67,9 @@ npm info jquery //查看模块的相关信息
 npm run start   //执行package.json 中的script属性的脚本
 ```
 
-
+## npm加速
 
 有的时候，npm访问的速度特别慢，是因为npm的主机是在国外的。幸运的是，国内有几个良心公司为了方便国内用户方便下载npm中的工具，于是在国内做了几个npm镜像主机，我们在国内访问这些镜像主机的时候，速度就很快了。
-
 
 
 这个工具叫 `nrm`，也是需要先安装的：
@@ -89,6 +88,14 @@ nrm use cnpm //切换到指定的源
 
 切换完源之后，软件的下载还是npm，而不是使用nrm来下载工具。
 
+
+### npm、nrm、nvm是什么关系？
+
+- npm(node.js package management)：node.js 包管理，用于管理node.js包的下载等等
+- nrm(node.js resource management)： node.js 下载源管理，用于切换下载源，实现快速下载包
+- nvm(node.js version management) ：node.js版本管理，用于管理多个node.js版本共存、切换等
+
+参考链接：https://juejin.cn/post/6844903718123470861
 
 
 
