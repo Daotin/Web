@@ -348,7 +348,30 @@ export let Home = {
 
 #### 作用域插槽
 
+> 以下内容来自官网文档：
 
+当你想在一个插槽中使用数据时，例如：
 
+```html
+<navigation-link url="/profile">
+  Logged in as {{ user.name }}
+</navigation-link>
+```
 
+该插槽跟当前模板的其它地方一样可以访问data的数据，而不能访问子组件 `<navigation-link>` 的作用域。例如 `url` 是访问不到的：
+
+```html
+<navigation-link url="/profile">
+  Clicking here will send you to: {{ url }}
+  <!--
+  这里的 `url` 会是 undefined，因为其 (指该插槽的) 内容是
+  _传递给_ <navigation-link> 的而不是
+  在 <navigation-link> 组件*内部*定义的。
+  -->
+</navigation-link>
+```
+
+作为一条规则，请记住：
+
+> **父级模板里的所有内容都是在父级作用域中编译的；子模板里的所有内容都是在子作用域中编译的。**
 
