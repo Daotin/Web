@@ -17,12 +17,34 @@ HTML 指的是超文本标记语言 (Hyper Text Markup Language) ，它是用来
 
 
 
-## 常用浏览器
+## 语法规范
+
+### 基本语法
+
+- HTML 标签是由尖括号包围的关键词，例如 `<html>`。
+- HTML 标签通常是成对出现的，例如 `<html>` 和 `</html>` ，我们称为双标签。标签对中的第一个标签是开始标签，第二个标签是结束标签。
+- 有些特殊的标签必须是单个标签（极少情况），例如 `<br />`，我们称为单标签。
 
 
+### 标签关系
+双标签关系可以分为两类：包含关系和并列关系。
+
+包含关系：
+```html
+<head>
+    <title></title>
+</head>
+```
+
+并列关系：
+```html
+<head> </head>
+<body> </body>
+```
 
 
 ## 常用编辑器
 
-## web标准
+- `vscode`（微软） 下载地址：https://code.visualstudio.com/
+- `webstorm`（Jetbrain）
 
