@@ -178,39 +178,39 @@ rem 是按照 html 的字号决定的，那么我们可以这样做，我们先�
 
 以后就不需要写成`36/37.5rem;` 的形式，而是 `0.36rem` 的形式，是不是好看多了。
 
+但是要注意，媒体查询需要变一下：
+```css
+// 对于640px的UI
+@media screen and (device-width: 320px) {
+  html {
+    font-size: 50px;  // 320÷6.4
+  }
+}
+@media screen and (device-width: 360px) {
+  html {
+    font-size: 56.25px; // 360÷6.4
+  }
+}
+
+// 对于750px的UI
+@media screen and (device-width: 320px) {
+  html {
+    font-size: 42.67px;  // 320÷7.5
+  }
+}
+@media screen and (device-width: 360px) {
+  html {
+    font-size: 48px; // 360÷7.5
+  }
+}
+```
 
 
 **继续改进：**
 
 从上文看出，为了适配320px，360px，375px等等尺寸的屏幕，我们需要写多个媒体查询，而且还没有做到连续，只是挑选出了几个经典的尺寸进行媒体查询设置html的font-size大小，如果出现一个350px的，我们就只能使用320px的适配了。
 
-```css
-@media screen and (device-width: 320px) {
-  html {
-    font-size: 16px;
-  }
-}
-@media screen and (device-width: 360px) {
-  html {
-    font-size: 18px;
-  }
-}
-@media screen and (device-width: 375px) {
-  html {
-    font-size: 18.75px;
-  }
-}
-@media screen and (device-width: 414px) {
-  html {
-    font-size: 20.07px;
-  }
-}
-
-```
-
 于是，我们需要通过js动态设置不同尺寸html的font-size大小。
-
-
 
 我们已750px的UI为例，把它分成7.5份，每一份100（100的话是为了好算）。
 
