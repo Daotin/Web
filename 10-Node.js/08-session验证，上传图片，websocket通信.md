@@ -442,7 +442,7 @@ ws.on('connection', client => {
         // 数据存放在event.data里面
         console.log(event.data)
     }
-	// 客户端主动断开连接
+	// 服务器主动断开连接
     ws.onclose = function(event){}
     
 	// 连接出错
