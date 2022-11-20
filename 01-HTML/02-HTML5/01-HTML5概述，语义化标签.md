@@ -72,16 +72,12 @@ HTML5 还引进了新的功能，可以真正改变用户与文档的交互方�
 
 #### 2.1、结构标签
 
-- `section`：独立内容区块，可以用 h1~h6 组成大纲，表示文档结构，也可以有章节、页眉、页脚或页眉的其他部分；
-- `article`：特殊独立区块，表示这篇页眉中的核心内容；
-- `aside`：标签内容之外与标签内容相关的辅助信息；
-- `header`：某个区块的头部信息/标题；
-
-- `hgroup`：头部信息/标题的补充内容；
-- `footer`：底部信息；
-
-- `nav`：导航条部分信息；
-- `figure`：独立的单元，例如某个有图片与内容的新闻块。
+- `header`：一个区块的头部信息/标题；
+- `footer`：一个区块的底部信息；
+- `nav`：导航栏区域；
+- `section`：一个通用独立章节或者区域。一般来说会包含一个标题。
+- `article`：一块独立区块，表示一块相对比较独立的内容；
+- `aside`：表示一个和主体内容几乎无关的部分，可以被单独的拆分出来而不会使整体受影响。
 
 #### 2.2、表单标签
 
@@ -108,11 +104,20 @@ HTML5 还引进了新的功能，可以真正改变用户与文档的交互方�
       name="userName"
       id="userName"
       placeholder="请输入用户名"
-    />
+    /><br />
+
     <label for="userPhone">手机号码:</label>
-    <input type="tel" name="userPhone" id="userPhone" pattern="^1\d{10}$" />
+    <input
+      type="tel"
+      name="userPhone"
+      id="userPhone"
+      pattern="^1\d{10}$"
+    /><br />
+
     <label for="email">邮箱地址:</label>
     <input type="email" required name="email" id="email" />
+    <br />
+
     <label for="collage">所属学院:</label>
     <input
       type="text"
@@ -122,19 +127,21 @@ HTML5 还引进了新的功能，可以真正改变用户与文档的交互方�
       placeholder="请选择"
     />
     <datalist id="cList">
-      <option value="前端与移动开发学院"></option>
-      <option value="java学院"></option>
-      <option value="c++学院"></option>
-    </datalist>
-    <label for="score">入学成绩:</label>
-    <input type="number" max="100" min="0" value="0" id="score" />
+      <option value="前端学院"></option>
+      <option value="后端学院"></option>
+      <option value="C语言学院"></option></datalist
+    ><br />
+
     <label for="level">基础水平:</label>
-    <meter id="level" max="100" min="0" low="59" high="90"></meter>
+    <meter id="level" value="60" max="100" min="0" low="59" high="90"></meter>
+    <br />
+
     <label for="inTime">入学日期:</label>
     <input type="date" id="inTime" name="inTime" />
+    <br />
+
     <label for="leaveTime">毕业日期:</label>
     <input type="date" id="leaveTime" name="leaveTime" />
-    <input type="submit" />
   </fieldset>
 </form>
 ```
@@ -257,7 +264,7 @@ volumechange  // 当音量发生变化时触发
 - mark：标注；
 - progress：进度条；
 
-  - `<progress max="最大进度条的值" value="当前进度条的值">`
+  - ` <progress max="100" value="20"></progress>`
 
 - time：数据标签，给搜索引擎使用；
 
@@ -266,11 +273,11 @@ volumechange  // 当音量发生变化时触发
 
 - ruby 和 rt：对某一个字进行注释；
 
-  - `<ruby><rt>注释内容</rt><rp>浏览器不支持时如何显示</rp></ruby>`
+  - ` <ruby> 汉 <rt>han</rt> 字 <rt>zi</rt> </ruby>`
 
 - canvas：绘图标签；
 - deteils ：展开菜单；
-- datalist：文本域下拉提示；
+- datalist：数据列表元素；
 
 ```html
 <form action="">
