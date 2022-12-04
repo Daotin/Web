@@ -94,57 +94,101 @@ HTML5 还引进了新的功能，可以真正改变用户与文档的交互方�
 - search：搜索控件；
 - color：颜色控件
 
+
+综合示例：
+
 ```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        form {
+            width: 600px;
+            margin: 10px auto;
+        }
+
+        form > fieldset {
+            padding: 10px 10px;
+        }
+
+        form > fieldset > meter,
+        form > fieldset > input {
+            width: 100%;
+            height: 30px;
+            margin: 8px 0;
+            border: none;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            font-size: 16px;
+            padding-left: 5px;
+            box-sizing: border-box; /*避免padding+border的影响*/
+        }
+
+        form > fieldset > meter {
+            padding: 0;
+        }
+
+    </style>
+</head>
+<body>
 <form action="">
-  <fieldset>
-    <legend>学生档案</legend>
-    <label for="userName">姓名:</label>
-    <input
-      type="text"
-      name="userName"
-      id="userName"
-      placeholder="请输入用户名"
-    /><br />
+    <fieldset>
+        <legend>学生档案</legend>
+        <label for="txt">姓名：</label>
+        <input type="text" name="userName" id="txt" placeholder="请输入姓名" required>
 
-    <label for="userPhone">手机号码:</label>
-    <input
-      type="tel"
-      name="userPhone"
-      id="userPhone"
-      pattern="^1\d{10}$"
-    /><br />
+        <label for="phone">手机号码：</label>
+        <input type="tel" name="phone" id="phone" required
+               pattern="^((1[3,5,8][0-9])|(14[5,7])|(17[0,6,7,8])|(19[7]))\d{8}$">
 
-    <label for="email">邮箱地址:</label>
-    <input type="email" required name="email" id="email" />
-    <br />
+        <label for="em">邮箱：</label>
+        <input type="email" name="myemail" id="em" required>
 
-    <label for="collage">所属学院:</label>
-    <input
-      type="text"
-      name="collage"
-      id="collage"
-      list="cList"
-      placeholder="请选择"
-    />
-    <datalist id="cList">
-      <option value="前端学院"></option>
-      <option value="后端学院"></option>
-      <option value="C语言学院"></option></datalist
-    ><br />
+        <label for="collage">学院：</label>
+        <input type="text" name="collage" id="collage" list="dl" required>
+        <datalist id="dl">
+            <option value="电气与电子工程学院"></option>
+            <option value="经济与管理学院"></option>
+            <option value="外国语学院"></option>
+            <option value="艺术与传媒学院"></option>
+        </datalist>
 
-    <label for="level">基础水平:</label>
-    <meter id="level" value="60" max="100" min="0" low="59" high="90"></meter>
-    <br />
+        <label for="num">入学成绩：</label>
+        <input type="number" name="num" id="num" required max="100" min="0" value="0" step="0.5">
 
-    <label for="inTime">入学日期:</label>
-    <input type="date" id="inTime" name="inTime" />
-    <br />
+        <label for="level">基础水平：</label>
+        <meter id="level" max="100" min="0" high="90" low="59"></meter>
 
-    <label for="leaveTime">毕业日期:</label>
-    <input type="date" id="leaveTime" name="leaveTime" />
-  </fieldset>
+        <label for="edt">入学日期：</label>
+        <input type="date" name="dt" id="edt" required>
+
+        <label for="ldt">毕业日期：</label>
+        <input type="date" name="dt" id="ldt" required>
+
+        <input type="submit" id="sub">
+    </fieldset>
 </form>
+<script>
+    document.getElementById("phone").oninvalid = function () {
+        this.setCustomValidity("请输入11位正确的手机号码！");
+    };
+    document.getElementById("num").oninput = function () {
+        document.getElementById("level").value = this.value;
+    };
+</script>
+</body>
+</html>
 ```
+
+![3](./images/3.png)
+
 
 **表单标签新增的一些属性：**
 
@@ -266,9 +310,37 @@ volumechange  // 当音量发生变化时触发
 #### 2.4、其他功能标签
 
 - mark：标注；
+
+---
+
 - progress：进度条；
 
   - ` <progress max="100" value="20"></progress>`
+
+属性： max 最大值，value：当前值
+
+-   meter（度量器）：
+
+属性：
+
+high：被界定为高的值的范围。
+low：被界定为低的值的范围。
+max：规定范围的最大值。
+min：规定范围的最小值。
+optimum：	规定度量的最优值。
+value：规定度量的当前值。
+
+```html
+<progress max="100" value="30"></progress>
+<br>
+<meter max="100" min="0" high="70" low="30" value="20"></meter>
+<meter max="100" min="0" high="70" low="30" value="50"></meter>
+<meter max="100" min="0" high="70" low="30" value="90"></meter>
+```
+
+![](./images/8.png)
+
+---
 
 - time：数据标签，给搜索引擎使用；
 
