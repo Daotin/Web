@@ -253,10 +253,87 @@ rem 是按照 html 的字号决定的，那么我们可以这样做，我们先�
 
 ```
 
+## 使用viewport代替rem
 
+![image](https://github.com/Daotin/Web/assets/23518990/31ab48fc-c4ad-41be-b92e-b18d0a018f64)
+
+截止到2024年5月，viewport的支持率早已经很好了，没必要采用rem的方式了。
+
+而且在[flexible.js](https://github.com/amfe/lib-flexible)官网也提到：由于viewport单位得到众多浏览器的兼容，lib-flexible这个过渡方案已经可以放弃使用，不管是现在的版本还是以前的版本，都存有一定的问题。建议大家开始使用viewport来替代此方。
+
+vh、vw方案即将视觉视口宽度 window.innerWidth和视觉视口高度 window.innerHeight 等分为 100 份。
+
+上面的 flexible方案就是模仿这种方案，因为早些时候 vw还没有得到很好的兼容。
+
+vw(Viewport's width)： 1vw等于视觉视口的 1%
+vh(Viewport's height) : 1vh 为视觉视口高度的 1%
+vmin : vw 和 vh 中的较小值
+vmax : 选取 vw 和 vh 中的较大值
+
+如果视觉视口为 375px，那么 1vw=3.75px，这时 UI给定一个元素的宽为 75px（设备独立像素），我们只需要将它设置为 75/3.75=20vw。
+
+这里的比例关系我们也不用自己换算，我们可以使用 PostCSS的 `postcss-px-to-viewport` 插件帮我们完成这个过程。写代码时，我们只需要根据 UI给的设计图写 px 单位即可，插件会自动将px转换成vh，vw的形式。
+
+1、安装：
+```
+npm install postcss-px-to-viewport --save-dev
+```
+
+2、配置 postcss.config.js
+```
+module.exports = {
+  plugins: {
+    autoprefixer: {},
+    'postcss-px-to-viewport': {
+      viewportWidth: 750,   // 视窗的宽度，对应的是我们设计稿的宽度，一般是750
+      viewportHeight: 1334, // 视窗的高度，根据750设备的宽度来指定，一般指定1334，也可以不配置
+      unitPrecision: 3,     // 指定`px`转换为视窗单位值的小数位数
+      viewportUnit: "vw",   //指定需要转换成的视窗单位，建议使用vw
+      selectorBlackList: ['.ignore'],// 指定不转换为视窗单位的类，可以自定义，可以无限添加,建议定义一至两个通用的类名
+      minPixelValue: 1,     // 小于或等于`1px`不转换为视窗单位，你也可以设置为你想要的值
+      mediaQuery: false     // 允许在媒体查询中转换`px`
+      exclude: [/node_modules/], // 设置忽略文件，用正则做目录名匹配
+    }
+  }
+}
+```
+
+## 如果在uniapp开发小程序，使用rpx
+
+链接：https://uniapp.dcloud.net.cn/tutorial/syntax-css.html#%E5%B0%BA%E5%AF%B8%E5%8D%95%E4%BD%8D
+
+下面对 rpx 详细说明：
+
+设计师在提供设计图时，一般只提供一个分辨率的图。
+
+严格按设计图标注的 px 做开发，在不同宽度的手机上界面很容易变形。
+
+而且主要是宽度变形。高度一般因为有滚动条，不容易出问题。由此，引发了较强的动态宽度单位需求。
+
+微信小程序设计了 rpx 解决这个问题。uni-app 在 App 端、H5 端都支持了 rpx，并且可以配置不同屏幕宽度的计算方式，具体参考：rpx 计算配置。
+
+rpx 是相对于基准宽度的单位，可以根据屏幕宽度进行自适应。uni-app 规定屏幕基准宽度 750rpx。
+
+开发者可以通过设计稿基准宽度计算页面元素 rpx 值，设计稿 1px 与框架样式 1rpx 转换公式如下：
+
+```
+设计稿 1px / 设计稿基准宽度 = 框架样式 1rpx / 750rpx
+```
+
+换言之，页面元素宽度在 uni-app 中的宽度计算公式：
+
+```
+750 * 元素在设计稿中的宽度 / 设计稿基准宽度
+```
+
+举例说明：
+
+- 若设计稿宽度为 750px，元素 A 在设计稿上的宽度为 100px，那么元素 A 在 uni-app 里面的宽度应该设为：`750 * 100 / 750`，结果为：100rpx。
+- 若设计稿宽度为 640px，元素 A 在设计稿上的宽度为 100px，那么元素 A 在 uni-app 里面的宽度应该设为：`750 * 100 / 640`，结果为：117rpx。
+- 若设计稿宽度为 375px，元素 B 在设计稿上的宽度为 200px，那么元素 B 在 uni-app 里面的宽度应该设为：`750 * 200 / 375`，结果为：400rpx。
+
+也就是，如何设计稿为750px，那么其中一个元素是100px，则在代码中写100rpx即可。
 
 **参考链接：**
-
 - https://juejin.cn/post/6844903721697017864
-
 - https://www.manster.me/?p=311
